@@ -32,7 +32,8 @@ export default {
     methods: {
         setFilter(filter) {
             this.filterBy = filter;
-            console.log('Note App Says Filter has changed!');
+
+            console.log('Note App Says Filter has changed!', this.filterBy);
         },
         removeNote(id) {
             console.log('removing', id);
@@ -90,21 +91,26 @@ export default {
         eventBus.$off('editNote', this.toggleModal);
     },
     computed: {
+        // notesToShow() {
+        //     if (!this.filterBy) return this.notes;
+        //     const nameFilter = this.filterBy.byName.toLowerCase();
+        //     // const types = this.filterBy.byType
+        //     const notesToShow = this.notes.filter(note => {
+        //         const values = Object.values(note.info);
+        //         console.log(values);
+        //         const found = values.some(value => {
+        //             console.log(value);
+        //             value.toLowerCase().includes(nameFilter);
+        //         })
+        //         if (found) return note;
+        //     });
+        //     return notesToShow;
+        // } ///BROKEN NEEDS TO BE FIXED 
         notesToShow() {
-            if (!this.filterBy) return this.notes;
-            const nameFilter = this.filterBy.byName.toLowerCase();
-            // const types = this.filterBy.byType
-            const notesToShow = this.notes.filter(note => {
-                const values = Object.values(note.info);
-                console.log(values);
-                const found = values.some(value => {
-                    console.log(value);
-                    value.toLowerCase().includes(nameFilter);
-                })
-                if (found) return note;
-            });
-            return notesToShow;
-        } ///BROKEN NEEDS TO FIX 
+            var filteredNotes = this.notes.filter(note => note.type === filterBy.byType);
+            // filteredNotes = this.filteredNotes.filter()
+            console.log(filteredNotes)
+        }
 
     },
     watch: {
