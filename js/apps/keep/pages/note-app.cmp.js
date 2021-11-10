@@ -1,4 +1,4 @@
-
+import {noteServices} from '../services/note-services.cmp.js'
 
 export default {
 
@@ -13,6 +13,7 @@ export default {
     },
     data() {
         return {
+            // notes: null,
             notes: [, , , , ],
         }
     },
