@@ -1,34 +1,34 @@
-@import url("./Apps/keep/keep-main.css");
+@import url('./Apps/keep/keep-main.css');
+@import url('./Apps/mail/mail.css');
 
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
-
-body{
-    margin: 0;
+body {
+  margin: 0;
 }
 
 /* header */
-.app-header{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 10vh;
-    background-color: lightcoral;
+.app-header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 10vh;
+  background-color: lightcoral;
 }
 
 /* home page  */
 
-.home-page{
-    text-align: center;
-    height: 80vh;
+.home-page {
+  text-align: center;
+  height: 80vh;
 }
 
 /* footer   */
 
-.app-footer{
-    text-align: center;
-    height: 10vh;
-    background-color: lightcoral;
+.app-footer {
+  text-align: center;
+  height: 10vh;
+  background-color: lightcoral;
 }

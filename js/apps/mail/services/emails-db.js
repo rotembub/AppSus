@@ -10,8 +10,8 @@ function emailsData() {
         "What's up with you? Here's how to find out from yolo",
       body: "The opening keynote of water US this year was You , giving his State of the address. He walked us through the journey of getting  from a prototype to a reality the past year. He also dove into overall growth in the community.",
       isRead: false,
-      sentAt: new Date(),
-      to: 'user@appsus.com'
+      sentAt: 1636552105400,//new Date(),
+      to: 'user1@appsus.com'
     },
     {
       id: 'abcd',
@@ -19,8 +19,8 @@ function emailsData() {
         "What's up with you? Here's how to find out from yolo",
       body: "The opening keynote of water US this year was You , giving his State of the address. He walked us through the journey of getting  from a prototype to a reality the past year. He also dove into overall growth in the community.",
       isRead: false,
-      sentAt: new Date(),
-      to: 'user@appsus.com'
+      sentAt: 1636552105402,//new Date(),
+      to: 'user2@appsus.com'
     },
     {
       id: 'jkhy',
@@ -28,8 +28,8 @@ function emailsData() {
         "What's up with you? Here's how to find out from yolo",
       body: "The opening keynote of water US this year was You , giving his State of the address. He walked us through the journey of getting  from a prototype to a reality the past year. He also dove into  overall growth in the community.",
       isRead: false,
-      sentAt: new Date(),
-      to: 'user@appsus.com'
+      sentAt: 1636552105403,//new Date(),
+      to: 'user3@appsus.com'
     },
     {
       id: 'lopr',
@@ -37,8 +37,8 @@ function emailsData() {
         "What's up with you? Here's how to find out from yolo",
       body: "The opening keynote of water US this year was You , giving his State of the address. He walked us through the journey of getting  from a prototype to a reality the past year. He also dove into  overall growth in the community.",
       isRead: false,
-      sentAt: new Date(),
-      to: 'user@appsus.com'
+      sentAt: 1636552105404,//new Date(),
+      to: 'user4@appsus.com'
     },
   ];
 }
