@@ -20,6 +20,8 @@ export const emailService = {
   save,
   remove,
   toggleRead,
+  setAsRead,
+  toggleStar,
   addEmail,
   getEmailsByFolder
   // saveReview,
@@ -51,6 +53,7 @@ function addEmail(email) {
     subject: email.subject,
     body:  email.body,
     isRead: false,
+    isStar:false,
     sentAt: Date.now(),
     to: 'user@appsus.com'
   };
@@ -66,14 +69,24 @@ function toggleRead(email) {
   return storageService.put(EMAILS_KEY, email);
 }
 
+function toggleStar(email) {
+  email.isStar = !email.isStar;
+  return storageService.put(EMAILS_KEY, email);
+}
+
+function setAsRead(email) {
+  email.isRead = true;
+  return storageService.put(EMAILS_KEY, email);
+}
+
 function getEmailsByFolder(folder){
   if(folder === 'sent'){
     return query().then( emails=> {
       return emails.filter(e => e.to === loggedinUser.email);
     })
   }
-  if(folder === 'inbox') return query().then(emails => emails.filter(e => e.to !== loggedinUser.email));
-
+  else if(folder === 'inbox') return query().then(emails => emails.filter(e => e.to !== loggedinUser.email));
+  else if(folder === 'star') return query().then(emails => emails.filter(e => e.isStar));
 }
 
 //reviews logic 

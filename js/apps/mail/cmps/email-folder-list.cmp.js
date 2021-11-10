@@ -3,6 +3,7 @@ export default {
           <div class="folder-filter">
             <button @click="showBy('inbox')">Inbox</button>
             <button @click="showBy('sent')">Sent</button>
+            <button @click="showBy('star')">Stared</button>
           </div>
       `,
     data() {

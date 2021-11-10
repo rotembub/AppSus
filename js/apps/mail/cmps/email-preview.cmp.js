@@ -14,12 +14,16 @@ export default {
       <td class="date" >
       {{formatDate(email)}}
      </td>
-    <td><button @click.stop="onRemove(email.id)">Delete</button></td>  
+     <td><button @click.stop="onToggleRead(email)">{{isRead}}</button></td>  
+     <td><button @click.stop="onToggleStar(email)" :class="{star: isActive}">Star</button></td>  
+     <td><button @click.stop="onRemove(email.id)">Delete</button></td>  
 </div> 
                  
     `,
   data() {
-    return {};
+    return {
+      isActive: this.email.isStar
+    };
   },
   methods: {
     formatDate(email) {
@@ -28,5 +32,17 @@ export default {
     onRemove(emailId) {
       this.$emit('remove', emailId);
     },
+    onToggleRead(email){
+      this.$emit('toggle',email);
+    },
+    onToggleStar(email){
+      this.isActive = !this.isActive;
+      this.$emit('stared',email);
+    },
   },
+  computed: {
+    isRead(){
+      return this.email.isRead ? 'unRead':'Read';
+    }
+  }
 };

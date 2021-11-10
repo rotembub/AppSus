@@ -7,9 +7,7 @@ export default {
   template: `
         <section v-if="email" class="book-details ">
       <div class="email-display">
-             <div>
-                <button @click="toggleRead(mail)">{{ email.read ? "Mark Unread (r)" : "Mark Read (r)" }}</button>
-            </div>
+           
           <h2 class="mb-0">
             Subject: <strong>{{ email.subject }}</strong>
          </h2>
@@ -18,6 +16,8 @@ export default {
       </div>
         <div>{{email.body}}</div>
     </div>
+
+    <router-link to="/email" >Back</router-link>
          <!-- <div  class="overlay" @click="close"></div> -->
            <!-- <div class="modal-card"> -->
            <!-- <button class="btn-close" @click="$emit('close')" >X</button> -->
@@ -43,44 +43,11 @@ export default {
     // bookService.getNextBookId(bookId).then(bookId => this.nextBookId = bookId);
   },
   methods: {
-    close() {
-      this.email = null;
-    },
+   
   },
   computed: {
-    readingLength() {
-      const pages = this.book.pageCount;
-      let reading = '';
-      if (pages > 500) {
-        reading = 'Long Reading';
-      } else if (pages > 200) {
-        reading = 'Decent Reading';
-      } else if (pages < 100) {
-        reading = 'Light Reading';
-      }
-      return reading;
-    },
-    publish() {
-      const publishDate = this.book.publishedDate;
-      const currDate = new Date().getFullYear();
-      let publishStr = '';
-      if (currDate - publishDate > 10) {
-        publishStr = 'Veteran Book';
-      } else if (currDate - publishDate <= 1) {
-        publishStr = 'New!';
-      }
-      return publishStr;
-    },
-    priceColor() {
-      const price = this.book.listPrice.amount;
-      let classColor = '';
-      if (price < 20) {
-        classColor = 'color-green';
-      } else if (price > 150) {
-        classColor = 'color-red';
-      }
-      return classColor;
-    },
+   
+    
   },
   components: {
     // longText,

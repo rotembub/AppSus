@@ -53,6 +53,9 @@
 .mail-table tr.read {
   background-color: rgb(182, 165, 165);
 }
+.star {
+  background-color: gold;
+}
 .mail-table tr {
   height: 40px;
 }

@@ -13,7 +13,7 @@ export default {
            <h3> unRead count: {{unReadCount}}</h3>
             <email-filter @sorted="sortEmails" @filtered="setFilter" />
             <!-- <book-add @addedBook="refBooks"/> -->
-            <email-list :emails="emailsToShow" @selected="selectEmail" @remove="onRemove" />
+            <email-list :emails="emailsToShow" @stared="onToggleStar" @toggle="onToggleRead" @selected="selectEmail" @remove="onRemove" />
             <email-details v-if="selectedEmail" :email="selectedEmail" @close="closeDetails" />
             <compose-email/>
             <email-folder-list @show="onShowFolder"/>
@@ -24,6 +24,7 @@ export default {
       emails: null,
       selectedEmail: null,
       filterBy: null,
+      folder: 'inbox',
     };
   },
   created() {
@@ -38,9 +39,15 @@ export default {
     selectEmail(email) {
       console.log('yes');
       console.log(email);
-      emailService.toggleRead(email).then(this.selectedEmail = email);
+      emailService.setAsRead(email).then(this.selectedEmail = email);
       this.$router.push('/email/'+email.id); 
     },
+    onToggleRead(email){
+      emailService.toggleRead(email).then(this.selectedEmail = email);
+    },
+    onToggleStar(email){
+        emailService.toggleStar(email).then(this.selectedEmail = email);
+      },
     closeDetails() {
       this.selectedBook = null;
     },
@@ -51,7 +58,9 @@ export default {
       this.emails = newBooks;
     },
     onRemove(email) {
-      emailService.remove(email.id).then(emails => this.emails = emails);
+      emailService.remove(email.id).then(emails => {
+          this.onShowFolder(this.folder)
+        });
     },
     sortEmails(sortBy){
         if(sortBy === 'date'){
@@ -60,6 +69,7 @@ export default {
         return this.emails.sort((e1,e2) => e1.subject.toLowerCase() > e2.subject.toLowerCase() ? 1 : -1);
     },
     onShowFolder(folder){
+        this.folder = folder;
         emailService.getEmailsByFolder(folder).then(emails => this.emails = emails);
     }
   },
