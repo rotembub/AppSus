@@ -20,7 +20,9 @@ export default {
         }
     },
     methods: {
-
+        // edit(noteId) {
+        //     this.$emit('edit', noteId);
+        // }
     }
 
 }

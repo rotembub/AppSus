@@ -11,8 +11,9 @@ export default {
         <section class="note-preview" :style="styleObj">
             <div class="note-control-box">
                 <!-- <button @click="edit = !edit">Update</button> -->
-                <router-link :to="'/note/'+note.id">Edit</router-link>
-                <button @click="removeNote">x</button>
+                <router-link :to="'/note/'+note.id" @click.native="openEditor">Edit</router-link> <!-- watch out for the @click -->
+                <!-- <button @click.stop.prevent="edit">Edit</button> -->
+                <button @click.stop.prevent="removeNote">x</button>
                 <button @click.stop.prevent="setColor">Color</button>
                 <!-- <div class="colorOptions"> -->
             </div>
@@ -46,11 +47,15 @@ export default {
             eventBus.$emit('removeNote', this.note.id);
             console.log(' $emiting remove:', this.note.id);
         },
-        updateNote() {
-            eventBus.$emit('updateNote', this.note.id);
-        },
+        // updateNote() {
+        //     eventBus.$emit('updateNote', this.note.id);
+        // },
         setColor() {
             this.styleObj.backgroundColor = 'yellow';
+        },
+        openEditor() {
+            console.log('trying to open');
+            eventBus.$emit('editNote', this.note.id); //////////////////////
         }
 
     },

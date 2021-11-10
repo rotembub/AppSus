@@ -140,7 +140,7 @@ function getEmptyNoteByType(type) {
             type: "note-todos",
             info: {
                 label: null,
-                todos: [],
+                todos: [{ txt: null, doneAt: null }],
             }
         }
     }

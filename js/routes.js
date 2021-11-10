@@ -19,20 +19,19 @@ const routes = [
         path: '/email/:emailId',
         component: emailDetails,
     },
+    // {
+    //     path: '/note',
+    //     component: noteApp,
+    // },
+    // {
+    //     path: '/note/:noteId',
+    //     component: noteAdd,
+    // }
     {
-        path: '/note',
+        path: '/note/:noteId?',
         component: noteApp,
-        // children: [
-        //     {
-        //         path: '/note/:noteId',
-        //         component: noteAdd,
-        //     }
-        // ]
     },
-    {
-        path: '/note/:noteId',
-        component: noteAdd,
-    }
+
 
 ]
 
