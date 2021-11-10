@@ -73,6 +73,7 @@ export default {
         eventBus.$on('removeNote', this.removeNote);
     },
     destroyed() {
+        console.log('no longer here');
         eventBus.$off('removeNote', this.removeNote);
     },
     computed: {
