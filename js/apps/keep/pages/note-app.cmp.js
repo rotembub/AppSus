@@ -3,6 +3,7 @@ import { noteServices } from '../services/note-services.cmp.js'
 import noteList from '../cmps/note-list.cmp.js'
 import noteFilter from '../cmps/note-filter.cmp.js'
 import { eventBus } from '../../../services/event-bus-service.js';
+import noteAdd from '../cmps/note-add.cmp.js'
 
 // • Support setting the note's background color and other styles
 // • Support filtering notes by search and by type 
@@ -15,7 +16,8 @@ export default {
     template: `
     <section class="note-app">
         <h1>Welcome to notes!</h1>
-        <note-filter @filter="setFilter"></note-filter>
+        <note-filter @filter="setFilter"></note-filter> <button @click="openModal">Add</button>
+        <note-add v-if="modalOpened" @noteAdd="addNote"></note-add>
         <note-list v-if="notes" :notes="notes"></note-list>
 
     </section> 
@@ -23,38 +25,8 @@ export default {
     data() {
         return {
             filterBy: null,
-            notes: [
-                {
-                    id: "n101",
-                    type: "note-txt",
-                    isPinned: true,
-                    info: {
-                        txt: "Fullstack Me Baby!"
-                    }
-                },
-                {
-                    id: "n102",
-                    type: "note-img",
-                    info: {
-                        url: "http://some-img/me",
-                        title: "Bobi and Me"
-                    },
-                    style: {
-                        backgroundColor: "#00d"
-                    }
-                },
-                {
-                    id: "n103",
-                    type: "note-todos",
-                    info: {
-                        label: "Get my stuff together",
-                        todos: [
-                            { txt: "Driving liscence", doneAt: null },
-                            { txt: "Coding power", doneAt: 187111111 }
-                        ]
-                    }
-                }
-            ],
+            modalOpened: false,
+            notes: null,
         };
     },
     methods: {
@@ -66,9 +38,20 @@ export default {
             console.log('removing', id);
             this.notes = this.notes.filter(note => note.id !== id);
             // console.log(this.notes);
+        },
+        openModal() {
+            this.modalOpened = !this.modalOpened;
+        },
+        addNote(newNote) {
+            console.log('adding note');
+            noteServices.addNote(newNote)
+                .then(() => console.log('NOTE ADDED!'))
+                .catch(err => console.log('Error', err))
         }
     },
     created() {
+        noteServices.query()
+            .then(notes => this.notes = notes)
         eventBus.$on('removeNote', this.removeNote);
     },
     destroyed() {
@@ -98,5 +81,6 @@ export default {
     components: {
         noteList,
         noteFilter,
+        noteAdd,
     }
 };
