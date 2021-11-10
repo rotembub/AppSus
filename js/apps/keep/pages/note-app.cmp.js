@@ -36,7 +36,6 @@ export default {
         },
         removeNote(id) {
             console.log('removing', id);
-            // this.notes = this.notes.filter(note => note.id !== id);
             noteServices.removeNote(id)
                 .then(notes => {
                     console.log(notes);
@@ -45,7 +44,6 @@ export default {
                 .catch(err => {
                     console.log('Error', err);
                 })
-            // console.log(this.notes);
         },
         openModal() {
             this.modalOpened = !this.modalOpened;

@@ -2,6 +2,7 @@ export const noteServices = {
     query,
     addNote,
     removeNote,
+    getNoteById,
 
 }
 import { storageService } from '../../../services/async-storage-service.js'
@@ -86,6 +87,10 @@ function _createNotes() {
     }
 }
 
+function getNoteById(id) {
+    return storageService.get(NOTE_KEY, id)
+}
+
 function query() {
     return storageService.query(NOTE_KEY);
 }
@@ -133,7 +138,7 @@ function addNote(noteDetails) {
 
 
     } else if (noteDetails.noteType === 'todo') {
-        
+
         newNote = {
             id: "n106",
             type: "note-todos",

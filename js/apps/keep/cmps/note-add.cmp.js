@@ -1,4 +1,4 @@
-
+import { noteServices } from '../services/note-services.cmp.js'
 
 export default {
     template: `
@@ -56,7 +56,7 @@ export default {
                 imgUrl: null,
                 title: null,
                 label: null,
-                todo: {txt: null, doneAt: null},
+                todo: { txt: null, doneAt: null },
                 todos: [],
                 noteType: 'txt',
             },
@@ -64,13 +64,30 @@ export default {
         }
     },
     created() {
-
+        const { noteId } = this.$route.params;
+        if (noteId) {
+            noteServices.getNoteById(noteId)
+                .then(note => this.newNote = note);
+        } else {
+            this.carToEdit = this.setNote;
+        }
     },
     mounted() {
 
     },
     methods: {
         setNote() {
+            var note = {
+                txt: null,
+                vidUrl: null,
+                imgUrl: null,
+                title: null,
+                label: null,
+                todo: { txt: null, doneAt: null },
+                todos: [],
+                noteType: 'txt',
+            }
+            this.newNote = note;
 
         },
         saveNote() {
@@ -78,11 +95,12 @@ export default {
             this.$emit('noteAdd', this.newNote);
         },
         addTodo() {
-            
+
             this.newNote.todos.push(JSON.parse(JSON.stringify(this.newNote.todo)));
-            this.newNote.todo = {txt: null, doneAt: null};
+            this.newNote.todo = { txt: null, doneAt: null };
             console.log(this, this.newNote);
         }
+
 
     },
 
