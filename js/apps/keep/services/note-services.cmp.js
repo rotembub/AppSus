@@ -4,6 +4,7 @@ export const noteServices = {
     removeNote,
     getNoteById,
     getEmptyNoteByType,
+    editNote,
 
 }
 import { storageService } from '../../../services/async-storage-service.js'
@@ -143,6 +144,12 @@ function getEmptyNoteByType(type) {
             }
         }
     }
+}
+
+
+function editNote(editedNote) {
+    console.log(editedNote);
+    return storageService.put(NOTE_KEY, editedNote);
 }
 
 function addNote(newNote) {

@@ -22,6 +22,12 @@ const routes = [
     {
         path: '/note',
         component: noteApp,
+        // children: [
+        //     {
+        //         path: '/note/:noteId',
+        //         component: noteAdd,
+        //     }
+        // ]
     },
     {
         path: '/note/:noteId',

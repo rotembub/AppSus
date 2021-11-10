@@ -37,8 +37,8 @@ export default {
                         
                            <input v-model="newNote.info.label" type="text" placeholder="Enter a label">
                            <span>What to do?</span>
-                            <!-- <input type="text" v-for="(todo,idx)  in newNote.info.todos" -->
-                           <input v-model="todo.txt" type="text" placeholder="to do..">
+                            <input type="text" v-for="(todo,idx)  in newNote.info.todos" v-model="newNote.info.todos[idx].txt">
+                           <!-- <input v-model="todo.txt" type="text" placeholder="to do.."> -->
 
                            <button @click.stop.prevent="addTodo">+</button>
 
@@ -54,6 +54,7 @@ export default {
             newNote: null,
             noteType: 'note-txt', //watchout!!!
             todo: { txt: null, doneAt: null },
+            isEdited: false,
 
         }
     },
@@ -65,6 +66,7 @@ export default {
                     this.newNote = note;
                     this.noteType = note.type
                     console.log(note, this.newNote, 'here');
+                    this.isEdited = true;
                 });
         } else {
 
@@ -79,7 +81,13 @@ export default {
 
         saveNote() {
             console.log(this.newNote);
-            this.$emit('noteAdd', this.newNote);
+
+            if (this.isEdited) {
+                console.log(this.newNote, this.isEdited);
+                this.$emit('noteEdited', this.newNote);
+            }
+
+            else this.$emit('noteAdd', this.newNote);
         },
         addTodo() {
             this.newNote.info.todos.push(JSON.parse(JSON.stringify(this.todo)));

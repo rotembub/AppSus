@@ -8,11 +8,13 @@ import { eventBus } from '../../../services/event-bus-service.js'
 export default {
     props: ['note'],
     template: `
-        <section class="note-preview">
+        <section class="note-preview" :style="styleObj">
             <div class="note-control-box">
                 <!-- <button @click="edit = !edit">Update</button> -->
                 <router-link :to="'/note/'+note.id">Edit</router-link>
                 <button @click="removeNote">x</button>
+                <button @click.stop.prevent="setColor">Color</button>
+                <!-- <div class="colorOptions"> -->
             </div>
             <component  
                         :is="note.type" 
@@ -31,6 +33,11 @@ export default {
         return {
             edit: false,
             txt: null,
+            styleObj: {
+                backgroundColor: null,
+                fontSize: '16px',
+            },
+
 
         }
     },
@@ -41,6 +48,9 @@ export default {
         },
         updateNote() {
             eventBus.$emit('updateNote', this.note.id);
+        },
+        setColor() {
+            this.styleObj.backgroundColor = 'yellow';
         }
 
     },

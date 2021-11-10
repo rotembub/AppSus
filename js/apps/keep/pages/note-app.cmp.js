@@ -17,7 +17,7 @@ export default {
     <section class="note-app">
         <h1>Welcome to notes!</h1>
         <note-filter @filter="setFilter"></note-filter> <button @click="openModal">Add</button>
-        <note-add v-if="modalOpened" @noteAdd="addNote"></note-add>
+        <note-add v-if="modalOpened" @noteAdd="addNote" @noteEdited="updateNote"></note-add>
         <note-list v-if="notes" :notes="notes"></note-list>
 
     </section> 
@@ -57,8 +57,14 @@ export default {
                         .then(notes => this.notes = notes)
                 })
                 .catch(err => console.log('Error', err))
-
-
+        },
+        updateNote(editedNote) {
+            console.log(editedNote);
+            noteServices.editNote(editedNote)
+                .then((note) => {
+                    console.log(note, 'has been edited')
+                })
+                .catch(err => console.log('Error', err))
         }
     },
     created() {
