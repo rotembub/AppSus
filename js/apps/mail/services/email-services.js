@@ -8,11 +8,20 @@ console.log(demoData);
 const gEmails = _createEmails();
 // const KEY_API_BOOKS = 'apiBooks'
 
+const loggedinUser = {
+  email: 'user@appsus.com',
+  fullname: 'Mahatma Appsus'
+ }
+ 
+
 export const emailService = {
   query,
   getById,
   save,
-  remove
+  remove,
+  toggleRead,
+  addEmail,
+  getEmailsByFolder
   // saveReview,
   // createReviews,
   // removeReview,
@@ -36,8 +45,35 @@ function save(email) {
   else return storageService.post(EMAILS_KEY, email);
 }
 
+function addEmail(email) {
+  const formatEmail = {
+    id: utilService.makeId(),
+    subject: email.subject,
+    body:  email.body,
+    isRead: false,
+    sentAt: Date.now(),
+    to: 'user@appsus.com'
+  };
+  return storageService.post(EMAILS_KEY, formatEmail);
+}
+
 function remove(emailId) {
    return storageService.remove(EMAILS_KEY,emailId);
+}
+
+function toggleRead(email) {
+  email.isRead = !email.isRead;
+  return storageService.put(EMAILS_KEY, email);
+}
+
+function getEmailsByFolder(folder){
+  if(folder === 'sent'){
+    return query().then( emails=> {
+      return emails.filter(e => e.to === loggedinUser.email);
+    })
+  }
+  if(folder === 'inbox') return query().then(emails => emails.filter(e => e.to !== loggedinUser.email));
+
 }
 
 //reviews logic 

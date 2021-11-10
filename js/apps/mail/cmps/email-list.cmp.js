@@ -6,7 +6,7 @@ export default {
 
         <table class="mail-table">
             <tbody>
-                <tr v-for="email in emails" :key="email.id">
+                <tr v-for="email in emails" :key="email.id" :class="['clickable', email.isRead ? 'read' : '']">
                   <email-preview :email="email"  @click.native="select(email)" @remove="onRemove(email)"></email-preview>
                 </tr>
             </tbody>
