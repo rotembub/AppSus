@@ -18,7 +18,7 @@ export default {
         <h1>Welcome to notes!</h1>
         <note-filter @filter="setFilter"></note-filter> <button @click="toggleModal">Add</button>
         <note-add v-if="modalOpened" @noteAdd="addNote" @noteEdited="updateNote"></note-add>
-        <note-list v-if="notes" :notes="notes"></note-list>
+        <note-list v-if="notes" :notes="notes" @noteEdited="updateNote"></note-list> <!--WATCHOUT FOR THE @ -->
 
     </section> 
     `,
@@ -52,7 +52,7 @@ export default {
         closeModal() { // made this only so i could clear the link from the noteId
             console.log('closing');
             this.modalOpened = false;
-            this.$router.push('/note');
+            if (this.$route.params.noteId) this.$router.push('/note');
         },
         addNote(newNote) {
             console.log('adding note');
@@ -87,6 +87,7 @@ export default {
     destroyed() {
         console.log('no longer here');
         eventBus.$off('removeNote', this.removeNote);
+        eventBus.$off('editNote', this.toggleModal);
     },
     computed: {
         notesToShow() {
