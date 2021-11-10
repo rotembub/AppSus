@@ -1,0 +1,16 @@
+*{
+    box-sizing: border-box;
+}
+
+.note-list{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.note-preview{
+    background-color: lightgreen;
+    border: 1px black solid;
+
+}

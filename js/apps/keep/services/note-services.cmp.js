@@ -4,8 +4,8 @@ export const noteServices = {
     removeNote,
 
 }
-import { storageService } from '../../../services/async-storage-service'
-import { utilServices } from '../../../services/util-service';
+// import { storageService } from '../../../services/async-storage-service'
+// import { utilServices } from '../../../services/util-service';
 
 
 const NOTE_KEY = 'notes';

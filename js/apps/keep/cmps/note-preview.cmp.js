@@ -1,7 +1,7 @@
 
-import noteText from '../cmps/note-text.cmp.js'
+import noteTxt from './note-txt.cmp.js'
 import noteVideo from '../cmps/note-video.cmp.js'
-import noteTodo from '../cmps/note-todo.cmp.js'
+import noteTodos from './note-todos.cmp.js'
 import noteImg from '../cmps/note-img.cmp.js'
 
 export default {
@@ -25,8 +25,8 @@ export default {
     },
     components: {
         noteImg,
-        noteText,
-        noteTodo,
+        noteTxt,
+        noteTodos,
         noteVideo
     }
 
