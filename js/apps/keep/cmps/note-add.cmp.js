@@ -5,39 +5,40 @@ export default {
                 <div class="note-add">
                     <!-- <button>x</button> -->
                     
-                    <select v-model="newNote.noteType" name="note-type">
-                        <option value="txt">Text</option>
-                        <option value="video">Video</option>
-                        <option value="img">Image</option>
-                        <option value="todo">Todo</option>
+                    <select v-model="noteType" @change="setNoteForm" name="note-type">
+                        <option value="note-txt">Text</option>
+                        <option value="note-video">Video</option>
+                        <option value="note-img">Image</option>
+                        <option value="note-todos">Todo</option>
                     </select>
                     <form class="note-form" @submit.prevent = "saveNote">
 
-                        <template v-if="newNote.noteType === 'txt'">
+                        <template v-if="(noteType === 'note-txt') && newNote"  >
                             <label for="comments">Write something</label>
-                            <textarea v-model="newNote.txt" name="comments" placeholder="Your thoughts" rows="10" cols="30" required></textarea>
+                            <textarea v-model="newNote.info.txt" name="comments" placeholder="Your thoughts" rows="10" cols="30" required></textarea>
                         </template>
 
-                        <template v-if="newNote.noteType === 'video'">
+                        <template v-if="(noteType === 'note-video') && newNote">
                             <label for="title">Add a Title</label>
-                            <input v-model="newNote.title" name="title" placeholder="Title..." required>
+                            <input v-model="newNote.info.title" name="title" placeholder="Title..." required>
                             <label for="video">Add a video</label>
-                            <input v-model="newNote.vidUrl" type="url" name="video" placeholder="https://video.com" required>
+                            <input v-model="newNote.info.url" type="url" name="video" placeholder="https://video.com" required>
                         </template>
 
-                        <template v-if="newNote.noteType === 'img'">
+                        <template v-if="(noteType === 'note-img') && newNote">
                             <label for="title">Add a Title</label>
-                            <input v-model="newNote.title" name="title" placeholder="Title..." required>
+                            <input v-model="newNote.info.title" name="title" placeholder="Title..." required>
                             <br>
                             <label for="img">Add a photo</label>
-                            <input v-model="newNote.imgUrl" type="url" name="img" placeholder="https://image.com" required>
+                            <input v-model="newNote.info.url" type="url" name="img" placeholder="https://image.com" required>
                         </template>
 
-                        <template v-if="newNote.noteType === 'todo'">
+                        <template v-if="(noteType === 'note-todos') && newNote">
                         
-                           <input v-model="newNote.label" type="text" placeholder="Enter a label">
+                           <input v-model="newNote.info.label" type="text" placeholder="Enter a label">
                            <span>What to do?</span>
-                           <input v-model="newNote.todo.txt" type="text" placeholder="to do..">
+                            <!-- <input type="text" v-for="(todo,idx)  in newNote.info.todos" -->
+                           <input v-model="todo.txt" type="text" placeholder="to do..">
 
                            <button @click.stop.prevent="addTodo">+</button>
 
@@ -50,16 +51,9 @@ export default {
     `,
     data() {
         return {
-            newNote: {
-                txt: null,
-                vidUrl: null,
-                imgUrl: null,
-                title: null,
-                label: null,
-                todo: { txt: null, doneAt: null },
-                todos: [],
-                noteType: 'txt',
-            },
+            newNote: null,
+            noteType: 'note-txt', //watchout!!!
+            todo: { txt: null, doneAt: null },
 
         }
     },
@@ -67,38 +61,33 @@ export default {
         const { noteId } = this.$route.params;
         if (noteId) {
             noteServices.getNoteById(noteId)
-                .then(note => this.newNote = note);
+                .then(note => {
+                    this.newNote = note;
+                    this.noteType = note.type
+                    console.log(note, this.newNote, 'here');
+                });
         } else {
-            this.carToEdit = this.setNote;
+
+            this.newNote = noteServices.getEmptyNoteByType(this.noteType);
+            console.log('here actually', this.noteType, this.newNote);
         }
     },
     mounted() {
 
     },
     methods: {
-        setNote() {
-            var note = {
-                txt: null,
-                vidUrl: null,
-                imgUrl: null,
-                title: null,
-                label: null,
-                todo: { txt: null, doneAt: null },
-                todos: [],
-                noteType: 'txt',
-            }
-            this.newNote = note;
 
-        },
         saveNote() {
             console.log(this.newNote);
             this.$emit('noteAdd', this.newNote);
         },
         addTodo() {
+            this.newNote.info.todos.push(JSON.parse(JSON.stringify(this.todo)));
+            this.todo = { txt: null, doneAt: null };
 
-            this.newNote.todos.push(JSON.parse(JSON.stringify(this.newNote.todo)));
-            this.newNote.todo = { txt: null, doneAt: null };
-            console.log(this, this.newNote);
+        },
+        setNoteForm() {
+            this.newNote = noteServices.getEmptyNoteByType(this.noteType);
         }
 
 

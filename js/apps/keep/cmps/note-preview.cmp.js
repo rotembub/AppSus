@@ -10,7 +10,8 @@ export default {
     template: `
         <section class="note-preview">
             <div class="note-control-box">
-                <button @click="edit = !edit">Update</button>
+                <!-- <button @click="edit = !edit">Update</button> -->
+                <router-link :to="'/note/'+note.id">Edit</router-link>
                 <button @click="removeNote">x</button>
             </div>
             <component  
@@ -30,7 +31,7 @@ export default {
         return {
             edit: false,
             txt: null,
-            
+
         }
     },
     methods: {
@@ -38,7 +39,7 @@ export default {
             eventBus.$emit('removeNote', this.note.id);
             console.log(' $emiting remove:', this.note.id);
         },
-        updateNote(){
+        updateNote() {
             eventBus.$emit('updateNote', this.note.id);
         }
 
