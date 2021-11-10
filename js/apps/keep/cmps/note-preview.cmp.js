@@ -10,19 +10,27 @@ export default {
     template: `
         <section class="note-preview">
             <div class="note-control-box">
-                <!-- <button @click="updateNote">Update</button> -->
+                <!-- <button @click="edit = !edit">Update</button> -->
+                <router-link :to="'/note/'+note.id">Edit</router-link>
                 <button @click="removeNote">x</button>
             </div>
             <component  
                         :is="note.type" 
                         :info="note.info"> 
             </component>
+            <template v-if="edit">
+                <label for="message">Write something</label>
+                <textarea v-model="txt" name="message" placeholder="Your thoughts" rows="10" cols="30" required></textarea>
+                <button @click="updateNote">Save</button>
+            </template>
             
         
         </section>
     `,
     data() {
         return {
+            edit: false,
+            txt: null,
 
         }
     },
@@ -31,6 +39,9 @@ export default {
             eventBus.$emit('removeNote', this.note.id);
             console.log(' $emiting remove:', this.note.id);
         },
+        updateNote() {
+            eventBus.$emit('updateNote', this.note.id);
+        }
 
     },
     computed: {

@@ -2,6 +2,8 @@ export const noteServices = {
     query,
     addNote,
     removeNote,
+    getNoteById,
+    getEmptyNoteByType,
 
 }
 import { storageService } from '../../../services/async-storage-service.js'
@@ -86,72 +88,69 @@ function _createNotes() {
     }
 }
 
+function getNoteById(id) {
+    return storageService.get(NOTE_KEY, id)
+}
+
 function query() {
     return storageService.query(NOTE_KEY);
 }
-
-function addNote(noteDetails) {
-    console.log(noteDetails);
-    var newNote;
-    if (noteDetails.noteType === 'txt') {
+// trying to fix my mess ups
+function getEmptyNoteByType(type) {
+    if (type === 'note-txt') {
         console.log('here');
-        newNote = {
-            id: "n101",
+        return {
+            id: null,
             type: "note-txt",
             isPinned: false,
             info: {
-                txt: noteDetails.txt
+                txt: null,
             }
         }
 
-    } else if (noteDetails.noteType === 'video') {
-        newNote = {
-            id: "n105",
+    } else if (type === 'note-video') {
+        return {
+            id: null,
             type: "note-video",
             info: {
-                url: noteDetails.vidUrl,
-                title: noteDetails.title,
+                url: null,
+                title: null,
             },
             style: {
                 backgroundColor: "#00d"
             }
         }
-
-
-    } else if (noteDetails.noteType === 'img') {
-        newNote = {
-            id: "n105",
+    } else if (type === 'note-img') {
+        return {
+            id: null,
             type: "note-img",
             info: {
-                url: noteDetails.vidUrl,
-                title: noteDetails.title,
+                url: null,
+                title: null,
             },
             style: {
                 backgroundColor: "#00d"
             }
         }
+    } else if (type === 'note-todos') {
 
-
-    } else if (noteDetails.noteType === 'todo') {
-        noteDetails.todos
-
-        newNote = {
-            id: "n106",
+        return {
+            id: null,
             type: "note-todos",
             info: {
-                label: noteDetails.label,
-                todos: noteDetails.todos,
+                label: null,
+                todos: [],
             }
         }
-
-
     }
-    console.log(newNote);
+}
+
+function addNote(newNote) {
     return storageService.post(NOTE_KEY, newNote);
 }
 
-function removeNote() {
-
+function removeNote(noteId) {
+    return storageService.remove(NOTE_KEY, noteId)
 }
 
 

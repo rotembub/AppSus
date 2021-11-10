@@ -9,6 +9,7 @@ export default {
             <ul>
                 <li v-for="(todo,idx) in info.todos">
                     <span>{{todo.txt}}</span> | <span v-if="todo.doneAt">{{todo.doneAt}}</span>
+                    <!-- {{todo}} -->
                 </li>
             </ul>
         </section>
