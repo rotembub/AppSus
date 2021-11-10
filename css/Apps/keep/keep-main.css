@@ -14,3 +14,24 @@
     border: 1px black solid;
 
 }
+
+.note-filter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.note-add{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: lightgreen;
+    border: 2px black solid;
+    width: 500px;
+    height: 500px;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%,-50%);
+}
