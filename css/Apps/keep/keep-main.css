@@ -14,3 +14,9 @@
     border: 1px black solid;
 
 }
+
+.note-filter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

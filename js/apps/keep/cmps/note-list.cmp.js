@@ -7,6 +7,7 @@ export default {
     template: `
         <section v-if="notes" class="note-list">
                 <note-preview v-for="(note, idx) in notes" :note="note">
+                    
                 </note-preview>
         </section>
     `,
