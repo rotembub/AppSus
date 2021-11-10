@@ -76,3 +76,13 @@
 .mail-table td.date {
   width: 120px;
 }
+
+/* folder filter */
+.folder-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 20 px;
+}

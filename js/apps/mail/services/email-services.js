@@ -3,10 +3,12 @@ import {storageService} from '../../../services/async-storage-service.js';
 import {emailsDB} from './emails-db.js';
 
 const EMAILS_KEY = 'emails';
+const DRAFTS_KEY = 'drafts';
 let demoData = emailsDB.emailsData();
 console.log(demoData);
 const gEmails = _createEmails();
 // const KEY_API_BOOKS = 'apiBooks'
+ utilService.loadFromStorage(DRAFTS_KEY) || utilService.saveToStorage(DRAFTS_KEY,[]);
 
 const loggedinUser = {
   email: 'user@appsus.com',
@@ -23,7 +25,9 @@ export const emailService = {
   setAsRead,
   toggleStar,
   addEmail,
-  getEmailsByFolder
+  getEmailsByFolder,
+  saveDraft,
+  removeDraft
   // saveReview,
   // createReviews,
   // removeReview,
@@ -82,11 +86,28 @@ function setAsRead(email) {
 function getEmailsByFolder(folder){
   if(folder === 'sent'){
     return query().then( emails=> {
-      return emails.filter(e => e.to === loggedinUser.email);
+      return emails.filter(e => e.to === loggedinUser.email && !e.removedAt);
     })
   }
-  else if(folder === 'inbox') return query().then(emails => emails.filter(e => e.to !== loggedinUser.email));
-  else if(folder === 'star') return query().then(emails => emails.filter(e => e.isStar));
+  else if(folder === 'inbox') return query().then(emails => emails.filter(e => e.to !== loggedinUser.email && !e.removedAt));
+  else if(folder === 'star') return query().then(emails => emails.filter(e => e.isStar && !e.removedAt));
+  else if(folder === 'trash') return query().then(emails => emails.filter(e => e.removedAt));
+  else if(folder === 'draft') return storageService.query(DRAFTS_KEY);
+  
+}
+
+
+//draft logic
+function saveDraft(draft){
+  if (draft.id) return storageService.put(DRAFTS_KEY, draft);
+  else{
+    draft.isDraft = true;
+    return storageService.post(DRAFTS_KEY, draft);
+  } 
+}
+
+function removeDraft(draftId) {
+  return storageService.remove(DRAFTS_KEY,draftId);
 }
 
 //reviews logic 

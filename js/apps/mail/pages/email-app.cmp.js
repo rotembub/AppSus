@@ -4,6 +4,7 @@ import emailFilter from '../cmps/email-filter.cmp.js';
 import emailDetails from './email-details.cmp.js';
 import composeEmail from '../cmps/compose-email.cmp.js'
 import emailFolderList from '../cmps/email-folder-list.cmp.js';
+import { eventBus } from '../../../services/event-bus-service.js';
 // import bookAdd from '../cmps/book-add.cmp.js'
 // import carEdit from './car-edit.cmp.js';
 
@@ -15,7 +16,7 @@ export default {
             <!-- <book-add @addedBook="refBooks"/> -->
             <email-list :emails="emailsToShow" @stared="onToggleStar" @toggle="onToggleRead" @selected="selectEmail" @remove="onRemove" />
             <email-details v-if="selectedEmail" :email="selectedEmail" @close="closeDetails" />
-            <compose-email/>
+            <compose-email @draftRemove="refreshDraft"/>
             <email-folder-list @show="onShowFolder"/>
         </section>
     `,
@@ -39,6 +40,10 @@ export default {
     selectEmail(email) {
       console.log('yes');
       console.log(email);
+      if(email.isDraft){
+        eventBus.$emit('openDraft', email);
+        return;
+      }
       emailService.setAsRead(email).then(this.selectedEmail = email);
       this.$router.push('/email/'+email.id); 
     },
@@ -58,6 +63,11 @@ export default {
       this.emails = newBooks;
     },
     onRemove(email) {
+        if(!email.removedAt){
+            email.removedAt = Date.now();
+            emailService.save(email).then( email => this.onShowFolder(this.folder))
+            return;
+        }
       emailService.remove(email.id).then(emails => {
           this.onShowFolder(this.folder)
         });
@@ -71,6 +81,9 @@ export default {
     onShowFolder(folder){
         this.folder = folder;
         emailService.getEmailsByFolder(folder).then(emails => this.emails = emails);
+    },
+    refreshDraft(){
+        this.onShowFolder(this.folder);
     }
   },
   computed: {
