@@ -20,17 +20,22 @@ const gNotes = [
         isPinned: true,
         info: {
             txt: "Fullstack Me Baby!"
+        },
+        style: {
+            backgroundColor: "lightgreen",
+            fontSize: '16px'
         }
     },
     {
         id: "n102",
         type: "note-img",
         info: {
-            url: "http://some-img/me",
+            url: "https://images.unsplash.com/photo-1554080353-a576cf803bda?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGhvdG98ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
             title: "Bobi and Me"
         },
         style: {
-            backgroundColor: "#00d"
+            backgroundColor: "lightgreen",
+            fontSize: '16px'
         }
     },
     {
@@ -42,6 +47,10 @@ const gNotes = [
                 { txt: "Driving liscence", doneAt: null },
                 { txt: "Coding power", doneAt: 187111111 }
             ]
+        },
+        style: {
+            backgroundColor: "lightgreen",
+            fontSize: '16px'
         }
     },
     {
@@ -50,17 +59,22 @@ const gNotes = [
         isPinned: true,
         info: {
             txt: "Fullstack Me Baby!"
+        },
+        style: {
+            backgroundColor: "lightgreen",
+            fontSize: '16px'
         }
     },
     {
         id: "n105",
         type: "note-img",
         info: {
-            url: "http://some-img/me",
+            url: "https://www.cnet.com/a/img/-qQkzFVyOPEoBRS7K5kKS0GFDvk=/940x0/2020/04/16/7d6d8ed2-e10c-4f91-b2dd-74fae951c6d8/bazaart-edit-app.jpg",
             title: "Bobi and Me"
         },
         style: {
-            backgroundColor: "#00d"
+            backgroundColor: "lightgreen",
+            fontSize: '16px'
         }
     },
     {
@@ -72,6 +86,10 @@ const gNotes = [
                 { txt: "Driving liscence", doneAt: null },
                 { txt: "Coding power", doneAt: 187111111 }
             ]
+        },
+        style: {
+            backgroundColor: "lightgreen",
+            fontSize: '16px'
         }
     }
 
@@ -106,6 +124,10 @@ function getEmptyNoteByType(type) {
             isPinned: false,
             info: {
                 txt: null,
+            },
+            style: {
+                backgroundColor: "lightgreen",
+                fontSize: '16px'
             }
         }
 
@@ -118,7 +140,8 @@ function getEmptyNoteByType(type) {
                 title: null,
             },
             style: {
-                backgroundColor: "#00d"
+                backgroundColor: "lightgreen",
+                fontSize: '16px'
             }
         }
     } else if (type === 'note-img') {
@@ -130,7 +153,8 @@ function getEmptyNoteByType(type) {
                 title: null,
             },
             style: {
-                backgroundColor: "#00d"
+                backgroundColor: "lightgreen",
+                fontSize: '16px'
             }
         }
     } else if (type === 'note-todos') {
@@ -140,7 +164,11 @@ function getEmptyNoteByType(type) {
             type: "note-todos",
             info: {
                 label: null,
-                todos: [],
+                todos: [{ txt: null, doneAt: null }],
+            },
+            style: {
+                backgroundColor: "lightgreen",
+                fontSize: '16px'
             }
         }
     }

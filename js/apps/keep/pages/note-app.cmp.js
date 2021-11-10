@@ -16,9 +16,9 @@ export default {
     template: `
     <section class="note-app">
         <h1>Welcome to notes!</h1>
-        <note-filter @filter="setFilter"></note-filter> <button @click="openModal">Add</button>
+        <note-filter @filter="setFilter"></note-filter> <button @click="toggleModal">Add</button>
         <note-add v-if="modalOpened" @noteAdd="addNote" @noteEdited="updateNote"></note-add>
-        <note-list v-if="notes" :notes="notes"></note-list>
+        <note-list v-if="notes" :notes="notes" @noteEdited="updateNote"></note-list> <!--WATCHOUT FOR THE @ -->
 
     </section> 
     `,
@@ -45,11 +45,18 @@ export default {
                     console.log('Error', err);
                 })
         },
-        openModal() {
+        toggleModal(id) {
+            console.log('opening');
             this.modalOpened = !this.modalOpened;
+        },
+        closeModal() { // made this only so i could clear the link from the noteId
+            console.log('closing');
+            this.modalOpened = false;
+            if (this.$route.params.noteId) this.$router.push('/note');
         },
         addNote(newNote) {
             console.log('adding note');
+            this.toggleModal(); /////////////
             noteServices.addNote(newNote)
                 .then((note) => {
                     console.log('NOTE ADDED!', note)
@@ -60,21 +67,27 @@ export default {
         },
         updateNote(editedNote) {
             console.log(editedNote);
+            this.closeModal();/////////////
             noteServices.editNote(editedNote)
                 .then((note) => {
                     console.log(note, 'has been edited')
+                    noteServices.query()
+                        .then(notes => this.notes = notes)
                 })
                 .catch(err => console.log('Error', err))
-        }
+        },
+
     },
     created() {
         noteServices.query()
             .then(notes => this.notes = notes)
         eventBus.$on('removeNote', this.removeNote);
+        eventBus.$on('editNote', this.toggleModal);   /////////////
     },
     destroyed() {
         console.log('no longer here');
         eventBus.$off('removeNote', this.removeNote);
+        eventBus.$off('editNote', this.toggleModal);
     },
     computed: {
         notesToShow() {

@@ -7,12 +7,16 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
+    gap: 10px;
 }
 
 .note-preview{
     background-color: lightgreen;
     border: 1px black solid;
-
+}
+.note-preview img{
+    width: 100%;
+    max-height: 300px;
 }
 
 .note-filter{
@@ -36,6 +40,12 @@
     transform: translate(50%,-50%);
 }
 
-.yellow{
+/* .yellow{
     background-color: yellow;
+} */
+
+.color-span{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
 }
