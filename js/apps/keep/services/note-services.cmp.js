@@ -133,14 +133,13 @@ function addNote(noteDetails) {
 
 
     } else if (noteDetails.noteType === 'todo') {
-        noteDetails.todos
-
+        
         newNote = {
             id: "n106",
             type: "note-todos",
             info: {
                 label: noteDetails.label,
-                todos: noteDetails.todos,
+                todos: JSON.parse(JSON.stringify(noteDetails.todos)),
             }
         }
 
@@ -150,8 +149,8 @@ function addNote(noteDetails) {
     return storageService.post(NOTE_KEY, newNote);
 }
 
-function removeNote() {
-
+function removeNote(noteId) {
+    return storageService.remove(NOTE_KEY, noteId)
 }
 
 

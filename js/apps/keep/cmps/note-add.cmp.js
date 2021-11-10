@@ -36,9 +36,9 @@ export default {
                         
                            <input v-model="newNote.label" type="text" placeholder="Enter a label">
                            <span>What to do?</span>
-                           <input v-model="newNote.todo" type="text" placeholder="to do..">
+                           <input v-model="newNote.todo.txt" type="text" placeholder="to do..">
 
-                           <button @click.stop="addTodo">+</button>
+                           <button @click.stop.prevent="addTodo">+</button>
 
                         </template>
 
@@ -55,7 +55,7 @@ export default {
                 imgUrl: null,
                 title: null,
                 label: null,
-                todo: null,
+                todo: {txt: null, doneAt: null},
                 todos: [],
                 noteType: 'txt',
             },
@@ -79,7 +79,7 @@ export default {
         addTodo() {
             
             this.newNote.todos.push(JSON.parse(JSON.stringify(this.newNote.todo)));
-            this.newNote.todo = null;
+            this.newNote.todo = {txt: null, doneAt: null};
             console.log(this, this.newNote);
         }
 

@@ -36,7 +36,15 @@ export default {
         },
         removeNote(id) {
             console.log('removing', id);
-            this.notes = this.notes.filter(note => note.id !== id);
+            // this.notes = this.notes.filter(note => note.id !== id);
+            noteServices.removeNote(id)
+                .then(notes => {
+                    console.log(notes);
+                    this.notes = notes;
+                })
+                .catch(err => {
+                    console.log('Error', err);
+                })
             // console.log(this.notes);
         },
         openModal() {
@@ -45,8 +53,14 @@ export default {
         addNote(newNote) {
             console.log('adding note');
             noteServices.addNote(newNote)
-                .then(() => console.log('NOTE ADDED!'))
+                .then((note) => {
+                    console.log('NOTE ADDED!', note)
+                    noteServices.query()
+                        .then(notes => this.notes = notes)
+                })
                 .catch(err => console.log('Error', err))
+
+
         }
     },
     created() {
