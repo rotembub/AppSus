@@ -3,6 +3,7 @@
 export default {
     template: `
                 <div class="note-add">
+                    <!-- <button>x</button> -->
                     
                     <select v-model="newNote.noteType" name="note-type">
                         <option value="txt">Text</option>

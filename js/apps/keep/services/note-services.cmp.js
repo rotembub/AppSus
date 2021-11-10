@@ -123,7 +123,7 @@ function addNote(noteDetails) {
             id: "n105",
             type: "note-img",
             info: {
-                url: noteDetails.vidUrl,
+                url: noteDetails.imgUrl,
                 title: noteDetails.title,
             },
             style: {
