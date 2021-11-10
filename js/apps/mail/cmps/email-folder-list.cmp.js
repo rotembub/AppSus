@@ -4,6 +4,8 @@ export default {
             <button @click="showBy('inbox')">Inbox</button>
             <button @click="showBy('sent')">Sent</button>
             <button @click="showBy('star')">Stared</button>
+            <button @click="showBy('trash')">Trash</button>
+            <button @click="showBy('draft')">Draft</button>
           </div>
       `,
     data() {

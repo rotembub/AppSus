@@ -1,4 +1,6 @@
+import { storageService } from '../../../services/async-storage-service.js';
 import { emailService } from '../services/email-services.js'
+import { eventBus } from '../../../services/event-bus-service.js';
 // import {utilService} from '../services/util-service.js';
 // import { eventBus } from '../services/event-bus-service.js';
 // import { storageService } from '../services/async-storage-service.js';
@@ -30,11 +32,21 @@ export default {
         to: '',
         subject: '',
         body: ''
-      }
+      },
+      saveInterval: null
     };
   },
   created() {
-   
+    eventBus.$on('openDraft', this.putData);
+    this.saveInterval = setInterval(()=> {
+      if(this.newEmail.to || this.newEmail.subject || this.newEmail.body){
+        emailService.saveDraft(this.newEmail).then(d => console.log(d))
+       } else this.newEmail = {
+        to: '',
+        subject: '',
+        body: ''
+       }
+    },5000);
   },
   mounted(){
     // this.$refs.textInput.focus();
@@ -53,10 +65,16 @@ export default {
         // emailService.apiBooks(this.bookName).then(books => this.books = books);
         // console.log(this.bookName);
     },
-    addNewEmail(){
-       
+    addNewEmail(){      
        emailService.addEmail(this.newEmail).then(email => {
          console.log('added',email);
+         if(this.newEmail.isDraft){
+           console.log('is draft');
+          emailService.removeDraft(email.id).then(e =>{
+            console.log('removed draft');
+            this.$emit('draftRemove');
+        });
+         }
          this.newEmail = {
           to: '',
           subject: '',
@@ -68,6 +86,11 @@ export default {
         //     // this.createMsg('Added new Book','success',link);
         //     this.$emit('addedBook',cap.books);
         // });
+    },
+    putData(draft){
+      console.log('buss call');
+      console.log(draft);
+      this.newEmail = draft;
     },
 
     closeModal(){
