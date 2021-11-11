@@ -11,7 +11,7 @@ import { eventBus } from '../../../services/event-bus-service.js';
 export default {
   template: `
         <section class="book-app home-page">
-           <h3> unRead count: {{unReadCount}}</h3>
+           <h3 class="unread-count"> unRead count: {{unReadCount}}</h3>
             <email-filter @sorted="sortEmails" @filtered="setFilter" />
             <!-- <book-add @addedBook="refBooks"/> -->
             <email-list :emails="emailsToShow" @stared="onToggleStar" @toggle="onToggleRead" @selected="selectEmail" @remove="onRemove" />

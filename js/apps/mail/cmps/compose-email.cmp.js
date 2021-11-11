@@ -90,7 +90,8 @@ export default {
           to: '',
           subject: '',
           body: ''
-         }
+         };
+         this.closeModal();
        })
         // emailService.addGoogleBook(book).then((cap)=>{ // return a cap obj with book and books
         //      const link = '/book/'+cap.book.id;

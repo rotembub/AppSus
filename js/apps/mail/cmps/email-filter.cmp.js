@@ -1,6 +1,6 @@
 export default {
   template: `
-        <div class="book-filter">
+        <div class="email-filter">
             <label>Search</label>
             <input @input="filter" v-model="filterBy.title" type="text" placeholder="Search...">
             <label> Read/UnRead</label>

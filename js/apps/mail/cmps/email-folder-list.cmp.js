@@ -1,12 +1,12 @@
 export default {
     template: `
           <div class="folder-filter">
-            <button @click="compose">Compose</button>
-            <button @click="showBy('inbox')">Inbox</button>
-            <button @click="showBy('sent')">Sent</button>
-            <button @click="showBy('star')">Stared</button>
-            <button @click="showBy('trash')">Trash</button>
-            <button @click="showBy('draft')">Draft</button>
+            <button class="compose-btn" @click="compose">Compose</button>
+            <span @click="showBy('inbox')">Inbox</span>
+            <span @click="showBy('sent')">Sent</span>
+            <span @click="showBy('star')">Stared</span>
+            <span @click="showBy('trash')">Trash</span>
+            <span @click="showBy('draft')">Draft</span>
           </div>
       `,
     data() {
