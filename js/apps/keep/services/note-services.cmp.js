@@ -15,7 +15,8 @@ const NOTE_KEY = 'notes';
 const gNotes = [
 
     {
-        id: "n101",
+        
+            id: "n101",
         type: "note-txt",
         isPinned: true,
         info: {
@@ -49,11 +50,24 @@ const gNotes = [
                 { txt: "Finish this", doneAt: null },
                 { txt: "Mhm it's harder than I expected", doneAt: 187111111 },
                 { txt: "On no", doneAt: Date.now() },
-                { txt: "HELP! HELPPP!!", doneAt: null }, 
+                { txt: "HELP! HELPPP!!", doneAt: null },
             ]
         },
         style: {
             backgroundColor: "lightpink",
+            fontSize: '16px'
+        }
+    },
+    {
+        id: null,
+        type: "note-video",
+        isPinned: false,
+        info: {
+            url: 'https://www.youtube.com/embed/watch?v=VOoXsOWE-rQ',
+            title: 'chillout music',
+        },
+        style: {
+            backgroundColor: "lightgreen",
             fontSize: '16px'
         }
     },

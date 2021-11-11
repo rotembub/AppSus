@@ -127,7 +127,7 @@ button:hover{
     justify-content: center;
     align-items: center;
     position: absolute;
-    background-color: lightgreen;
+    background-color: lightcoral;
     border: 2px black solid;
     width: 500px;
     height: 500px;
@@ -145,5 +145,8 @@ button:hover{
     position: absolute;
     top: 1px;
     right: 1px;
+    border: 1px white solid;
+    background-color: transparent;
+    color: white
 }
 
