@@ -27,7 +27,8 @@ export const emailService = {
   addEmail,
   getEmailsByFolder,
   saveDraft,
-  removeDraft
+  removeDraft,
+  getDraftById
   // saveReview,
   // createReviews,
   // removeReview,
@@ -109,6 +110,11 @@ function saveDraft(draft){
 function removeDraft(draftId) {
   return storageService.remove(DRAFTS_KEY,draftId);
 }
+
+function getDraftById(draftId) {
+  return storageService.get(DRAFTS_KEY, draftId);
+}
+
 
 //reviews logic 
 // function saveReview(book,review) {

@@ -10,14 +10,14 @@ import { eventBus } from '../../../services/event-bus-service.js';
 
 export default {
   template: `
-        <section class="book-app">
+        <section class="book-app home-page">
            <h3> unRead count: {{unReadCount}}</h3>
             <email-filter @sorted="sortEmails" @filtered="setFilter" />
             <!-- <book-add @addedBook="refBooks"/> -->
             <email-list :emails="emailsToShow" @stared="onToggleStar" @toggle="onToggleRead" @selected="selectEmail" @remove="onRemove" />
             <email-details v-if="selectedEmail" :email="selectedEmail" @close="closeDetails" />
-            <compose-email @draftRemove="refreshDraft"/>
-            <email-folder-list @show="onShowFolder"/>
+            <compose-email @closed="closeCompose" v-if="compose" @draftRemove="refreshDraft"/>
+            <email-folder-list @composed="openCompose" @show="onShowFolder"/>
         </section>
     `,
   data() {
@@ -26,6 +26,7 @@ export default {
       selectedEmail: null,
       filterBy: null,
       folder: 'inbox',
+      compose: false,
     };
   },
   created() {
@@ -41,6 +42,7 @@ export default {
       console.log('yes');
       console.log(email);
       if(email.isDraft){
+        this.openCompose();
         eventBus.$emit('openDraft', email);
         return;
       }
@@ -84,6 +86,12 @@ export default {
     },
     refreshDraft(){
         this.onShowFolder(this.folder);
+    },
+    openCompose(){
+      this.compose = true;
+    },
+    closeCompose(){
+      this.compose = false;
     }
   },
   computed: {

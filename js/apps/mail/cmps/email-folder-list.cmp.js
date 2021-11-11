@@ -1,6 +1,7 @@
 export default {
     template: `
           <div class="folder-filter">
+            <button @click="compose">Compose</button>
             <button @click="showBy('inbox')">Inbox</button>
             <button @click="showBy('sent')">Sent</button>
             <button @click="showBy('star')">Stared</button>
@@ -24,7 +25,10 @@ export default {
       },
       showBy(folder){
           this.$emit('show',folder);
-      }
+      },
+      compose(){
+        this.$emit('composed');
+    }
     },
   };
   

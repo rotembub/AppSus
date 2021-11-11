@@ -6,15 +6,17 @@ import { eventBus } from '../../../services/event-bus-service.js';
 // import { storageService } from '../services/async-storage-service.js';
 
 export default {
+  // props:['comp'],
   template: `
         <section class="compose-email ">
+        <div class="overlay" @click="closeModal"></div>
             <div class="modal-card">
             <h3>Create a new Email</h3>
             <!-- <div class="overlay" @click="closeModal"></div> -->
             <label >to</label>
             <input type="text" v-model="newEmail.to">
             <label >subject</label>
-
+    
             <input type="text" v-model="newEmail.subject">
             <label >body</label>
 
@@ -33,15 +35,19 @@ export default {
         subject: '',
         body: ''
       },
-      saveInterval: null
+      isOpen: true,
+      saveInterval: null,
     };
   },
   created() {
     eventBus.$on('openDraft', this.putData);
+    console.log(this.newEmail);
+   
     this.saveInterval = setInterval(()=> {
       if(this.newEmail.to || this.newEmail.subject || this.newEmail.body){
         emailService.saveDraft(this.newEmail).then(d => console.log(d))
-       } else this.newEmail = {
+       } 
+       else this.newEmail = {
         to: '',
         subject: '',
         body: ''
@@ -50,6 +56,11 @@ export default {
   },
   mounted(){
     // this.$refs.textInput.focus();
+    // this.newEmail.to = 'yes' 
+  },
+  destroyed() {
+    console.log('destroy');
+    clearInterval(this.saveInterval);
   },
   methods: {
     createMsg(txt,type,link = ''){
@@ -88,17 +99,36 @@ export default {
         // });
     },
     putData(draft){
+      console.log(draft.id);
       console.log('buss call');
       console.log(draft);
-      this.newEmail = draft;
+      emailService.getDraftById(draft.id).then(d => {
+        this.newEmail = d;
+        console.log(d);
+      })
+      // this.busData = draft;
+      // this.newEmail.to = 'hello';
+      // // this.newEmail.to = draft.to;
+      // this.newEmail.subject = 'hello';
+      // return Promise.resolve(draft);
     },
 
     closeModal(){
-        this.books = null;
-        this.bookName = '';
+        this.isOpen = false;
+        this.$emit('closed');
     }
   },
   computed:{
    
-  }
+  },
+  // watch: {
+  //   newEmail: {
+  //     handler(newVal, oldVal) {
+  //       console.log('change');
+  //     },
+  //     deep:true
+  //   }
+      
+   
+  // }
 };
