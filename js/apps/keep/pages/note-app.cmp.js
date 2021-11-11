@@ -22,13 +22,14 @@ export default {
     </section> 
     `,
     data() {
-        return {         
+        return {
             modalOpened: false,
             notes: null,
             filterBy: {
                 byName: '',
                 byType: 'all',
-            }
+            },
+            selectedNote: null, // perhaps ill go this way instead of the route way sending a prop and if its a new Note just send null,
         };
     },
     methods: {
@@ -121,8 +122,8 @@ export default {
             })
             return filteredNotes;
         },
-        sortByPin(){
-            
+        sortByPin() {
+
         }
 
 
