@@ -1,12 +1,18 @@
 @import url('./Apps/keep/keep-main.css');
 @import url('./Apps/mail/mail.css');
 
+@font-face {
+  font-family: Poppins;
+  src: url(/fonts/Poppins-Medium.ttf);
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  font-family: Poppins;
 }
 
 /* header */
