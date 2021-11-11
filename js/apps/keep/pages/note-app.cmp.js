@@ -6,6 +6,7 @@ import { eventBus } from '../../../services/event-bus-service.js';
 import noteAdd from '../cmps/note-add.cmp.js'
 
 
+
 // • Apps Integration - Allow sending a note content straight into the compose-message page in misterEmail (use queryString Params)
 
 
@@ -18,7 +19,7 @@ export default {
             <button @click="toggleModal">Add</button>
         </div>
         <note-add v-if="modalOpened" :selectedNote="selectedNote" @noteAdd="addNote" @noteEdited="updateNote" @closeEditor="closeModal"></note-add>
-        <note-list v-if="notes" :notes="notesToShow" @copiedNote="copyNote" @noteChanged="noteChanges"></note-list>
+        <note-list v-if="notes" :notes="notesToShow" @copiedNote="copyNote" @noteChanged="noteChanges" @switchPlaces="switchPlaces"></note-list>
 
     </section> 
     `,
@@ -54,7 +55,7 @@ export default {
             console.log('opening');
             this.modalOpened = !this.modalOpened;
         },
-        closeModal() { 
+        closeModal() {
             console.log('closing');
             this.modalOpened = false;
             this.selectedNote = null;
@@ -100,7 +101,32 @@ export default {
                     this.notes = notes;
                     this.sortByPin; ////////////// 
                 })
-        }
+        },
+        switchPlaces(noteId, dropId) {
+            console.log(noteId, dropId, 'in APP');
+            const idxDragged = this.notes.findIndex(note => note.id === noteId);
+            const idxToPlace = this.notes.findIndex(note => note.id === dropId);
+            console.log(idxDragged, idxToPlace);
+            const movedNote = JSON.parse(JSON.stringify(this.notes[idxDragged]))
+            this.notes.splice(idxDragged, 1);
+            this.notes.splice(idxToPlace, 0, movedNote);
+            // see if i can do it with the server althought im not sure if its necessary because its just a visual
+        },
+        // switchPlaces(noteId, dropId) {
+        //     console.log(noteId, dropId, 'in APP');
+        //     const idxDragged = this.notes.findIndex(note => note.id === noteId);
+        //     const idxToPlace = this.notes.findIndex(note => note.id === dropId);
+        //     console.log(idxDragged, idxToPlace);
+        //     const movedNote = JSON.parse(JSON.stringify(this.notes[idxDragged]))
+        //     noteServices.changeIdx(movedNote, noteId, idxToPlace)
+        //         .then(note => {
+        //             this.notes.splice(idxDragged, 1);
+        //             this.notes.splice(idxToPlace, 0, movedNote);
+
+        //         })
+        //     // see if i can do it with the server althought im not sure if its necessary because its just a visual
+        // }
+
 
     },
     created() {

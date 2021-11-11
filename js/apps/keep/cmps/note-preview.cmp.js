@@ -9,7 +9,7 @@ import { noteServices } from '../services/note-services.cmp.js'
 export default {
     props: ['note'],
     template: `
-        <section class="note-preview" :style="note.style">
+        <section class="note-preview" :style="note.style"  @dragstart="startDrag($event,note)" @drop="onDrop($event,note.id)" @dragenter.prevent @dragover.prevent>
             <div class="note-control-box">
                 <!-- <router-link :to="'/note/'+note.id" @click.native="openEditor">Edit</router-link> watch out for the @click -->
                 <button @click.stop.prevent="openEditor">Edit</button> <!--watchout for native -->
@@ -43,8 +43,8 @@ export default {
     methods: {
         removeNote() {
             noteServices.removeNote(this.note.id)
-                .then(note => { 
-                    this.$emit('noteChanged');  
+                .then(note => {
+                    this.$emit('noteChanged');
                 })
         },
         setColor(color) {
@@ -72,7 +72,24 @@ export default {
         },
         copyNote() {
             this.$emit('copiedNote', JSON.parse(JSON.stringify(this.note))); // gotta think of a better way
+        },
+        startDrag(ev, note) {
+            console.log('u are draggin!');
+            console.log('being moved dragged:', note, ev);
+            ev.dataTransfer.dropEffect = 'move';
+            ev.dataTransfer.effectAllowed = 'move';
+            ev.dataTransfer.setData('noteId', note.id);
+        },
+        onDrop(ev, dropId) {
+            const noteId = ev.dataTransfer.getData('noteId');
+            console.log(noteId);
+            // console.log(notes);
+            this.$emit('switchPlaces', noteId, dropId);
+            // const note = notes.find(note => note.id === noteId)
+            // console.log(note);
+
         }
+
 
     },
     computed: {
