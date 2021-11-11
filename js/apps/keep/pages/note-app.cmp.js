@@ -17,7 +17,7 @@ export default {
         <h1>Welcome to notes!</h1>
         <note-filter @filter="setFilter"></note-filter> <button @click="toggleModal">Add</button>
         <note-add v-if="modalOpened" @noteAdd="addNote" @noteEdited="updateNote"></note-add>
-        <note-list v-if="notes" :notes="notesToShow" @noteEdited="updateNote"></note-list> <!--WATCHOUT FOR THE @ -->
+        <note-list v-if="notes" :notes="notesToShow" @copiedNote="copyNote" @noteEdited="updateNote"></note-list> <!--WATCHOUT FOR THE @ -->
 
     </section> 
     `,
@@ -85,6 +85,15 @@ export default {
                 })
                 .catch(err => console.log('Error', err))
         },
+        copyNote(copy) { // gotta think of a better way
+            noteServices.addNote(copy)
+                .then((note) => {
+                    console.log('COPY ADDED!', note)
+                    noteServices.query()
+                        .then(notes => this.notes = notes)
+                })
+                .catch(err => console.log('Error', err))
+        },
 
     },
     created() {
@@ -104,15 +113,6 @@ export default {
         eventBus.$off('removeNote', this.removeNote);
         eventBus.$off('editNote', this.toggleModal);
     },
-    // watch: {
-    //     notes: {
-    //         handler(newVal, oldVal) {
-    //             console.log('watching...');
-    //             this.sortByPin;
-    //         },
-    //         deep: true
-    //     }
-    // },
     computed: {
         notesToShow() {
             if (!this.filterBy) return this.notes;
@@ -148,9 +148,6 @@ export default {
             console.log(this.notes);
         }
 
-
-    },
-    watch: {
 
     },
     components: {
