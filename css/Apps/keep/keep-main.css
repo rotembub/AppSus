@@ -5,6 +5,7 @@
 /* top of the app  */
 .note-app > h1{
     text-align: center;
+    /* box-shadow: 0px 0px 20px 8px lightcoral; */
 }
 
 .note-task-bar{
