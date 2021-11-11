@@ -6,7 +6,7 @@ export default {
     props: ['notes'],
     template: `
         <section v-if="notes" class="note-list">
-                <note-preview v-for="(note, idx) in notes" :key="note.id" :class="note.type" :note="note" @copiedNote="copiedNote" @noteEdited="noteEdited">
+                <note-preview v-for="(note, idx) in notes" :key="note.id" :class="note.type" :note="note" @copiedNote="copiedNote" @noteChanged="noteChanged">
                     
                 </note-preview>
         </section>
@@ -20,20 +20,19 @@ export default {
         }
     },
     methods: {
-        noteEdited(ev) {
-            console.log('emiting');
-            this.$emit('noteEdited', ev);
-        },
         copiedNote(ev) {
             this.$emit('copiedNote', ev);   // gotta think of a better way
+        },
+        noteChanged(ev){
+            this.$emit('noteChanged');
         }
     },
     computed: {
-        setClass() {
-            if (this.note.type === 'note-img' || this.not.type === 'note-video') {
-                return 'wider'
-            }
-        }
+        // setClass() { // not in use currently
+        //     if (this.note.type === 'note-img' || this.not.type === 'note-video') {
+        //         return 'wider'
+        //     }
+        // }
     }
 
 

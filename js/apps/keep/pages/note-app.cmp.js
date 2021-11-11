@@ -17,8 +17,8 @@ export default {
             <note-filter @filter="setFilter"></note-filter>
             <button @click="toggleModal">Add</button>
         </div>
-        <note-add v-if="modalOpened" @noteAdd="addNote" @noteEdited="updateNote"></note-add>
-        <note-list v-if="notes" :notes="notesToShow" @copiedNote="copyNote" @noteEdited="updateNote"></note-list> <!--WATCHOUT FOR THE @ -->
+        <note-add v-if="modalOpened" :selectedNote="selectedNote" @noteAdd="addNote" @noteEdited="updateNote" @closeEditor="closeModal"></note-add>
+        <note-list v-if="notes" :notes="notesToShow" @copiedNote="copyNote" @noteChanged="noteChanges"></note-list>
 
     </section> 
     `,
@@ -30,61 +30,53 @@ export default {
                 byName: '',
                 byType: 'all',
             },
-            selectedNote: null, // perhaps ill go this way instead of the route way sending a prop and if its a new Note just send null,
+            selectedNote: null,
         };
     },
     methods: {
         setFilter(filter) {
             this.filterBy = filter;
-
             console.log('Note App Says Filter has changed!', this.filterBy);
             this.notesToShow;
-
         },
-        removeNote(id) {
-            console.log('removing', id);
-            noteServices.removeNote(id)
-                .then(notes => {
-                    console.log(notes);
-                    this.notes = notes;
-                })
-                .catch(err => {
-                    console.log('Error', err);
-                })
-        },
+        // removeNote(id) {
+        //     console.log('removing', id);
+        //     noteServices.removeNote(id)
+        //         .then(notes => {
+        //             console.log(notes);
+        //             this.notes = notes;
+        //         })
+        //         .catch(err => {
+        //             console.log('Error', err);
+        //         })
+        // },
         toggleModal(id) {
             console.log('opening');
             this.modalOpened = !this.modalOpened;
         },
-        closeModal() { // made this only so i could clear the link from the noteId
+        closeModal() { 
             console.log('closing');
             this.modalOpened = false;
-            if (this.$route.params.noteId) this.$router.push('/note');
+            this.selectedNote = null;
+            // if (this.$route.params.noteId) this.$router.push('/note');
         },
-        addNote(newNote) {
-            console.log('adding note');
-            this.toggleModal(); /////////////
-            noteServices.addNote(newNote)
-                .then((note) => {
-                    console.log('NOTE ADDED!', note)
-                    noteServices.query()
-                        .then(notes => this.notes = notes)
+        addNote(ev) {
+            this.closeModal(); /////////////
+            console.log('NOTE ADDED! received at APP',)
+            noteServices.query()
+                .then(notes => {
+                    this.notes = notes;
+                    this.sortByPin; ////////////// 
                 })
-                .catch(err => console.log('Error', err))
         },
-        updateNote(editedNote) {
-            console.log(editedNote);
+        updateNote(ev) {
+            console.log('NOTE EDITED! received at APP!');
             this.closeModal();/////////////
-            noteServices.editNote(editedNote)
-                .then((note) => {
-                    console.log(note, 'has been edited')
-                    noteServices.query()
-                        .then(notes => {
-                            this.notes = notes;
-                            this.sortByPin; ////////////// 
-                        })
+            noteServices.query()
+                .then(notes => {
+                    this.notes = notes;
+                    this.sortByPin; ////////////// 
                 })
-                .catch(err => console.log('Error', err))
         },
         copyNote(copy) { // gotta think of a better way
             noteServices.addNote(copy)
@@ -95,6 +87,20 @@ export default {
                 })
                 .catch(err => console.log('Error', err))
         },
+        openEditor(note) {
+            console.log('parent received opening editor', this.modalOpened)
+            this.selectedNote = note;
+            console.log(this.selectedNote, note);
+            this.toggleModal();
+        },
+        noteChanges() {
+            console.log('received Note Changes!');
+            noteServices.query()
+                .then(notes => {
+                    this.notes = notes;
+                    this.sortByPin; ////////////// 
+                })
+        }
 
     },
     created() {
@@ -103,16 +109,18 @@ export default {
             .then(notes => {
                 this.notes = notes
                 this.sortByPin
-            })
+            });
 
-        eventBus.$on('removeNote', this.removeNote);
-        eventBus.$on('editNote', this.toggleModal);   /////////////
+        // eventBus.$on('noteChanged', this.noteChanges)
+        // eventBus.$on('removeNote', this.removeNote);
+        eventBus.$on('editNote', this.openEditor);   /////////////
 
     },
     destroyed() {
         console.log('no longer here');
-        eventBus.$off('removeNote', this.removeNote);
-        eventBus.$off('editNote', this.toggleModal);
+        // eventBus.$off('noteChanged', this.noteChanges)
+        // eventBus.$off('removeNote', this.removeNote);
+        eventBus.$off('editNote', this.openEditor);
     },
     computed: {
         notesToShow() {

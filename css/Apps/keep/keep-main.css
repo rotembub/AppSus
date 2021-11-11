@@ -141,5 +141,9 @@ button:hover{
     flex-direction: column;
     align-items: center;
 }
-
+.note-add .close-btn{
+    position: absolute;
+    top: 1px;
+    right: 1px;
+}
 
