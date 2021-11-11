@@ -15,7 +15,7 @@ export default {
                 <button @click.stop.prevent="removeNote">x</button>
                 <span :class="{yellow: note.isPinned }" @click.stop="setPinned">📌</span>
                 <button @click.stop.prevent="copyNote">Copy</button> 
-                <button @click.stop.prevent="toggleColors">Color</button>
+                <button @click.stop.prevent="toggleColors">🎨</button>
                 <div v-if="colorOpen" class="color-options">
                     <span @click.stop.prevent="setColor(color)" class="color-span" v-for="color in colors" :style="{ 'background-color': color }">C</span>
                 </div>

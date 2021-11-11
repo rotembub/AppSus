@@ -19,10 +19,10 @@ const gNotes = [
         type: "note-txt",
         isPinned: true,
         info: {
-            txt: "Fullstack Me Baby!"
+            txt: "Help Me!"
         },
         style: {
-            backgroundColor: "lightgreen",
+            backgroundColor: "darkkhaki",
             fontSize: '16px'
         }
     },
@@ -32,7 +32,7 @@ const gNotes = [
         isPinned: false,
         info: {
             url: "https://images.unsplash.com/photo-1554080353-a576cf803bda?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGhvdG98ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
-            title: "Bobi and Me"
+            title: "Alice in action"
         },
         style: {
             backgroundColor: "lightgreen",
@@ -44,26 +44,28 @@ const gNotes = [
         type: "note-todos",
         isPinned: false,
         info: {
-            label: "Get my stuff together",
+            label: "Daily plans:",
             todos: [
-                { txt: "Driving liscence", doneAt: null },
-                { txt: "Coding power", doneAt: 187111111 }
+                { txt: "Finish this", doneAt: null },
+                { txt: "Mhm it's harder than I expected", doneAt: 187111111 },
+                { txt: "On no", doneAt: Date.now() },
+                { txt: "HELP! HELPPP!!", doneAt: null }, 
             ]
         },
         style: {
-            backgroundColor: "lightgreen",
+            backgroundColor: "lightpink",
             fontSize: '16px'
         }
     },
     {
         id: "n104",
         type: "note-txt",
-        isPinned: true,
+        isPinned: false,
         info: {
             txt: "Fullstack Me Baby!"
         },
         style: {
-            backgroundColor: "lightgreen",
+            backgroundColor: "violet",
             fontSize: '16px'
         }
     },
@@ -73,10 +75,10 @@ const gNotes = [
         isPinned: false,
         info: {
             url: "https://www.cnet.com/a/img/-qQkzFVyOPEoBRS7K5kKS0GFDvk=/940x0/2020/04/16/7d6d8ed2-e10c-4f91-b2dd-74fae951c6d8/bazaart-edit-app.jpg",
-            title: "Bobi and Me"
+            title: "Another bright day"
         },
         style: {
-            backgroundColor: "lightgreen",
+            backgroundColor: "lightblue",
             fontSize: '16px'
         }
     },
@@ -85,17 +87,55 @@ const gNotes = [
         type: "note-todos",
         isPinned: false,
         info: {
-            label: "Get my stuff together",
+            label: "Get those done by midnight:",
             todos: [
-                { txt: "Driving liscence", doneAt: null },
-                { txt: "Coding power", doneAt: 187111111 }
+                { txt: "Wake up successfully", doneAt: null },
+                { txt: "Make my bed", doneAt: null },
+                { txt: "Eat breakfast", doneAt: 187111111 }
             ]
         },
         style: {
-            backgroundColor: "lightgreen",
+            backgroundColor: "lightyellow",
             fontSize: '16px'
         }
-    }
+    },
+    {
+        id: "n107",
+        type: "note-txt",
+        isPinned: false,
+        info: {
+            txt: "Ofek's BD 6.8"
+        },
+        style: {
+            backgroundColor: "darkkhaki",
+            fontSize: '16px'
+        }
+    },
+    {
+        id: "n108",
+        type: "note-txt",
+        isPinned: false,
+        info: {
+            txt: "Rent due on the 1st $1450"
+        },
+        style: {
+            backgroundColor: "darkkhaki",
+            fontSize: '16px'
+        }
+    },
+    {
+        id: "n109",
+        type: "note-img",
+        isPinned: false,
+        info: {
+            url: "https://www.happywalagift.com/wp-content/uploads/2020/12/Download-Merry-Christmas-HD-4k-Images-Wallpapers-6.jpg",
+            title: "What a night"
+        },
+        style: {
+            backgroundColor: "lightseagreen",
+            fontSize: '16px'
+        }
+    },
 
 
 ]

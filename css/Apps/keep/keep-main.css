@@ -72,6 +72,13 @@
 .note-preview:hover .note-control-box{
     visibility:visible; 
 }
+.note-control-box > button{
+    background-color: transparent;
+    border: none;
+}
+.note-control-box > button:hover{
+    cursor: pointer;
+}
 
 .color-options{
     position: absolute;
@@ -107,6 +114,7 @@
     top: 50%;
     right: 50%;
     transform: translate(50%,-50%);
+    z-index: 1;
 }
 
 
