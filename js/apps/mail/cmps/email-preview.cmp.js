@@ -1,4 +1,3 @@
-// import bookAppCmp from '../pages/book-app.cmp';
 
 export default {
   props: ['email'],

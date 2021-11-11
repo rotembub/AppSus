@@ -11,16 +11,7 @@ export default {
                 </tr>
             </tbody>
         </table>
-                <!-- <ul class="book-list">
-            <li v-for="book in books" :key="book.id" class="book-preview-container" >
-              <div class="item-content">
-                <book-preview :book="book" @click.native="select(book)" />
-               
-                    <router-link :to="'/book/'+book.id" >Details</router-link> 
-                
-                </div>
-            </li>
-        </ul> -->
+             
     `,
   methods: {
     
