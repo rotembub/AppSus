@@ -5,8 +5,7 @@ import noteFilter from '../cmps/note-filter.cmp.js'
 import { eventBus } from '../../../services/event-bus-service.js';
 import noteAdd from '../cmps/note-add.cmp.js'
 
-// • Support setting the note's background color and other styles
-// • Support filtering notes by search and by type 
+
 // • Support pining a note to the top of the list
 // • Support duplicating a note
 // • Apps Integration - Allow sending a note content straight into the compose-message page in misterEmail (use queryString Params)
@@ -18,21 +17,28 @@ export default {
         <h1>Welcome to notes!</h1>
         <note-filter @filter="setFilter"></note-filter> <button @click="toggleModal">Add</button>
         <note-add v-if="modalOpened" @noteAdd="addNote" @noteEdited="updateNote"></note-add>
-        <note-list v-if="notes" :notes="notes" @noteEdited="updateNote"></note-list> <!--WATCHOUT FOR THE @ -->
+        <note-list v-if="notes" :notes="notesToShow" @copiedNote="copyNote" @noteEdited="updateNote"></note-list> <!--WATCHOUT FOR THE @ -->
 
     </section> 
     `,
     data() {
         return {
-            filterBy: null,
             modalOpened: false,
             notes: null,
+            filterBy: {
+                byName: '',
+                byType: 'all',
+            },
+            selectedNote: null, // perhaps ill go this way instead of the route way sending a prop and if its a new Note just send null,
         };
     },
     methods: {
         setFilter(filter) {
             this.filterBy = filter;
-            console.log('Note App Says Filter has changed!');
+
+            console.log('Note App Says Filter has changed!', this.filterBy);
+            this.notesToShow;
+
         },
         removeNote(id) {
             console.log('removing', id);
@@ -72,6 +78,18 @@ export default {
                 .then((note) => {
                     console.log(note, 'has been edited')
                     noteServices.query()
+                        .then(notes => {
+                            this.notes = notes;
+                            this.sortByPin; ////////////// 
+                        })
+                })
+                .catch(err => console.log('Error', err))
+        },
+        copyNote(copy) { // gotta think of a better way
+            noteServices.addNote(copy)
+                .then((note) => {
+                    console.log('COPY ADDED!', note)
+                    noteServices.query()
                         .then(notes => this.notes = notes)
                 })
                 .catch(err => console.log('Error', err))
@@ -79,10 +97,16 @@ export default {
 
     },
     created() {
+
         noteServices.query()
-            .then(notes => this.notes = notes)
+            .then(notes => {
+                this.notes = notes
+                this.sortByPin
+            })
+
         eventBus.$on('removeNote', this.removeNote);
         eventBus.$on('editNote', this.toggleModal);   /////////////
+
     },
     destroyed() {
         console.log('no longer here');
@@ -92,22 +116,38 @@ export default {
     computed: {
         notesToShow() {
             if (!this.filterBy) return this.notes;
-            const nameFilter = this.filterBy.byName.toLowerCase();
-            // const types = this.filterBy.byType
-            const notesToShow = this.notes.filter(note => {
-                const values = Object.values(note.info);
-                console.log(values);
-                const found = values.some(value => {
-                    console.log(value);
-                    value.toLowerCase().includes(nameFilter);
-                })
-                if (found) return note;
-            });
-            return notesToShow;
-        } ///BROKEN NEEDS TO FIX 
+            var filteredByType;
+            if (this.filterBy.byType === 'all') filteredByType = this.notes;
+            else filteredByType = this.notes.filter(note => note.type === this.filterBy.byType);
+            if (!this.filterBy.byName) {
+                console.log(filteredByType);
+                return filteredByType;
+            }
+            var filteredNotes = filteredByType.filter((note) => {
+                var values = Object.values(note.info);
+                console.log('values', values);
+                if (note.type === 'note-todos') {
+                    if (note.info.label.toLowerCase().includes(this.filterBy.byName.toLowerCase())) return note;
+                    var todoValues = Object.values(note.info.todos);
+                    console.log('todoValues', todoValues);
+                    if (todoValues.some(val => val.txt.toLowerCase().includes(this.filterBy.byName.toLowerCase()))) return note;
+                    else return false;
+                }
+                // if (note.type === 'note-img' || note.type === 'note-video') values = note.info.title
+                // else if (note.type === 'note-txt') values = note.info.txt
+                // if (values.toLowerCase().includes(this.filterBy.byName.toLowerCase())) return note
+                if (values.some(val => val.toLowerCase().includes(this.filterBy.byName.toLowerCase()))) return note;
+            })
+            return filteredNotes;
+        },
+        sortByPin() {
+            this.notes.sort((a, b) => {
+                if (a.isPinned && !b.isPinned) return -1
+                else return 1
+            })
+            console.log(this.notes);
+        }
 
-    },
-    watch: {
 
     },
     components: {

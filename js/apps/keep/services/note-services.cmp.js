@@ -29,6 +29,7 @@ const gNotes = [
     {
         id: "n102",
         type: "note-img",
+        isPinned: false,
         info: {
             url: "https://images.unsplash.com/photo-1554080353-a576cf803bda?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGhvdG98ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
             title: "Bobi and Me"
@@ -41,6 +42,7 @@ const gNotes = [
     {
         id: "n103",
         type: "note-todos",
+        isPinned: false,
         info: {
             label: "Get my stuff together",
             todos: [
@@ -68,6 +70,7 @@ const gNotes = [
     {
         id: "n105",
         type: "note-img",
+        isPinned: false,
         info: {
             url: "https://www.cnet.com/a/img/-qQkzFVyOPEoBRS7K5kKS0GFDvk=/940x0/2020/04/16/7d6d8ed2-e10c-4f91-b2dd-74fae951c6d8/bazaart-edit-app.jpg",
             title: "Bobi and Me"
@@ -80,6 +83,7 @@ const gNotes = [
     {
         id: "n106",
         type: "note-todos",
+        isPinned: false,
         info: {
             label: "Get my stuff together",
             todos: [
@@ -135,6 +139,7 @@ function getEmptyNoteByType(type) {
         return {
             id: null,
             type: "note-video",
+            isPinned: false,
             info: {
                 url: null,
                 title: null,
@@ -148,6 +153,7 @@ function getEmptyNoteByType(type) {
         return {
             id: null,
             type: "note-img",
+            isPinned: false,
             info: {
                 url: null,
                 title: null,
@@ -162,6 +168,7 @@ function getEmptyNoteByType(type) {
         return {
             id: null,
             type: "note-todos",
+            isPinned: false,
             info: {
                 label: null,
                 todos: [{ txt: null, doneAt: null }],
