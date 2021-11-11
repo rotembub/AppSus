@@ -11,10 +11,15 @@ export default {
     `,
     data() {
         return {
-        
+
         };
     },
     methods: {
-
+    },
+    computed: {
+        getProperURL() {
+            var proper = '/embed';
+            this.info.url
+        }
     }
 };

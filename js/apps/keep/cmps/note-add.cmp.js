@@ -1,9 +1,10 @@
 import { noteServices } from '../services/note-services.cmp.js'
 
 export default {
+    props: ['selectedNote'],
     template: `
                 <div class="note-add">
-                    <!-- <button>x</button> -->
+                    <button class="close-btn" @click="closeEditor">x</button>
                     
                     <select v-model="noteType" @change="setNoteForm" name="note-type">
                         <option value="note-txt">Text</option>
@@ -11,7 +12,7 @@ export default {
                         <option value="note-img">Image</option>
                         <option value="note-todos">Todo</option>
                     </select>
-                    <form class="note-form" @submit.prevent = "saveNote">
+                    <form v-if="newNote" class="note-form" @submit.prevent = "saveNote">
 
                         <template v-if="(noteType === 'note-txt') && newNote"  >
                             <label for="comments">Write something</label>
@@ -38,7 +39,6 @@ export default {
                            <input v-model="newNote.info.label" type="text" placeholder="Enter a label">
                            <span>What to do?</span>
                             <input type="text" v-for="(todo,idx)  in newNote.info.todos" v-model="newNote.info.todos[idx].txt">
-                           <!-- <input v-model="todo.txt" type="text" placeholder="to do.."> -->
 
                            <button @click.stop.prevent="addTodo">+</button>
 
@@ -55,21 +55,30 @@ export default {
             noteType: 'note-txt', //watchout!!!
             todo: { txt: null, doneAt: null },
             isEdited: false,
-
         }
     },
     created() {
-        const { noteId } = this.$route.params;
-        if (noteId) {
-            noteServices.getNoteById(noteId)
-                .then(note => {
-                    this.newNote = note;
-                    this.noteType = note.type
-                    console.log(note, this.newNote, 'here');
-                    this.isEdited = true;
-                });
-        } else {
+        // const { noteId } = this.$route.params;
+        // if (noteId) {
+        //     noteServices.getNoteById(noteId)
+        //         .then(note => {
+        //             this.newNote = note;
+        //             this.noteType = note.type
+        //             console.log(note, this.newNote, 'here');
+        //             this.isEdited = true;
+        //         });
+        // } else {
 
+        //     this.newNote = noteServices.getEmptyNoteByType(this.noteType);
+        //     console.log('here actually', this.noteType, this.newNote);
+        // }
+        if (this.selectedNote) {
+            console.log(this.selectedNote);
+            this.isEdited = true;
+            this.noteType = this.selectedNote.type;
+            this.newNote = JSON.parse(JSON.stringify(this.selectedNote));
+            console.log(this.newNote, 'new here!!!!');
+        } else {
             this.newNote = noteServices.getEmptyNoteByType(this.noteType);
             console.log('here actually', this.noteType, this.newNote);
         }
@@ -81,13 +90,22 @@ export default {
 
         saveNote() {
             console.log(this.newNote);
-
             if (this.isEdited) {
-                console.log(this.newNote, this.isEdited);
-                this.$emit('noteEdited', this.newNote);
+                // this.$emit('noteEdited', this.newNote);
+                noteServices.editNote(this.newNote)
+                    .then((note) => {
+                        console.log(note, 'has been EDITED')
+                        this.$emit('noteEdited', note)
+                    })
+                    .catch(err => console.log('Error', err))
+            } else {
+                noteServices.addNote(this.newNote)
+                    .then((note) => {
+                        console.log(note, 'has been ADDED')
+                        this.$emit('noteAdd', note)
+                    })
+                    .catch(err => console.log('Error', err))
             }
-
-            else this.$emit('noteAdd', this.newNote);
         },
         addTodo() {
             this.newNote.info.todos.push(JSON.parse(JSON.stringify(this.todo)));
@@ -96,8 +114,10 @@ export default {
         },
         setNoteForm() {
             this.newNote = noteServices.getEmptyNoteByType(this.noteType);
+        },
+        closeEditor() {
+            this.$emit('closeEditor');
         }
-
 
     },
 
