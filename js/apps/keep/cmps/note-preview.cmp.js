@@ -13,11 +13,11 @@ export default {
             <div class="note-control-box">
                 <router-link :to="'/note/'+note.id" @click.native="openEditor">Edit</router-link> <!-- watch out for the @click -->
                 <button @click.stop.prevent="removeNote">x</button>
-                <span :class="{yellow: note.isPinned }" @click.stop="setPinned">Pin</span>
+                <span :class="{yellow: note.isPinned }" @click.stop="setPinned">📌</span>
                 <button @click.stop.prevent="copyNote">Copy</button> 
-                <button @click.stop.prevent="toggleColors">Color</button>
+                <button @click.stop.prevent="toggleColors">🎨</button>
                 <div v-if="colorOpen" class="color-options">
-                    <span @click.stop.prevent="setColor(color)" class="color-span" v-for="color in colors" :style="{ 'background-color': color }">C</span>
+                    <span @click.stop.prevent="setColor(color)" class="color-span" v-for="color in colors" :style="{ 'background-color': color }">Co</span>
                 </div>
                 
 
@@ -40,7 +40,7 @@ export default {
                 fontSize: '16px',
             },
             colorOpen: false,
-            colors: ['red', 'yellow', 'blue', 'white', 'green', 'gray', 'lightgreen', 'lightcoral']
+            colors: ['darkkhaki', 'lightyellow', 'lightblue', 'white', 'violet', 'lightgray', 'lightgreen', 'lightcoral','lightpink','lightseagreen','tomato']
 
         }
     },

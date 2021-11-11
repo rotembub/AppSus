@@ -6,16 +6,17 @@ import { eventBus } from '../../../services/event-bus-service.js';
 import noteAdd from '../cmps/note-add.cmp.js'
 
 
-// • Support pining a note to the top of the list
-// • Support duplicating a note
 // • Apps Integration - Allow sending a note content straight into the compose-message page in misterEmail (use queryString Params)
 
 
 export default {
     template: `
     <section class="note-app">
-        <h1>Welcome to notes!</h1>
-        <note-filter @filter="setFilter"></note-filter> <button @click="toggleModal">Add</button>
+        <h1>Welcome to Notes!</h1>
+        <div class="note-task-bar"> 
+            <note-filter @filter="setFilter"></note-filter>
+            <button @click="toggleModal">Add</button>
+        </div>
         <note-add v-if="modalOpened" @noteAdd="addNote" @noteEdited="updateNote"></note-add>
         <note-list v-if="notes" :notes="notesToShow" @copiedNote="copyNote" @noteEdited="updateNote"></note-list> <!--WATCHOUT FOR THE @ -->
 
