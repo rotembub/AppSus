@@ -78,23 +78,41 @@ export default {
                 .then((note) => {
                     console.log(note, 'has been edited')
                     noteServices.query()
-                        .then(notes => this.notes = notes)
+                        .then(notes => {
+                            this.notes = notes;
+                            this.sortByPin; ////////////// 
+                        })
                 })
                 .catch(err => console.log('Error', err))
         },
 
     },
     created() {
+
         noteServices.query()
-            .then(notes => this.notes = notes)
+            .then(notes => {
+                this.notes = notes
+                this.sortByPin
+            })
+
         eventBus.$on('removeNote', this.removeNote);
         eventBus.$on('editNote', this.toggleModal);   /////////////
+
     },
     destroyed() {
         console.log('no longer here');
         eventBus.$off('removeNote', this.removeNote);
         eventBus.$off('editNote', this.toggleModal);
     },
+    // watch: {
+    //     notes: {
+    //         handler(newVal, oldVal) {
+    //             console.log('watching...');
+    //             this.sortByPin;
+    //         },
+    //         deep: true
+    //     }
+    // },
     computed: {
         notesToShow() {
             if (!this.filterBy) return this.notes;
@@ -123,7 +141,11 @@ export default {
             return filteredNotes;
         },
         sortByPin() {
-
+            this.notes.sort((a, b) => {
+                if (a.isPinned && !b.isPinned) return -1
+                else return 1
+            })
+            console.log(this.notes);
         }
 
 

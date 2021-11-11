@@ -10,26 +10,21 @@ export default {
     template: `
         <section class="note-preview" :style="note.style">
             <div class="note-control-box">
-                <!-- <button @click="edit = !edit">Update</button> -->
                 <router-link :to="'/note/'+note.id" @click.native="openEditor">Edit</router-link> <!-- watch out for the @click -->
-                <!-- <button @click.stop.prevent="edit">Edit</button> -->
                 <button @click.stop.prevent="removeNote">x</button>
-                <!-- <button @click.stop.prevent="setColor">Color</button> -->
+                <span :class="{yellow: note.isPinned }" @click.stop="setPinned">Pinned</span>
                 <button @click.stop.prevent="toggleColors">Color</button>
                 <div v-if="colorOpen" class="color-options">
                     <span @click.stop.prevent="setColor(color)" class="color-span" v-for="color in colors" :style="{ 'background-color': color }">C</span>
                 </div>
+                
 
             </div>
             <component  
                         :is="note.type" 
                         :info="note.info"> 
             </component>
-            <template v-if="edit">
-                <label for="message">Write something</label>
-                <textarea v-model="txt" name="message" placeholder="Your thoughts" rows="10" cols="30" required></textarea>
-                <button @click="updateNote">Save</button>
-            </template>
+
             
         
         </section>
@@ -58,7 +53,7 @@ export default {
         setColor(color) {
             console.log(this.note)
             this.note.style.backgroundColor = color;
-            this.$emit('noteEdited',this.note)
+            this.$emit('noteEdited', this.note)
         },
         openEditor() {
             console.log('trying to open');
@@ -66,6 +61,10 @@ export default {
         },
         toggleColors() {
             this.colorOpen = !this.colorOpen;
+        },
+        setPinned() {
+            this.note.isPinned = !this.note.isPinned
+            this.$emit('noteEdited', this.note);
         }
 
     },
