@@ -62,8 +62,8 @@ const gNotes = [
         id: null,
         type: "note-video",
         isPinned: false,
-        info: {
-            url: 'https://www.youtube.com/embed/watch?v=VOoXsOWE-rQ',
+        info: {   //https://www.youtube.com/embed/v=VOoXsOWE-rQ
+            url: 'https://www.youtube.com/v=VOoXsOWE-rQ',
             title: 'chillout music',
         },
         style: {

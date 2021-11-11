@@ -5,7 +5,8 @@ export default {
     props: ['info'],
     template: `
         <section class="note-video">
-            <iframe width="420" height="345" :src="info.url">
+            <iframe width="420" height="345" :src="getProperURL">
+                {{getProperURL}}
             </iframe>
         </section>
     `,
@@ -18,8 +19,12 @@ export default {
     },
     computed: {
         getProperURL() {
-            var proper = '/embed';
-            this.info.url
+            const proper = 'embed';
+            const urlArray = this.info.url.split('/');
+            console.log(urlArray)
+            urlArray.splice(urlArray.length - 1, 0, proper);
+            console.log(urlArray.join('/'));
+            return urlArray.join('/')
         }
     }
 };
