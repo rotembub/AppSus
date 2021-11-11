@@ -5,19 +5,25 @@ import emailDetails from './email-details.cmp.js';
 import composeEmail from '../cmps/compose-email.cmp.js'
 import emailFolderList from '../cmps/email-folder-list.cmp.js';
 import { eventBus } from '../../../services/event-bus-service.js';
-// import bookAdd from '../cmps/book-add.cmp.js'
-// import carEdit from './car-edit.cmp.js';
+
 
 export default {
   template: `
-        <section class="book-app home-page">
-          <email-filter @sorted="sortEmails" @filtered="setFilter" />
-          <h3 class="unread-count"> <i class="far fa-envelope unread-count-icon"></i> : {{unReadCount}}</h3>
+        <section class="home-page">
+
+         <div class="email-layout-container">
+
           <div class="email-container">
-            <email-folder-list @composed="openCompose" @show="onShowFolder"/>
+             <email-filter @sorted="sortEmails" @filtered="setFilter" />
             <email-list :emails="emailsToShow" @stared="onToggleStar" @toggle="onToggleRead" @selected="selectEmail" @remove="onRemove" />
-            </div>
+          </div>
           
+            <section class="email-side-bar">
+              <email-folder-list @composed="openCompose" @show="onShowFolder"/>
+              <h3 class="unread-count"> <i class="far fa-envelope unread-count-icon"></i> : {{unReadCount}}</h3>
+            </section>
+         </div>
+            
             <email-details v-if="selectedEmail" :email="selectedEmail" @close="closeDetails" />
             <compose-email @closed="closeCompose" v-if="compose" @draftRemove="refreshDraft"/>
         </section>
@@ -107,7 +113,6 @@ export default {
       const emailsToShow = this.emails.filter((email) => {
         return (
           email.subject.toLowerCase().includes(searchStr) && email.isRead === byRead
-          // book.listPrice.amount <= searchPrice
         );
       });
       return emailsToShow;
@@ -129,7 +134,6 @@ export default {
     emailDetails,
     composeEmail,
     emailFolderList
-    // bookAdd
-    // carEdit,
+  
   },
 };
