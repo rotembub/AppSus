@@ -6,7 +6,7 @@ export default {
     props: ['notes'],
     template: `
         <section v-if="notes" class="note-list">
-                <note-preview v-for="(note, idx) in notes" :key="note.id" :note="note" @copiedNote="copiedNote" @noteEdited="noteEdited">
+                <note-preview v-for="(note, idx) in notes" :key="note.id" :class="note.type" :note="note" @copiedNote="copiedNote" @noteEdited="noteEdited">
                     
                 </note-preview>
         </section>
@@ -27,6 +27,15 @@ export default {
         copiedNote(ev) {
             this.$emit('copiedNote', ev);   // gotta think of a better way
         }
+    },
+    computed: {
+        setClass() {
+            if (this.note.type === 'note-img' || this.not.type === 'note-video') {
+                return 'wider'
+            }
+        }
     }
+
+
 
 }

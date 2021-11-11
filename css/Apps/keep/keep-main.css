@@ -2,21 +2,16 @@
     box-sizing: border-box;
 }
 
-.note-list{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-around;
-    gap: 10px;
+/* top of the app  */
+.note-app > h1{
+    text-align: center;
 }
 
-.note-preview{
-    background-color: lightgreen;
-    border: 1px black solid;
-}
-.note-preview img{
-    width: 100%;
-    max-height: 300px;
+.note-task-bar{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
 }
 
 .note-filter{
@@ -25,6 +20,80 @@
     align-items: center;
 }
 
+
+/* note-list  */
+
+/* .note-list{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+} */
+
+.note-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 10px;
+}
+
+.note-txt{
+    grid-row: span 1;
+}
+.note-video, .note-img{
+    /* grid-row: 1/ span 2; */
+    grid-row-end: span 2;
+}
+
+.note-todos{
+    grid-row: span 1;
+}
+
+.note-preview{
+    position: relative;
+    background-color: lightgreen;
+    border: 1px black solid;
+}
+.note-preview img{
+    width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+}
+
+/* note-list inside preview */
+.yellow{
+    background-color: yellow;
+}
+
+.note-control-box{
+    visibility: hidden;
+}
+.note-preview:hover .note-control-box{
+    visibility:visible; 
+}
+
+.color-options{
+    position: absolute;
+    border: 1px black solid;
+    background-color: thistle;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.color-span{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: transparent;
+
+}
+.color-span:hover{
+    cursor: pointer;
+    border: black 1px solid;
+}
+
+/* modal */
 .note-add{
     display: flex;
     flex-direction: column;
@@ -40,12 +109,5 @@
     transform: translate(50%,-50%);
 }
 
-.yellow{
-    background-color: yellow;
-}
 
-.color-span{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-}
+
