@@ -8,17 +8,34 @@
     /* box-shadow: 0px 0px 20px 8px lightcoral; */
 }
 
+button:hover{
+    cursor: pointer;
+}
+
 .note-task-bar{
     display: flex;
     justify-content: center;
     gap: 10px;
     margin-bottom: 10px;
 }
+.note-task-bar button{
+    background-color: transparent;
+    border: none;
+    box-shadow: 0 0 17px 6px lightcoral;
+}
 
 .note-filter{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.note-filter :first-child{
+    height: 50px;
+    width: 40vw;
+}
+.note-filter :nth-child(2){
+    height: 50px;
+    /* width: 40vw; */
 }
 
 
