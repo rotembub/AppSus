@@ -4,7 +4,7 @@ export default {
   template: `
 <div>
   
- <td >{{email.to}}</td>
+ <td class="to-td">{{email.to}}</td>
    <td>
         <p >
           <strong>{{email.subject}} - {{email.body}}</strong>

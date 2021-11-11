@@ -3,6 +3,7 @@ export default {
         <div class="email-filter">
             <label>Search</label>
             <input @input="filter" v-model="filterBy.title" type="text" placeholder="Search...">
+            <div class="filter-sort-container">
             <label> Read/UnRead</label>
             <select @change="filter" v-model="filterBy.read">
               <option value="read">Read</option>
@@ -14,6 +15,7 @@ export default {
               <option value="date">date</option>
               <option value="subject">subject</option>
             </select>
+            </div>
         </div>
     `,
   data() {
