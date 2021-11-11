@@ -20,6 +20,52 @@ body {
   align-items: center;
 }
 
+.plus-icon {
+  font-size: 20px;
+}
+
+.compose-btn {
+  background-color: #ffffff;
+  font-weight: bold;
+}
+.compose-btn:hover {
+  box-shadow: 1px 1px 15px 1px #a09797;
+}
+
+.compose-header {
+  text-align: left;
+  position: relative;
+  top: -20px;
+  color: #ffffff;
+  height: 57px;
+  margin-bottom: 0;
+
+  background-color: #404040;
+  border-radius: 3%;
+}
+
+.compose-header span {
+  position: relative;
+  left: 10px;
+  top: 10px;
+}
+
+.compose-send {
+  width: fit-content;
+  padding: 8px;
+  border-radius: 13%;
+  color: #ffffff;
+  font-weight: bold;
+  background-color: #1a73e8;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.modal-card input[type='text'] {
+  height: 53px;
+}
+
 /* Modal */
 
 .modal,
@@ -38,16 +84,18 @@ body {
 .modal-card {
   position: relative;
   max-width: 80%;
+  width: 455px;
+  height: 485px;
   margin: auto;
   margin-top: 100px;
   margin-right: 100px;
-  padding: 20px;
+  /* padding: 20px; */
   background-color: white;
   display: flex;
   flex-direction: column;
   z-index: 10;
   opacity: 1;
-  border: 1px solid blue;
+  border: 2px solid #edf0f2;
 }
 
 /* .compose-email {
@@ -58,7 +106,12 @@ body {
 .unread-count {
   /* position: absolute; */
   left: 23px;
-  top: 50%;
+  top: 20%;
+  font-size: 30px;
+}
+
+.unread-count-icon {
+  font-size: 30px;
 }
 
 /* email Container */
@@ -70,9 +123,11 @@ body {
 /* Mail Table */
 
 .mail-table {
-  max-width: 800px;
+  max-width: 1000px;
   margin: auto;
   border-collapse: collapse;
+  margin-inline-start: 30px;
+  margin-inline-end: 30px;
 }
 .mail-table tr.read {
   background-color: #f5f7f7;
@@ -108,6 +163,8 @@ body {
   align-items: center;
   width: 135px;
   margin-block-end: 25px;
+  margin-inline-start: 30px;
+
   /* top: 25%;
   left: 20px; */
 }
@@ -118,8 +175,9 @@ body {
 }
 
 .folder-filter span:hover {
-  background-color: blanchedalmond;
+  background-color: #fce8e6;
   border-radius: 20px;
+  color: #dc3e34;
 }
 
 .compose-btn {

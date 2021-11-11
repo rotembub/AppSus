@@ -11,17 +11,15 @@ export default {
         <section class="compose-email ">
         <div class="overlay" @click="closeModal"></div>
             <div class="modal-card">
-            <h3>Create a new Email</h3>
+            <h3 class="compose-header"><span>New Email</span> </h3>
             <!-- <div class="overlay" @click="closeModal"></div> -->
-            <label >to</label>
-            <input type="text" v-model="newEmail.to">
-            <label >subject</label>
+            <input type="text" placeholder="To" v-model="newEmail.to">
     
-            <input type="text" v-model="newEmail.subject">
-            <label >body</label>
+            <input type="text" placeholder="Subject" v-model="newEmail.subject">
+            
 
-            <textarea v-model="newEmail.body"  cols="30" rows="10"></textarea>
-            <button @click="addNewEmail">Send</button>
+            <textarea v-model="newEmail.body"  cols="30" rows="30"></textarea>
+            <button class="compose-send" @click="addNewEmail">Send</button>
             <!-- can use debounce -->
             <!-- <input ref="textInput" @change="filterBooks" v-model.lazy="bookName" type="text" placeholder="search book"> -->
            
@@ -103,12 +101,13 @@ export default {
       console.log(draft.id);
       console.log('buss call');
       console.log(draft);
-      emailService.getDraftById(draft.id).then(d => {
-        this.newEmail = d;
-        console.log(d);
-      })
+      // this.newEmail = draft;
+      // emailService.getDraftById(draft.id).then(d => {
+      //   this.newEmail = d;
+      //   console.log(d);
+      // })
       // this.busData = draft;
-      // this.newEmail.to = 'hello';
+      this.newEmail.to = 'hello';
       // // this.newEmail.to = draft.to;
       // this.newEmail.subject = 'hello';
       // return Promise.resolve(draft);

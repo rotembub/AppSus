@@ -12,7 +12,7 @@ export default {
   template: `
         <section class="book-app home-page">
           <email-filter @sorted="sortEmails" @filtered="setFilter" />
-          <h3 class="unread-count"> unRead count: {{unReadCount}}</h3>
+          <h3 class="unread-count"> <i class="far fa-envelope unread-count-icon"></i> : {{unReadCount}}</h3>
           <div class="email-container">
             <email-folder-list @composed="openCompose" @show="onShowFolder"/>
             <email-list :emails="emailsToShow" @stared="onToggleStar" @toggle="onToggleRead" @selected="selectEmail" @remove="onRemove" />
