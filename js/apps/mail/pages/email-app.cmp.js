@@ -11,13 +11,15 @@ import { eventBus } from '../../../services/event-bus-service.js';
 export default {
   template: `
         <section class="book-app home-page">
-           <h3 class="unread-count"> unRead count: {{unReadCount}}</h3>
-            <email-filter @sorted="sortEmails" @filtered="setFilter" />
-            <!-- <book-add @addedBook="refBooks"/> -->
+          <email-filter @sorted="sortEmails" @filtered="setFilter" />
+          <h3 class="unread-count"> unRead count: {{unReadCount}}</h3>
+          <div class="email-container">
+            <email-folder-list @composed="openCompose" @show="onShowFolder"/>
             <email-list :emails="emailsToShow" @stared="onToggleStar" @toggle="onToggleRead" @selected="selectEmail" @remove="onRemove" />
+            </div>
+          
             <email-details v-if="selectedEmail" :email="selectedEmail" @close="closeDetails" />
             <compose-email @closed="closeCompose" v-if="compose" @draftRemove="refreshDraft"/>
-            <email-folder-list @composed="openCompose" @show="onShowFolder"/>
         </section>
     `,
   data() {

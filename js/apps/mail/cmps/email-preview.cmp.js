@@ -14,9 +14,9 @@ export default {
       <td class="date" >
       {{formatDate(email)}}
      </td>
-     <td><button @click.stop="onToggleRead(email)">{{isRead}}</button></td>  
-     <td><button @click.stop="onToggleStar(email)" :class="{star: isActive}">Star</button></td>  
-     <td><button @click.stop="onRemove(email.id)">Delete</button></td>  
+     <td><span @click.stop="onToggleRead(email)"><i  class="far fa-envelope" v-if="!email.isRead"></i><i class="far fa-envelope-open" v-if="email.isRead"></i></span></td>  
+     <td><span @click.stop="onToggleStar(email)" :class="{star: isActive}"><i class="fal fa-star"></i></span></td>  
+     <td><span @click.stop="onRemove(email.id)"><i class="fas fa-trash"></i></span></td>  
 </div> 
                  
     `,

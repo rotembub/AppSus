@@ -20,9 +20,9 @@ export default {
     return {
       filterBy: {
         title: '',
-        read: '',
+        read: 'all',
       },
-      sort: ''
+      sort: 'date'
     };
   },
   methods: {
