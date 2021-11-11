@@ -32,7 +32,7 @@ export default {
     };
   },
   created() {
-    this.loadEmails();
+    this.onShowFolder('inbox');
   },
   methods: {
     loadEmails() {

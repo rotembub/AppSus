@@ -56,7 +56,7 @@ body {
 /* unRead Count */
 
 .unread-count {
-  position: absolute;
+  /* position: absolute; */
   left: 23px;
   top: 50%;
 }
@@ -78,7 +78,7 @@ body {
   background-color: #f5f7f7;
 }
 .star {
-  background-color: gold;
+  color: gold;
 }
 .mail-table tr {
   height: 33px;

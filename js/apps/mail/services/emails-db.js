@@ -5,6 +5,7 @@ export const emailsDB = {
 function emailsData() {
   return [
     {
+      //makeId() fix bug
       id: 'qwer',
       subject:
         "What's up with you? Here's how to find out from yolo",
