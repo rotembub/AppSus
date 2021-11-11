@@ -5,7 +5,7 @@ import {emailService} from '../services/email-services.js';
 
 export default {
   template: `
-        <section v-if="email" class="book-details ">
+        <section v-if="email" class="email-details home-page  ">
       <div class="email-display">
            
           <h2 class="mb-0">
