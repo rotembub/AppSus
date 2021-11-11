@@ -5,8 +5,7 @@ import noteFilter from '../cmps/note-filter.cmp.js'
 import { eventBus } from '../../../services/event-bus-service.js';
 import noteAdd from '../cmps/note-add.cmp.js'
 
-// • Support setting the note's background color and other styles
-// • Support filtering notes by search and by type 
+
 // • Support pining a note to the top of the list
 // • Support duplicating a note
 // • Apps Integration - Allow sending a note content straight into the compose-message page in misterEmail (use queryString Params)
@@ -18,15 +17,18 @@ export default {
         <h1>Welcome to notes!</h1>
         <note-filter @filter="setFilter"></note-filter> <button @click="toggleModal">Add</button>
         <note-add v-if="modalOpened" @noteAdd="addNote" @noteEdited="updateNote"></note-add>
-        <note-list v-if="notes" :notes="notes" @noteEdited="updateNote"></note-list> <!--WATCHOUT FOR THE @ -->
+        <note-list v-if="notes" :notes="notesToShow" @noteEdited="updateNote"></note-list> <!--WATCHOUT FOR THE @ -->
 
     </section> 
     `,
     data() {
-        return {
-            filterBy: null,
+        return {         
             modalOpened: false,
             notes: null,
+            filterBy: {
+                byName: '',
+                byType: 'all',
+            }
         };
     },
     methods: {
@@ -34,6 +36,8 @@ export default {
             this.filterBy = filter;
 
             console.log('Note App Says Filter has changed!', this.filterBy);
+            this.notesToShow;
+
         },
         removeNote(id) {
             console.log('removing', id);
@@ -91,26 +95,36 @@ export default {
         eventBus.$off('editNote', this.toggleModal);
     },
     computed: {
-        // notesToShow() {
-        //     if (!this.filterBy) return this.notes;
-        //     const nameFilter = this.filterBy.byName.toLowerCase();
-        //     // const types = this.filterBy.byType
-        //     const notesToShow = this.notes.filter(note => {
-        //         const values = Object.values(note.info);
-        //         console.log(values);
-        //         const found = values.some(value => {
-        //             console.log(value);
-        //             value.toLowerCase().includes(nameFilter);
-        //         })
-        //         if (found) return note;
-        //     });
-        //     return notesToShow;
-        // } ///BROKEN NEEDS TO BE FIXED 
         notesToShow() {
-            var filteredNotes = this.notes.filter(note => note.type === filterBy.byType);
-            // filteredNotes = this.filteredNotes.filter()
-            console.log(filteredNotes)
+            if (!this.filterBy) return this.notes;
+            var filteredByType;
+            if (this.filterBy.byType === 'all') filteredByType = this.notes;
+            else filteredByType = this.notes.filter(note => note.type === this.filterBy.byType);
+            if (!this.filterBy.byName) {
+                console.log(filteredByType);
+                return filteredByType;
+            }
+            var filteredNotes = filteredByType.filter((note) => {
+                var values = Object.values(note.info);
+                console.log('values', values);
+                if (note.type === 'note-todos') {
+                    if (note.info.label.toLowerCase().includes(this.filterBy.byName.toLowerCase())) return note;
+                    var todoValues = Object.values(note.info.todos);
+                    console.log('todoValues', todoValues);
+                    if (todoValues.some(val => val.txt.toLowerCase().includes(this.filterBy.byName.toLowerCase()))) return note;
+                    else return false;
+                }
+                // if (note.type === 'note-img' || note.type === 'note-video') values = note.info.title
+                // else if (note.type === 'note-txt') values = note.info.txt
+                // if (values.toLowerCase().includes(this.filterBy.byName.toLowerCase())) return note
+                if (values.some(val => val.toLowerCase().includes(this.filterBy.byName.toLowerCase()))) return note;
+            })
+            return filteredNotes;
+        },
+        sortByPin(){
+            
         }
+
 
     },
     watch: {
