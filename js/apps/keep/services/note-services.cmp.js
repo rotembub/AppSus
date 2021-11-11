@@ -5,6 +5,7 @@ export const noteServices = {
     getNoteById,
     getEmptyNoteByType,
     editNote,
+    // changeIdx,
 
 }
 import { storageService } from '../../../services/async-storage-service.js'
@@ -15,8 +16,8 @@ const NOTE_KEY = 'notes';
 const gNotes = [
 
     {
-        
-            id: "n101",
+
+        id: "n101",
         type: "note-txt",
         isPinned: true,
         info: {
@@ -249,6 +250,15 @@ function removeNote(noteId) {
     return storageService.remove(NOTE_KEY, noteId)
 }
 
+// function changeIdx(noteDragged, dragId, idxToPlace) {
+//     return storageService.remove(NOTE_KEY, dragId)
+//         .then(() => {
 
+//         })
+
+// }
+
+// async services does not offer a function to add to a certain Idx... perhaps i should create it in it?
+// get back to it later
 
 _createNotes();
