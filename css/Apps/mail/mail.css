@@ -183,10 +183,9 @@ body {
 .date-format-email {
   display: flex;
 }
-
-/* .email-icons {
+/* 
+.email-icons {
   display: inline-block;
-
   justify-content: end;
 } */
 

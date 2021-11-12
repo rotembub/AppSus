@@ -12,16 +12,16 @@ export default {
     template: `
         <section class="note-preview" :style="note.style"  @dragstart="startDrag($event,note)" @drop="onDrop($event,note.id)" @dragenter.prevent @dragover.prevent>
             <div class="note-control-box">
-                <!-- <router-link :to="'/note/'+note.id" @click.native="openEditor">Edit</router-link> watch out for the @click -->
-                <button @click.stop.prevent="openEditor">Edit</button> <!--watchout for native -->
-                <button @click.stop.prevent="removeNote">x</button>
-                <span :class="{yellow: note.isPinned }" @click.stop="setPinned">📌</span>
-                <button @click.stop.prevent="copyNote">Copy</button>
-                <!-- <button @click.stop.prevent="linkToMail">📩</button> -->
-                <router-link :to="'/email/edit/'+note.id">📩</router-link>
-                <button @click.stop.prevent="toggleColors">🎨</button>
+                <button @click.stop.prevent="removeNote"><i class="far fa-trash-alt"></i></button>
+                <button @click.stop.prevent="openEditor"><i class="far fa-edit"></i></button> <!--watchout for native -->
+                <span :class="{yellow: note.isPinned }" @click.stop="setPinned"><i class="fas fa-thumbtack"></i></span>
+                <button @click.stop.prevent="copyNote"><i class="far fa-copy"></i></button>
+                <router-link :to="'/email/edit/'+note.id"><i class="far fa-envelope"></i></router-link>
+                <button @click.stop.prevent="toggleColors"><i class="fas fa-palette"></i></button>
                 <div v-if="colorOpen" class="color-options">
+                    <!-- <transition name="color-fade"> -->
                     <span @click.stop.prevent="setColor(color)" class="color-span" v-for="color in colors" :style="{ 'background-color': color }">Co</span>
+                    <!-- </transition> -->
                 </div>
             </div>
             <component  
