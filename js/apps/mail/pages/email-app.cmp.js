@@ -51,7 +51,10 @@ export default {
       console.log(email);
       if(email.isDraft){
         this.openCompose();
-        eventBus.$emit('openDraft', email);
+        setTimeout(()=>{
+          eventBus.$emit('openDraft', email);
+          console.log('sent data');
+        },2000);
         return;
       }
       emailService.setAsRead(email).then(this.selectedEmail = email);

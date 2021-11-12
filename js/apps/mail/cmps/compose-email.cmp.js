@@ -101,13 +101,20 @@ export default {
       console.log(draft.id);
       console.log('buss call');
       console.log(draft);
-      // this.newEmail = draft;
+      this.newEmail = draft;
+      // setTimeout(()=>{
+      //   this.newEmail = draft;
+      //   console.log('try');
+      // },2000);
+      // setTimeout()
+      // this.newEmail = JSON.parse(JSON.stringify(draft));
+      // console.log(this.newEmail);
       // emailService.getDraftById(draft.id).then(d => {
       //   this.newEmail = d;
       //   console.log(d);
       // })
       // this.busData = draft;
-      this.newEmail.to = 'hello';
+      // this.newEmail.to = 'hello';
       // // this.newEmail.to = draft.to;
       // this.newEmail.subject = 'hello';
       // return Promise.resolve(draft);
