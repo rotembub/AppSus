@@ -4,7 +4,7 @@ export default {
     props: ['selectedNote'],
     template: `
                 <div class="note-add">
-                    <button class="close-btn" @click="closeEditor">x</button>
+                    <button class="close-btn" @click="closeEditor">X</button>
                     
                     <select v-model="noteType" @change="setNoteForm" name="note-type">
                         <option value="note-txt">Text</option>
@@ -36,12 +36,11 @@ export default {
                         </template>
 
                         <template v-if="(noteType === 'note-todos') && newNote">
-                        
-                           <input v-model="newNote.info.label" type="text" placeholder="Enter a label">
-                           <span>What to do?</span>
+                            <span>List label</span> 
+                            <input v-model="newNote.info.label" type="text" placeholder="Enter a label">
+                            <span>What to do?</span>
                             <input type="text" v-for="(todo,idx)  in newNote.info.todos" v-model="newNote.info.todos[idx].txt">
-
-                           <button @click.stop.prevent="addTodo">+</button>
+                            <button @click.stop.prevent="addTodo">+</button>
 
                         </template>
 

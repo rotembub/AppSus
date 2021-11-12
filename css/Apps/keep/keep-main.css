@@ -174,7 +174,8 @@ button:hover{
     right: 1px;
     border: 1px white solid;
     background-color: transparent;
-    color: white
+    color: white;
+    font-size: x-large;
 }
 
 
