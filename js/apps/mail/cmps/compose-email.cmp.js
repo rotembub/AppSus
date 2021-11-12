@@ -39,6 +39,7 @@ export default {
   },
   created() {
     eventBus.$on('openDraft', this.putData);
+    eventBus.$on('makeNote', this.createNote);
     console.log(this.newEmail);
    
     this.saveInterval = setInterval(()=> {
@@ -118,6 +119,11 @@ export default {
       // // this.newEmail.to = draft.to;
       // this.newEmail.subject = 'hello';
       // return Promise.resolve(draft);
+    },
+    createNote(noteEmail){
+      emailService.addEmail(noteEmail).then(e => {
+        this.newEmail = e;
+      });
     },
 
     closeModal(){
