@@ -183,12 +183,11 @@ body {
 .date-format-email {
   display: flex;
 }
-
+/* 
 .email-icons {
-  /* display: inline-block;
-
-  justify-content: end; */
-}
+  display: inline-block;
+  justify-content: end;
+} */
 
 /* folder filter */
 .folder-filter {
