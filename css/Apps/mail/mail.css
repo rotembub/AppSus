@@ -171,13 +171,23 @@ body {
   border-top: 1px solid #edf0f2;
 }
 .mail-table td p {
-  max-height: 1.2em;
+  max-height: 1.3em;
   overflow-y: hidden;
   margin: 0;
 }
 
 .mail-table td.date {
   width: 120px;
+}
+
+.date-format-email {
+  display: flex;
+}
+
+.email-icons {
+  /* display: inline-block;
+
+  justify-content: end; */
 }
 
 /* folder filter */
