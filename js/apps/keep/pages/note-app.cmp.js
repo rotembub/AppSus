@@ -191,11 +191,8 @@ export default {
             handler() {
                 console.log('watching');
                 const emailSent = this.$route.query;
-                // const emailId = 'qwer';
-                console.log(emailSent);
-                return;
                 if (!emailSent.subject) return;
-                noteServices.emailToNoteEntity(noteId)
+                noteServices.emailToNoteEntity(emailSent)
                     .then(emailNote => {
                         this.openEditor(emailNote);
                         this.$router.push('/note');
@@ -203,6 +200,8 @@ export default {
             },
             immediate: true
         }
+        // old func Graveyard:
+
         // '$route.params.noteId': {
         //     handler() {
         //         console.log('watching');

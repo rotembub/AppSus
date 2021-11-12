@@ -251,36 +251,43 @@ function removeNote(noteId) {
     return storageService.remove(NOTE_KEY, noteId)
 }
 
-function emailToNoteEntity(emailId) {
+function emailToNoteEntity(emailObj) {
+    const { to, subject, body, sentAt } = emailObj
     const emailNote = {
         id: null,
         type: "note-email",
         isPinned: false,
         info: {
-            subject: null,
-            body: null,
-            to: null,
-            sentAt: null,
+            subject,
+            body,
+            to,
+            sentAt,
         },
         style: {
-            backgroundColor: "lightgreen",
+            backgroundColor: "lightblue",
             fontSize: '16px'
         }
     }
-    return storageService.get('emails', emailId)
-        .then(email => {
-            // const  {subject,body,to,sentAt} = email
-            emailNote.info.subject = email.subject;
-            emailNote.info.body = email.body;
-            emailNote.info.to = email.to;
-            emailNote.info.sentAt = email.sentAt;
-            // storageService.post(NOTE_KEY, emailNote)
-            //     .then(newNote => {
-            //         console.log(newNote);
-            //         return newNote;
-            //     })
-            return emailNote;
-        })
+    return Promise.resolve(emailNote);
+
+    //REF to graveyard:
+
+    // return storageService.post(NOTE_KEY, emailNote)
+
+    // return storageService.get('emails', emailId)
+    //     .then(email => {
+    //         // const  {subject,body,to,sentAt} = email
+    //         emailNote.info.subject = email.subject;
+    //         emailNote.info.body = email.body;
+    //         emailNote.info.to = email.to;
+    //         emailNote.info.sentAt = email.sentAt;
+    //         // storageService.post(NOTE_KEY, emailNote)
+    //         //     .then(newNote => {
+    //         //         console.log(newNote);
+    //         //         return newNote;
+    //         //     })
+    //         return emailNote;
+    //     })
 
 }
 
