@@ -16,7 +16,8 @@ export default {
                 <button @click.stop.prevent="openEditor"><i class="far fa-edit"></i></button> <!--watchout for native -->
                 <span :class="{yellow: note.isPinned }" @click.stop="setPinned"><i class="fas fa-thumbtack"></i></span>
                 <button @click.stop.prevent="copyNote"><i class="far fa-copy"></i></button>
-                <router-link :to="'/email/edit/'+note.id"><i class="far fa-envelope"></i></router-link>
+                <!-- <router-link :to="'/email/edit/'+note.id"><i class="far fa-envelope"></i></router-link> -->
+                <router-link :to="'/email/edit/'+getQueryString"><i class="far fa-envelope"></i></router-link>
                 <button @click.stop.prevent="toggleColors"><i class="fas fa-palette"></i></button>
                 <div v-if="colorOpen" class="color-options">
                     <!-- <transition name="color-fade"> -->
@@ -39,7 +40,8 @@ export default {
                 fontSize: '16px',
             },
             colorOpen: false,
-            colors: ['darkkhaki', 'lightyellow', 'lightblue', 'white', 'violet', 'lightgray', 'lightgreen', 'lightcoral', 'lightpink', 'lightseagreen', 'tomato']
+            colors: ['darkkhaki', 'lightyellow', 'lightblue', 'white', 'violet', 'lightgray', 'lightgreen', 'lightcoral', 'lightpink', 'lightseagreen', 'tomato'],
+            // qString: null,
 
         }
     },
@@ -91,15 +93,33 @@ export default {
             // const note = notes.find(note => note.id === noteId)
             // console.log(note);
         },
-        linkToMail() {
 
-        }
 
 
     },
     computed: {
-        pinTxt() {
-
+        getQueryString() {
+            const type = this.note.type;
+            const info = this.note.info;
+            let qString;
+            switch (type) {
+                case 'note-txt':
+                    qString = `?subject=My Note&body=${info.txt}`
+                    break;
+                case 'note-img':
+                case 'note-video':
+                    qString = `?subject=${info.title}&body=${info.url}`
+                    break;
+                case 'note-todos':
+                    qString = `?subject=${info.label}&body=${info.todos}}`
+                    break;
+                case 'note-email':
+                    qString = `?subject=${info.subject}&body=${info.body}`
+                    break;
+            }
+            // console.log('qs', qString);
+            return qString;
+            // `?subject=my note&body= note about the rain`
         }
     },
     components: {

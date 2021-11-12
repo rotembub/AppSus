@@ -29,7 +29,8 @@ export default {
                     break;
             }
             return symbol + this.book.listPrice.amount;
-        }
+        },
+
     }
 
 }
