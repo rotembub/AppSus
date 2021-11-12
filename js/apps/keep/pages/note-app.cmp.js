@@ -190,6 +190,7 @@ export default {
             handler() {
                 const { emailId } = this.$route.params;
                 // const emailId = 'qwer';
+                console.log(emailId);
                 if (!emailId) return;
                 noteServices.emailToNoteEntity(emailId)
                     .then(emailNote => {
