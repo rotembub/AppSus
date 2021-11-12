@@ -70,6 +70,7 @@ function noteToEmailEntity(noteId) {
   }
   return storageService.get('notes', noteId)
       .then(note => {
+          
           // const  {subject,body,to,sentAt} = email
           noteEmail.subject = 'noteSubject';
           noteEmail.body = note.info.txt;
