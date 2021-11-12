@@ -17,11 +17,12 @@ body {
 }
 
 /* header */
-.app-header {
+.app-header, .app-footer {
   display: flex;
   justify-content: space-around;
   align-items: center;
   height: 10vh;
+  color: white;
   background-color: lightcoral;
 }
 
@@ -32,10 +33,14 @@ body {
   height: 80vh;
 }
 
-/* footer   */
+/* footer  
 
 .app-footer {
   text-align: center;
   height: 10vh;
   background-color: lightcoral;
-}
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
