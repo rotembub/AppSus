@@ -5,8 +5,9 @@ export default {
     props: ['info'],
     template: `
         <section class="note-video">
+            <h2>{{info.title}}</h2>
             <iframe width="420" height="345" :src="getProperURL">
-                {{getProperURL}}
+                
             </iframe>
         </section>
     `,
