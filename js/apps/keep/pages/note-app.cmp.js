@@ -187,13 +187,14 @@ export default {
 
     },////////////// WORK IN PROGRESS
     watch: {
-        '$route.params.noteId': {
+        '$route.query': {
             handler() {
                 console.log('watching');
-                const { noteId } = this.$route.params;
+                const emailSent = this.$route.query;
                 // const emailId = 'qwer';
-                console.log(noteId);
-                if (!noteId) return;
+                console.log(emailSent);
+                return;
+                if (!emailSent.subject) return;
                 noteServices.emailToNoteEntity(noteId)
                     .then(emailNote => {
                         this.openEditor(emailNote);
@@ -202,6 +203,21 @@ export default {
             },
             immediate: true
         }
+        // '$route.params.noteId': {
+        //     handler() {
+        //         console.log('watching');
+        //         const { noteId } = this.$route.params;
+        //         // const emailId = 'qwer';
+        //         console.log(noteId);
+        //         if (!noteId) return;
+        //         noteServices.emailToNoteEntity(noteId)
+        //             .then(emailNote => {
+        //                 this.openEditor(emailNote);
+        //                 this.$router.push('/note');
+        //             })
+        //     },
+        //     immediate: true
+        // }
     },
     components: {
         noteList,
