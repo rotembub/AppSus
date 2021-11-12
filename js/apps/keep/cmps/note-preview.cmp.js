@@ -3,6 +3,7 @@ import noteTxt from './note-txt.cmp.js'
 import noteVideo from '../cmps/note-video.cmp.js'
 import noteTodos from './note-todos.cmp.js'
 import noteImg from '../cmps/note-img.cmp.js'
+import noteEmail from '../cmps/note-email.cmp.js'
 import { eventBus } from '../../../services/event-bus-service.js'
 import { noteServices } from '../services/note-services.cmp.js'
 
@@ -15,7 +16,9 @@ export default {
                 <button @click.stop.prevent="openEditor">Edit</button> <!--watchout for native -->
                 <button @click.stop.prevent="removeNote">x</button>
                 <span :class="{yellow: note.isPinned }" @click.stop="setPinned">📌</span>
-                <button @click.stop.prevent="copyNote">Copy</button> 
+                <button @click.stop.prevent="copyNote">Copy</button>
+                <!-- <button @click.stop.prevent="linkToMail">📩</button> -->
+                <router-link :to="'/email'">📩</router-link>
                 <button @click.stop.prevent="toggleColors">🎨</button>
                 <div v-if="colorOpen" class="color-options">
                     <span @click.stop.prevent="setColor(color)" class="color-span" v-for="color in colors" :style="{ 'background-color': color }">Co</span>
@@ -87,6 +90,8 @@ export default {
             this.$emit('switchPlaces', noteId, dropId);
             // const note = notes.find(note => note.id === noteId)
             // console.log(note);
+        },
+        linkToMail() {
 
         }
 
@@ -101,7 +106,8 @@ export default {
         noteImg,
         noteTxt,
         noteTodos,
-        noteVideo
+        noteVideo,
+        noteEmail
     }
 
 }

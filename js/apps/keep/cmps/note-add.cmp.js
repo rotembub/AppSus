@@ -11,6 +11,7 @@ export default {
                         <option value="note-video">Video</option>
                         <option value="note-img">Image</option>
                         <option value="note-todos">Todo</option>
+
                     </select>
                     <form v-if="newNote" class="note-form" @submit.prevent = "saveNote">
 
@@ -42,6 +43,13 @@ export default {
 
                            <button @click.stop.prevent="addTodo">+</button>
 
+                        </template>
+
+                            <template v-if="(noteType === 'note-email') && newNote">
+                            <input v-model="newNote.info.subject" type="text" placeholder="Your email subject">
+                            <textarea v-model="newNote.info.body" name="comments" placeholder="Your email body" rows="10" cols="30" required></textarea>
+                            <span>{{newNote.info.sentAt}}</span>
+                            <span>{{newNote.info.to}}</span>
                         </template>
 
                         <button>Save</button>
@@ -78,6 +86,7 @@ export default {
             this.noteType = this.selectedNote.type;
             this.newNote = JSON.parse(JSON.stringify(this.selectedNote));
             console.log(this.newNote, 'new here!!!!');
+            if (this.noteType === 'note-email') this.isEdited = false; // WORK IN PROGRESS
         } else {
             this.newNote = noteServices.getEmptyNoteByType(this.noteType);
             console.log('here actually', this.noteType, this.newNote);
@@ -125,3 +134,7 @@ export default {
 
     }
 }
+
+
+
+

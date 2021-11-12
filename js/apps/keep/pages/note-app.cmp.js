@@ -184,6 +184,20 @@ export default {
         }
 
 
+    },////////////// WORK IN PROGRESS
+    watch: {
+        '$route.params.emailId': {
+            handler() {
+                const { emailId } = this.$route.params;
+                // const emailId = 'qwer';
+                if (!emailId) return;
+                noteServices.emailToNoteEntity(emailId)
+                    .then(emailNote => {
+                        this.openEditor(emailNote);
+                    })
+            },
+            immediate: true
+        }
     },
     components: {
         noteList,

@@ -80,6 +80,9 @@ button:hover{
     max-height: 300px;
     object-fit: contain;
 }
+.note-preview h2{
+    text-align: center;
+}
 
 /* note-list inside preview */
 .yellow{
