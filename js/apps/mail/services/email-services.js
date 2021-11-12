@@ -58,7 +58,7 @@ function addEmail(email) {
   return storageService.post(EMAILS_KEY, formatEmail);
 }
 
-function noteToEmailEntity(noteId) {
+function noteToEmailEntity(note) {
   const noteEmail = {
     id: utilService.makeId(),
     subject: null,
@@ -68,18 +68,16 @@ function noteToEmailEntity(noteId) {
     sentAt: Date.now(),
     to: 'user@appsus.com'
   }
-  return storageService.get('notes', noteId)
-      .then(note => {
-          // const  {subject,body,to,sentAt} = email
-          noteEmail.subject = 'noteSubject';
-          noteEmail.body = note.info.txt;
-          // storageService.post(NOTE_KEY, emailNote)
-          //     .then(newNote => {
-          //         console.log(newNote);
-          //         return newNote;
-          //     })
-          return noteEmail;
-      })
+    if(note.body.includes('http')){
+       noteEmail.imageUrl = note.body
+    }else{
+      noteEmail.body = note.body;
+    }
+    noteEmail.subject = note.subject;
+    
+    
+    return Promise.resolve(noteEmail);
+     
 }
 
 function remove(emailId) {
