@@ -55,7 +55,7 @@ export default {
         setTimeout(()=>{
           eventBus.$emit('openDraft', email);
           console.log('sent data');
-        },2000);
+        },200);
         return;
       }
       emailService.setAsRead(email).then(this.selectedEmail = email);
@@ -97,6 +97,7 @@ export default {
         emailService.getEmailsByFolder(folder).then(emails => this.emails = emails);
     },
     refreshDraft(){
+      console.log('refresh');
         this.onShowFolder(this.folder);
     },
     openCompose(){
@@ -135,7 +136,6 @@ export default {
   watch: {
     '$route.params.emailId': {
        handler() {
-         //save 2 times fix it . only when send save the note
          const {emailId} = this.$route.params;
          if(!emailId) return;
           emailService.noteToEmailEntity(emailId).then(note => {
@@ -143,7 +143,7 @@ export default {
       setTimeout(()=>{
         eventBus.$emit('makeNote', note);
         console.log('sent note');
-      },2000);
+      },200);
     })
        },
        immediate:true
