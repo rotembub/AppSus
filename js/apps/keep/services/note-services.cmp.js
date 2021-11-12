@@ -274,7 +274,12 @@ function emailToNoteEntity(emailId) {
             emailNote.info.body = email.body;
             emailNote.info.to = email.to;
             emailNote.info.sentAt = email.sentAt;
-            return emailNote
+            // storageService.post(NOTE_KEY, emailNote)
+            //     .then(newNote => {
+            //         console.log(newNote);
+            //         return newNote;
+            //     })
+            return emailNote;
         })
 
 }

@@ -45,23 +45,12 @@ export default {
 
                         </template>
 
-                        <template v-if="(noteType === 'note-email') && newNote">
-                        <input v-model="newNote.info.subject" type="text" placeholder="Your email subject">
-                        <textarea v-model="newNote.info.body" name="comments" placeholder="Your email body" rows="10" cols="30" required></textarea>
-                        <span>{{newNote.info.sentAt}}</span>
-                        <span>{{newNote.info.to}}</span>
-                     </template>
-
-                        <!-- {
-    id: null,
-
-    subject:null,
-    body: null,
-    // isRead: false,
-    // isStar:false,
-    sentAt: null,//new Date(),
-    to: null,
-} -->
+                            <template v-if="(noteType === 'note-email') && newNote">
+                            <input v-model="newNote.info.subject" type="text" placeholder="Your email subject">
+                            <textarea v-model="newNote.info.body" name="comments" placeholder="Your email body" rows="10" cols="30" required></textarea>
+                            <span>{{newNote.info.sentAt}}</span>
+                            <span>{{newNote.info.to}}</span>
+                        </template>
 
                         <button>Save</button>
                     </form>
@@ -97,6 +86,7 @@ export default {
             this.noteType = this.selectedNote.type;
             this.newNote = JSON.parse(JSON.stringify(this.selectedNote));
             console.log(this.newNote, 'new here!!!!');
+            if (this.noteType === 'note-email') this.isEdited = false; // WORK IN PROGRESS
         } else {
             this.newNote = noteServices.getEmptyNoteByType(this.noteType);
             console.log('here actually', this.noteType, this.newNote);
