@@ -180,6 +180,12 @@ body {
   width: 120px;
 }
 
+/* email preview */
+
+.email-preview {
+  text-align: -webkit-right;
+}
+
 .date-format-email {
   display: flex;
 }
@@ -197,6 +203,7 @@ body {
   width: 135px;
   margin-block-end: 25px;
   margin-inline-start: 30px;
+  margin-top: 80px;
 
   /* top: 25%;
   left: 20px; */
@@ -219,10 +226,19 @@ body {
 }
 
 .compose-btn {
+  position: absolute;
+  right: 10px;
+  top: 93px;
+  display: flex;
+  align-items: center;
   margin-bottom: 20px;
   padding: 16px;
   border-radius: 30px;
   cursor: pointer;
+}
+
+.plus-icon {
+  margin-left: 5px;
 }
 
 /* email filter */
@@ -234,6 +250,16 @@ body {
   border: 1px solid black;
   margin-top: 25px;
   margin-bottom: 50px;
+}
+
+.email-filter select {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.email-filter input {
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 /* email details */
@@ -256,9 +282,17 @@ body {
   margin: 10px;
 }
 
+/* tablet */
+
+@media screen and (max-width: 780px) {
+  .email-filter {
+    font-size: 0.8em;
+  }
+}
+
 /* mobile */
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 700px) {
   /* body {
     background-color: red;
   } */
@@ -302,9 +336,8 @@ body {
   }
 
   .compose-btn {
-    display: block;
-    position: absolute;
-    bottom: 35px;
-    left: 0;
+    bottom: 40px;
+    left: 10px;
+    top: unset;
   }
 }

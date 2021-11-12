@@ -2,7 +2,7 @@
 export default {
   props: ['email'],
   template: `
-<div>
+<div class="email-preview">
   
  <td class="to-td">{{email.to}}</td>
    <td>
