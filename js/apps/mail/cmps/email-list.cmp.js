@@ -3,7 +3,6 @@ import emailPreview from './email-preview.cmp.js';
 export default {
   props: ['emails'],
   template: `
-
         <table class="mail-table">
             <tbody>
                 <tr v-for="email in emails" :key="email.id" :class="['clickable', email.isRead ? 'read' : '']">
