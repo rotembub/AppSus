@@ -1,7 +1,6 @@
 export default {
     template: `
           <div class="folder-filter">
-            <button class="compose-btn" @click="compose">Compose <i class="fas fa-plus plus-icon"></i></button>
             <div class="mail-folder-nav">
             <span @click="showBy('inbox')">Inbox</span>
             <span @click="showBy('sent')">Sent</span>
