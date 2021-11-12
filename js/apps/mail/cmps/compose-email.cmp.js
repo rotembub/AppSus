@@ -121,9 +121,9 @@ export default {
       // return Promise.resolve(draft);
     },
     createNote(noteEmail){
-      emailService.addEmail(noteEmail).then(e => {
+      // emailService.addEmail(noteEmail).then(e => {
         this.newEmail = e;
-      });
+      // });
     },
 
     closeModal(){
