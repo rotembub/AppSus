@@ -134,14 +134,14 @@ export default {
   computed:{
    
   },
-  // watch: {
-  //   newEmail: {
-  //     handler(newVal, oldVal) {
-  //       console.log('change');
-  //     },
-  //     deep:true
-  //   }
+  watch: {
+   '$route.params.emailId': {
+      handler() {
+        console.log('change route');
+      },
+      immediate:true
+    }
       
    
-  // }
+  }
 };

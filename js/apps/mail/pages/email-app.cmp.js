@@ -39,13 +39,7 @@ export default {
   },
   created() {
     this.onShowFolder('inbox');
-    emailService.noteToEmailEntity('n104').then(note => {
-      this.openCompose();
-      setTimeout(()=>{
-        eventBus.$emit('makeNote', note);
-        console.log('sent note');
-      },2000);
-    })
+  
   },
   methods: {
     loadEmails() {
@@ -138,6 +132,24 @@ export default {
         return count;
       },
   },
+  watch: {
+    '$route.params.emailId': {
+       handler() {
+         const {emailId} = this.$route.params;
+         if(!emailId) return;
+          emailService.noteToEmailEntity(emailId).then(note => {
+      this.openCompose();
+      setTimeout(()=>{
+        eventBus.$emit('makeNote', note);
+        console.log('sent note');
+      },2000);
+    })
+       },
+       immediate:true
+     }
+       
+    
+   },
   components: {
     emailList,
     emailFilter,

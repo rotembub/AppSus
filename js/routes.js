@@ -2,6 +2,7 @@
 import homePage from './pages/home-page.cmp.js'
 import emailApp from './apps/mail/pages/email-app.cmp.js'
 import emailDetails from './apps/mail/pages/email-details.cmp.js'
+import emailCompose from './apps/mail/cmps/compose-email.cmp.js'
 import noteApp from './apps/keep/pages/note-app.cmp.js'
 import noteAdd from './apps/keep/cmps/note-add.cmp.js'
 
@@ -14,6 +15,12 @@ const routes = [
     {
         path: '/email',
         component: emailApp,
+        children: [
+            {
+                path: '/email/edit/:emailId?',
+                component: emailCompose,
+            }
+        ]
     },
     {
         path: '/email/:emailId',
