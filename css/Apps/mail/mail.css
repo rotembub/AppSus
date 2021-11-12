@@ -214,6 +214,7 @@ body {
 /* email filter */
 .email-filter {
   /* margin: 0 auto; */
+  display: flex;
   width: fit-content;
   padding: 10px;
   border: 1px solid black;
@@ -239,4 +240,45 @@ body {
 
 .email-display div {
   margin: 10px;
+}
+
+/* mobile */
+
+@media screen and (max-width: 720px) {
+  /* body {
+    background-color: red;
+  } */
+  /* .email-layout-container {
+    flex-direction: column;
+  } */
+  .email-side-bar {
+    display: none;
+  }
+  .email-container {
+  }
+  .mail-table {
+    margin-inline-start: 0;
+    max-width: 100%;
+    font-size: 0.8em;
+  }
+
+  .mail-table td p {
+    max-height: 1.2em;
+    overflow-y: hidden;
+    width: 80%;
+    margin: 0;
+  }
+
+  .mail-table td.date {
+    width: 10px;
+  }
+  .to-td {
+    display: none;
+  }
+  .email-filter {
+    width: 100%;
+  }
+  .filter-sort-container {
+    display: none;
+  }
 }

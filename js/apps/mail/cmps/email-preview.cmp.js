@@ -1,11 +1,10 @@
-// import bookAppCmp from '../pages/book-app.cmp';
 
 export default {
   props: ['email'],
   template: `
 <div>
   
- <td >{{email.to}}</td>
+ <td class="to-td">{{email.to}}</td>
    <td>
         <p >
           <strong>{{email.subject}} - {{email.body}}</strong>
