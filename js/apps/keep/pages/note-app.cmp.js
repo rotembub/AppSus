@@ -110,7 +110,7 @@ export default {
             const movedNote = JSON.parse(JSON.stringify(this.notes[idxDragged]))
             this.notes.splice(idxDragged, 1);
             this.notes.splice(idxToPlace, 0, movedNote);
-            // see if i can do it with the server althought im not sure if its necessary because its just a visual
+            // see if i can do it with the server although im not sure if its necessary because its just a visual
         },
         // switchPlaces(noteId, dropId) {
         //     console.log(noteId, dropId, 'in APP');
