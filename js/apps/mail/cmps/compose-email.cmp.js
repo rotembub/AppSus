@@ -1,9 +1,6 @@
 import { storageService } from '../../../services/async-storage-service.js';
 import { emailService } from '../services/email-services.js'
 import { eventBus } from '../../../services/event-bus-service.js';
-// import {utilService} from '../services/util-service.js';
-// import { eventBus } from '../services/event-bus-service.js';
-// import { storageService } from '../services/async-storage-service.js';
 
 export default {
   // props:['comp'],
@@ -84,11 +81,6 @@ export default {
          }
         
        });
-        // emailService.addGoogleBook(book).then((cap)=>{ // return a cap obj with book and books
-        //      const link = '/book/'+cap.book.id;
-        //     // this.createMsg('Added new Book','success',link);
-        //     this.$emit('addedBook',cap.books);
-        // });
     },
     putData(draft){
       this.newEmail = draft;
