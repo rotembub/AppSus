@@ -27,7 +27,8 @@ export const emailService = {
   getEmailsByFolder,
   saveDraft,
   removeDraft,
-  getDraftById
+  getDraftById,
+  noteToEmailEntity
 };
 
 function query() {
@@ -55,6 +56,30 @@ function addEmail(email) {
     to: 'user@appsus.com'
   };
   return storageService.post(EMAILS_KEY, formatEmail);
+}
+
+function noteToEmailEntity(noteId) {
+  const noteEmail = {
+    id: utilService.makeId(),
+    subject: null,
+    body: null,
+    isRead: false,
+    isStar:false,
+    sentAt: Date.now(),
+    to: 'user@appsus.com'
+  }
+  return storageService.get('notes', noteId)
+      .then(note => {
+          // const  {subject,body,to,sentAt} = email
+          noteEmail.subject = 'noteSubject';
+          noteEmail.body = note.info.txt;
+          // storageService.post(NOTE_KEY, emailNote)
+          //     .then(newNote => {
+          //         console.log(newNote);
+          //         return newNote;
+          //     })
+          return noteEmail;
+      })
 }
 
 function remove(emailId) {
