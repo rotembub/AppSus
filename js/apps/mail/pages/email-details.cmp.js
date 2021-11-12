@@ -10,7 +10,7 @@ export default {
             Subject: <strong>{{ email.subject }}</strong>
          </h2>
        <div>
-         <em>To {{ email.to }} on {{ email.sentAt }}</em>
+         <em>To {{ email.to }} on {{ formatDate(email) }}</em>
       </div>
         <div>{{email.body}}</div>
     </div>
@@ -30,11 +30,19 @@ export default {
     emailService.getById(emailId).then((email) => (this.email = email));
   },
   methods: {
-   
+    formatDate(email) {
+      // var day =new Date(email.sentAt).getDate();
+      // var month=new Date(email.sentAt).getMonth()+1;
+      // var year=new Date(email.sentAt).getFullYear();
+      // var original_date= day +'/'+month+'/'+year;
+      let date = new Date(email.sentAt).toLocaleString().replace(/\s/g, "");
+
+      return  date; //original_date;
+    },
+    
   },
   computed: {
    
-    
   },
   components: {
 
