@@ -110,7 +110,8 @@ const gBooks = [
             "amount": 109,
             "currencyCode": "EUR",
             "isOnSale": false
-        }
+        },
+        "reviews":[]  ////////////////////////////////////////////////////////////// WATCHOUT
     },
     {
         "id": "JYOJa2NpSCq",

@@ -71,7 +71,7 @@ export default {
                     .then(res => {
                         this.nextBook = res.next;
                         this.prevBook = res.prev;
-                        console.log(this.prevBook,this.nextBook); /////////////////
+                        console.log(this.prevBook, this.nextBook); /////////////////
                     });
             },
             immediate: true
@@ -139,9 +139,11 @@ export default {
             return `${publishedDate}  ${text}`
         },
         authorsForDisplay() {
+            if (!this.book.authors) return
             return this.book.authors.join(' | ');
         },
         categoriesForDisplay() {
+            if (!this.book.categories) return
             return this.book.categories.join(' | ');
         },
         priceForDisplay() {

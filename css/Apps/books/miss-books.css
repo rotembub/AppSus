@@ -12,6 +12,11 @@ body{
     margin: 0;
     font-family: Poppins;
 }
+.book-app{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 /* header & footer*/
 .book-app-header, .book-app-footer{
     background-color: lightcoral;
@@ -34,6 +39,7 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    padding: 15px;
 }
 
 .book-preview{

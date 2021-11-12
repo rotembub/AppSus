@@ -159,6 +159,7 @@ export default {
                 return filteredByType;
             }
             var filteredNotes = filteredByType.filter((note) => {
+                if (note.type === 'note-email') return false; // put it here cause email breaks the code get back to it later
                 var values = Object.values(note.info);
                 console.log('values', values);
                 if (note.type === 'note-todos') {
@@ -187,7 +188,6 @@ export default {
     },////////////// WORK IN PROGRESS
     watch: {
         '$route.params.noteId': {
-
             handler() {
                 console.log('watching');
                 const { noteId } = this.$route.params;
