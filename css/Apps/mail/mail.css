@@ -184,11 +184,11 @@ body {
   display: flex;
 }
 
-.email-icons {
-  /* display: inline-block;
+/* .email-icons {
+  display: inline-block;
 
-  justify-content: end; */
-}
+  justify-content: end;
+} */
 
 /* folder filter */
 .folder-filter {
