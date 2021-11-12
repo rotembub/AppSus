@@ -192,8 +192,13 @@ body {
   /* top: 25%;
   left: 20px; */
 }
+.mail-folder-nav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 
-.folder-filter span {
+.mail-folder-nav span {
   width: 100%;
   cursor: pointer;
 }
@@ -251,11 +256,16 @@ body {
   /* .email-layout-container {
     flex-direction: column;
   } */
-  .email-side-bar {
+  .mail-folder-nav {
     display: none;
   }
-  .email-container {
+  .email-side-bar {
+    width: 0;
   }
+  .unread-count {
+    display: none;
+  }
+
   .mail-table {
     margin-inline-start: 0;
     max-width: 100%;
@@ -280,5 +290,12 @@ body {
   }
   .filter-sort-container {
     display: none;
+  }
+
+  .compose-btn {
+    display: block;
+    position: absolute;
+    bottom: 35px;
+    left: 0;
   }
 }
