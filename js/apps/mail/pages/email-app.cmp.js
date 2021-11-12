@@ -135,6 +135,7 @@ export default {
   watch: {
     '$route.params.emailId': {
        handler() {
+         //save 2 times fix it . only when send save the note
          const {emailId} = this.$route.params;
          if(!emailId) return;
           emailService.noteToEmailEntity(emailId).then(note => {

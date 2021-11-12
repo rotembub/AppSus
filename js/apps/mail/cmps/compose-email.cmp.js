@@ -122,7 +122,7 @@ export default {
     },
     createNote(noteEmail){
       // emailService.addEmail(noteEmail).then(e => {
-        this.newEmail = e;
+        this.newEmail = noteEmail;
       // });
     },
 
