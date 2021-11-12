@@ -138,7 +138,14 @@ export default {
     '$route.query': {
       handler() {
         const noteSent = this.$route.query;
-        console.log(noteSent);
+        if(!noteSent.subject) return;
+        emailService.noteToEmailEntity(noteSent).then(note => {
+          this.openCompose();
+        setTimeout(()=>{
+          eventBus.$emit('makeNote', note);
+          console.log('sent note');
+        },200);
+        })
       },
       immediate: true,
     }
