@@ -15,12 +15,12 @@ export default {
          <div class="email-layout-container">
 
           <div class="email-container">
-             <email-filter @sorted="sortEmails" @filtered="setFilter" />
+             <email-filter @toggled="toggleTask" @sorted="sortEmails" @filtered="setFilter" />
             <email-list :emails="emailsToShow" @stared="onToggleStar" @toggle="onToggleRead" @selected="selectEmail" @remove="onRemove" />
           </div>
           
-            <section class="email-side-bar">
-              <email-folder-list @composed="openCompose" @show="onShowFolder"/>
+            <section  class="email-side-bar">
+              <email-folder-list :isShow="isShow" @composed="openCompose" @show="onShowFolder"/>
               <h3 class="unread-count"> <i class="far fa-envelope unread-count-icon"></i> : {{unReadCount}}</h3>
             </section>
          </div>
@@ -36,6 +36,7 @@ export default {
       filterBy: null,
       folder: 'inbox',
       compose: false,
+      isShow: false,
     };
   },
   created() {
@@ -106,6 +107,9 @@ export default {
     },
     closeCompose() {
       this.compose = false;
+    },
+    toggleTask(){
+      this.isShow = !this.isShow;
     }
   },
   computed: {

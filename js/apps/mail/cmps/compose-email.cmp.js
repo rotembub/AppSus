@@ -65,6 +65,7 @@ export default {
     },
     addNewEmail(){      
        emailService.addEmail(this.newEmail).then(email => {
+         console.log(email);
          if(this.newEmail.isDraft){
           emailService.removeDraft(email.id).then(e =>{
             this.$emit('draftRemove');
@@ -87,7 +88,10 @@ export default {
     },
     createNote(noteEmail){
       // emailService.addEmail(noteEmail).then(e => {
+        console.log(noteEmail);
         this.newEmail = noteEmail;
+        console.log(this.newEmail);
+      
       // });
     },
 
