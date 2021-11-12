@@ -130,7 +130,7 @@ export default {
 
     },
     created() {
-
+        console.log(this.$route.params)
         noteServices.query()
             .then(notes => {
                 this.notes = notes
@@ -186,15 +186,18 @@ export default {
 
     },////////////// WORK IN PROGRESS
     watch: {
-        '$route.params.emailId': {
+        '$route.params.noteId': {
+
             handler() {
-                const { emailId } = this.$route.params;
+                console.log('watching');
+                const { noteId } = this.$route.params;
                 // const emailId = 'qwer';
-                console.log(emailId);
-                if (!emailId) return;
-                noteServices.emailToNoteEntity(emailId)
+                console.log(noteId);
+                if (!noteId) return;
+                noteServices.emailToNoteEntity(noteId)
                     .then(emailNote => {
                         this.openEditor(emailNote);
+                        this.$router.push('/note');
                     })
             },
             immediate: true
