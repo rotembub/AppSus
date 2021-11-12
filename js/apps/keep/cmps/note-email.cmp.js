@@ -6,8 +6,8 @@ export default {
         <section class=note-email>
             <h2>{{info.subject}}</h2>
             <p> {{info.body}}</p>
-            <span>{{info.to}}</span>
-            <span>{{info.sentAt}}</span>
+            <p>{{info.to}}</p>
+            <span>{{toShowTime}}</span>
         </section> 
     `,
     data() {
@@ -18,6 +18,12 @@ export default {
     },
     methods: {
 
+    },
+    computed: {
+        toShowTime() {
+            console.log(this.info.sentAt);
+            return new Date(parseInt(this.info.sentAt)).toDateString();
+        }
     }
 };
 // subject: null,
