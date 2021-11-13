@@ -31,9 +31,14 @@ body {
 .home-page {
   text-align: center;
   height: 80vh;
-  background-image: url(../img/landing.jpg);
+  background-image: url(../img/landing3.jpg);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
+  /* background-attachment: fixed; */
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .home-page h1{
   font-size: xx-large;
@@ -45,10 +50,8 @@ body {
   color: lightcoral;
 }
 
-/* @media screen and (max-width: 500px) {
+@media screen and (max-width: 1250px) {
   .home-page{
-    background-size:contain;
-
+    background-size: cover;
   } 
-
-} */
+}
