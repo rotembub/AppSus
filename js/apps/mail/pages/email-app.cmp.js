@@ -10,7 +10,6 @@ import { eventBus } from '../../../services/event-bus-service.js';
 export default {
   template: `
         <section class="email-app">
-        <button class="compose-btn" @click="openCompose">Compose <i class="fas fa-plus plus-icon"></i></button>
 
          <div class="email-layout-container">
 
@@ -75,14 +74,24 @@ export default {
     refBooks(newBooks) {
       this.emails = newBooks;
     },
+    createMsg(txt,type,link = ''){
+      const msg = {
+        txt,
+        type,
+        link
+    };
+    eventBus.$emit('message', msg)
+    },
     onRemove(email) {
       if (!email.removedAt) {
         email.removedAt = Date.now();
-        emailService.save(email).then(email => this.onShowFolder(this.folder))
+        emailService.save(email).then(email => this.onShowFolder(this.folder));
+        this.createMsg('Email Moved To Trash','success');
         return;
       }
       emailService.remove(email.id).then(emails => {
         this.onShowFolder(this.folder)
+        this.createMsg('Email As Been Deleted','success');
       });
     },
     sortEmails(sortBy) {

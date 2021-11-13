@@ -207,7 +207,6 @@ body {
   width: 135px;
   margin-block-end: 25px;
   margin-inline-start: 30px;
-  margin-top: 80px;
 
   /* top: 25%;
   left: 20px; */
@@ -231,9 +230,6 @@ body {
 }
 
 .compose-btn {
-  position: absolute;
-  right: 10px;
-  top: 95px;
   display: flex;
   align-items: center;
   margin-bottom: 20px;
@@ -358,6 +354,7 @@ body {
   }
 
   .compose-btn {
+    position: absolute;
     bottom: 60px;
 
     left: 10px;

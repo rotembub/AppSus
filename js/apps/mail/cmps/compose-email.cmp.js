@@ -31,7 +31,10 @@ export default {
    
     this.saveInterval = setInterval(()=> {
       if(this.newEmail.to || this.newEmail.subject || this.newEmail.body){
-        emailService.saveDraft(this.newEmail).then(d => console.log(d))
+        emailService.saveDraft(this.newEmail).then(d => {
+          console.log(d);
+          this.createMsg('Saved As Draft...','success');
+        });
        } 
        else this.newEmail = {
         to: '',
@@ -57,11 +60,11 @@ export default {
     },
     addNewEmail(){      
        emailService.addEmail(this.newEmail).then(email => {
+        this.createMsg('Sent New Email','success');
          if(this.newEmail.isDraft){
           emailService.removeDraft(email.id).then(e =>{
             this.$emit('draftRemove');
             this.closeModal();
-            this.createMsg('added new Email','success');
         });
          }else{
           this.newEmail = {
