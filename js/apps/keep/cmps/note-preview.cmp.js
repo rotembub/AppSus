@@ -4,6 +4,7 @@ import noteVideo from '../cmps/note-video.cmp.js'
 import noteTodos from './note-todos.cmp.js'
 import noteImg from '../cmps/note-img.cmp.js'
 import noteEmail from '../cmps/note-email.cmp.js'
+import noteAudio from '../cmps/note-audio.cmp.js'
 import { eventBus } from '../../../services/event-bus-service.js'
 import { noteServices } from '../services/note-services.cmp.js'
 
@@ -127,7 +128,8 @@ export default {
         noteTxt,
         noteTodos,
         noteVideo,
-        noteEmail
+        noteEmail,
+        noteAudio
     }
 
 }

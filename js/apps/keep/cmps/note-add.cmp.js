@@ -11,6 +11,7 @@ export default {
                         <option value="note-video">Video</option>
                         <option value="note-img">Image</option>
                         <option value="note-todos">Todo</option>
+                        <option value="note-audio">Audio</option>
 
                     </select>
                     <form v-if="newNote" class="note-form" @submit.prevent = "saveNote">
@@ -49,6 +50,15 @@ export default {
                             <textarea v-model="newNote.info.body" name="comments" placeholder="Your email body" rows="10" cols="30" required></textarea>
                             <span>{{newNote.info.sentAt}}</span>
                             <span>{{newNote.info.to}}</span>
+                        </template>
+
+                        <template v-if="(noteType === 'note-audio') && newNote">
+                            <label for="title">Add a Title</label>
+                            <input v-model="newNote.info.title" name="title" placeholder="Title..." required>
+                            <br>
+                            <label for="audio">Audio Url</label>
+                            <!-- <input v-model="newNote.info.url" type="file" name="audio" required>  -->
+                            <input v-model="newNote.info.url" type="url" name="audio" placeholder="https://audio.com" required>
                         </template>
 
                         <button>Save</button>

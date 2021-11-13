@@ -60,8 +60,21 @@ const gNotes = [
             fontSize: '16px'
         }
     },
+    { ///////////////////////////////////////////
+        id: "n924",
+        type: "note-audio",
+        isPinned: false,
+        info: {
+            url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+            title: 'What is that noise',
+        },
+        style: {
+            backgroundColor: "lightskyblue",
+            fontSize: '16px'
+        }
+    },
     {
-        id: null,
+        id: "n199",
         type: "note-video",
         isPinned: false,
         info: {   //https://www.youtube.com/embed/v=VOoXsOWE-rQ
@@ -124,6 +137,19 @@ const gNotes = [
         },
         style: {
             backgroundColor: "darkkhaki",
+            fontSize: '16px'
+        }
+    },
+    { ///////////////////////////////////////////
+        id: "n327",
+        type: "note-audio",
+        isPinned: false,
+        info: {
+            url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3",
+            title: 'Uhm...',
+        },
+        style: {
+            backgroundColor: "lightskyblue",
             fontSize: '16px'
         }
     },
@@ -231,6 +257,20 @@ function getEmptyNoteByType(type) {
             },
             style: {
                 backgroundColor: "lightgreen",
+                fontSize: '16px'
+            }
+        }
+    } else if (type === 'note-audio') {
+        return {
+            id: null,
+            type: "note-audio",
+            isPinned: false,
+            info: {
+                url: null,
+                title: null,
+            },
+            style: {
+                backgroundColor: "lightskyblue",
                 fontSize: '16px'
             }
         }
