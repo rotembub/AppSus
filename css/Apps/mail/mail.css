@@ -12,6 +12,9 @@ body {
 }
 
 /* email layout container */
+.email-app{
+  height: 80vh;
+}
 
 .email-layout-container {
   display: flex;

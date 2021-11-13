@@ -9,7 +9,7 @@ import { eventBus } from '../../../services/event-bus-service.js';
 
 export default {
   template: `
-        <section class="home-page">
+        <section class="email-app">
         <button class="compose-btn" @click="openCompose">Compose <i class="fas fa-plus plus-icon"></i></button>
 
          <div class="email-layout-container">
