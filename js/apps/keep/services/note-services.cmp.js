@@ -188,7 +188,7 @@ function _createNotes() {
     var notes = utilService.loadFromStorage(NOTE_KEY)
     if (!notes || !notes.length) {
         notes = gNotes;
-        console.log(gNotes)
+        // console.log(gNotes)
         utilService.saveToStorage(NOTE_KEY, gNotes);
     }
 }
@@ -203,7 +203,6 @@ function query() {
 // trying to fix my mess ups
 function getEmptyNoteByType(type) {
     if (type === 'note-txt') {
-        console.log('here');
         return {
             id: null,
             type: "note-txt",
@@ -309,27 +308,27 @@ function emailToNoteEntity(emailObj) {
         }
     }
     return Promise.resolve(emailNote);
-
-    //REF to graveyard:
-
-    // return storageService.post(NOTE_KEY, emailNote)
-
-    // return storageService.get('emails', emailId)
-    //     .then(email => {
-    //         // const  {subject,body,to,sentAt} = email
-    //         emailNote.info.subject = email.subject;
-    //         emailNote.info.body = email.body;
-    //         emailNote.info.to = email.to;
-    //         emailNote.info.sentAt = email.sentAt;
-    //         // storageService.post(NOTE_KEY, emailNote)
-    //         //     .then(newNote => {
-    //         //         console.log(newNote);
-    //         //         return newNote;
-    //         //     })
-    //         return emailNote;
-    //     })
-
 }
+//REF to graveyard:
+
+// return storageService.post(NOTE_KEY, emailNote)
+
+// return storageService.get('emails', emailId)
+//     .then(email => {
+//         // const  {subject,body,to,sentAt} = email
+//         emailNote.info.subject = email.subject;
+//         emailNote.info.body = email.body;
+//         emailNote.info.to = email.to;
+//         emailNote.info.sentAt = email.sentAt;
+//         // storageService.post(NOTE_KEY, emailNote)
+//         //     .then(newNote => {
+//         //         console.log(newNote);
+//         //         return newNote;
+//         //     })
+//         return emailNote;
+//     })
+
+
 
 // function changeIdx(noteDragged, dragId, idxToPlace) {
 //     return storageService.remove(NOTE_KEY, dragId)

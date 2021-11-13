@@ -75,30 +75,13 @@ export default {
         }
     },
     created() {
-        // const { noteId } = this.$route.params;
-        // if (noteId) {
-        //     noteServices.getNoteById(noteId)
-        //         .then(note => {
-        //             this.newNote = note;
-        //             this.noteType = note.type
-        //             console.log(note, this.newNote, 'here');
-        //             this.isEdited = true;
-        //         });
-        // } else {
-
-        //     this.newNote = noteServices.getEmptyNoteByType(this.noteType);
-        //     console.log('here actually', this.noteType, this.newNote);
-        // }
         if (this.selectedNote) {
-            console.log(this.selectedNote);
             this.isEdited = true;
             this.noteType = this.selectedNote.type;
             this.newNote = JSON.parse(JSON.stringify(this.selectedNote));
-            console.log(this.newNote, 'new here!!!!');
             if (this.noteType === 'note-email') this.isEdited = false; // WORK IN PROGRESS
         } else {
             this.newNote = noteServices.getEmptyNoteByType(this.noteType);
-            console.log('here actually', this.noteType, this.newNote);
         }
     },
     mounted() {
@@ -107,9 +90,7 @@ export default {
     methods: {
 
         saveNote() {
-            console.log(this.newNote);
             if (this.isEdited) {
-                // this.$emit('noteEdited', this.newNote);
                 noteServices.editNote(this.newNote)
                     .then((note) => {
                         console.log(note, 'has been EDITED')

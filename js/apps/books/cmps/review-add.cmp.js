@@ -29,7 +29,6 @@ export default {
         this.review = this.defaultReview();
     },
     mounted() {
-        // console.log(this);
         this.$el.firstChild[0].focus();
     },
     methods: {
@@ -37,10 +36,8 @@ export default {
             this.$emit('save', { ...this.review });
             this.review = null;
             this.review = this.defaultReview();
-            console.log(this.review);
         },
         defaultReview() {
-            console.log('hi');
             return {
                 name: 'Book Reader',
                 rate: '1',

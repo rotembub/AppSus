@@ -21,12 +21,7 @@ export default {
     },
     computed: {
         toShowTime() {
-            console.log(this.info.sentAt);
             return new Date(parseInt(this.info.sentAt)).toDateString();
         }
     }
 };
-// subject: null,
-// body: null,
-// to: null,
-// sentAt: null,

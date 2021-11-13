@@ -71,7 +71,6 @@ export default {
                     .then(res => {
                         this.nextBook = res.next;
                         this.prevBook = res.prev;
-                        console.log(this.prevBook, this.nextBook); /////////////////
                     });
             },
             immediate: true
