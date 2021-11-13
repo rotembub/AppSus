@@ -24,7 +24,7 @@ function _createBooks() {
     var books = utilService.loadFromStorage(BOOK_KEY)
     if (!books || !books.length) {
         books = gBooks;
-        console.log(gBooks)
+        // console.log(gBooks)
         utilService.saveToStorage(BOOK_KEY, gBooks);
     }
 
@@ -74,7 +74,7 @@ function addGoogleBook(book) {
             isOnSale: false,
         }
     }
-    console.log(newBook);
+    // console.log(newBook);
     return storageService.post(BOOK_KEY, newBook)
 }
 

@@ -76,6 +76,11 @@ body{
     margin: 0;
     padding-top: 10px;
 }
+.book-details button{
+    background-color: transparent;
+    border: white 3px solid;
+    color: lightcoral;
+}
 
 .close-btn{
     position: absolute;
@@ -117,6 +122,11 @@ body{
     background-color: lightyellow ;
     width: 100%;
 }
+
+.book-filter button{
+    background-color: transparent;
+}
+
 .add-book-anchor{
     background-color: lightyellow;
     width: 100%;
@@ -258,6 +268,9 @@ a.router-link-exact-active.router-link-active{
     }
     .book-details{
         font-size: smaller;
+    }
+    .book-description{
+        flex-direction: column;
     }
 }
 

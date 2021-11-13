@@ -58,6 +58,7 @@ a.router-link-exact-active.router-link-active{
   font-size: x-large;
   color: lightcoral;
   background-color: #faebd787;
+  margin: 0;
 }
 
 @media screen and (max-width: 1250px) {

@@ -15,12 +15,10 @@ export default {
     },
     created() {
         this.interval = setInterval(() => {
-            console.log('hi');
         }, 5000);
     },
     destroyed() {
         clearInterval(this.interval);
-        console.log('cleared');
     },
     mounted() {
         // console.log(this.$refs.header);

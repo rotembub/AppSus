@@ -24,9 +24,7 @@ export default {
         getProperURL() {
             const proper = 'embed';
             const urlArray = this.info.url.split('/');
-            console.log(urlArray)
             urlArray.splice(urlArray.length - 1, 0, proper);
-            console.log(urlArray.join('/'));
             return urlArray.join('/')
         }
     }

@@ -61,7 +61,6 @@ export default {
                 })
         },
         openEditor() {
-            console.log('trying to open');
             eventBus.$emit('editNote', this.note);
         },
         toggleColors() {
@@ -89,7 +88,7 @@ export default {
             console.log(noteId);
             this.$emit('switchPlaces', noteId, dropId);
         },
-        alertUser(txt, link) {////////////////////////////////////////////////////////
+        alertUser(txt, link) {
             const msg = {
                 txt,
                 type: 'success',
@@ -120,7 +119,6 @@ export default {
             }
             // console.log('qs', qString);
             return qString;
-            // `?subject=my note&body= note about the rain`
         }
     },
     components: {

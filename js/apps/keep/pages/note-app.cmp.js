@@ -40,47 +40,36 @@ export default {
             console.log('Note App Says Filter has changed!', this.filterBy);
             this.notesToShow;
         },
-        // removeNote(id) {
-        //     console.log('removing', id);
-        //     noteServices.removeNote(id)
-        //         .then(notes => {
-        //             console.log(notes);
-        //             this.notes = notes;
-        //         })
-        //         .catch(err => {
-        //             console.log('Error', err);
-        //         })
-        // },
         toggleModal(id) {
-            console.log('opening');
+            // console.log('opening');
             this.modalOpened = !this.modalOpened;
         },
         closeModal() {
-            console.log('closing');
+            // console.log('closing');
             this.modalOpened = false;
             this.selectedNote = null;
             // if (this.$route.params.noteId) this.$router.push('/note');
         },
         addNote(ev) {
-            this.closeModal(); /////////////
+            this.closeModal(); 
             console.log('NOTE ADDED! received at APP',)
             noteServices.query()
                 .then(notes => {
                     this.notes = notes;
-                    this.sortByPin; ////////////// 
+                    this.sortByPin; 
                     this.alertUser('Note Added');
                 })
         },
         updateNote(ev) {
             console.log('NOTE EDITED! received at APP!');
-            this.closeModal();/////////////
+            this.closeModal();
             noteServices.query()
                 .then(notes => {
                     this.notes = notes;
-                    this.sortByPin; ////////////// 
+                    this.sortByPin; 
                 })
         },
-        copyNote(copy) { // gotta think of a better way
+        copyNote(copy) {
             noteServices.addNote(copy)
                 .then((note) => {
                     console.log('COPY ADDED!', note)
@@ -93,9 +82,9 @@ export default {
                 .catch(err => console.log('Error', err))
         },
         openEditor(note) {
-            console.log('parent received opening editor', this.modalOpened)
+            // console.log('parent received opening editor', this.modalOpened)
             this.selectedNote = note;
-            console.log(this.selectedNote, note);
+            // console.log(this.selectedNote, note);
             this.toggleModal();
         },
         noteChanges() {
@@ -103,7 +92,7 @@ export default {
             noteServices.query()
                 .then(notes => {
                     this.notes = notes;
-                    this.sortByPin; ////////////// 
+                    this.sortByPin;
                 })
         },
         alertUser(txt, link) {
@@ -122,8 +111,9 @@ export default {
             const movedNote = JSON.parse(JSON.stringify(this.notes[idxDragged]))
             this.notes.splice(idxDragged, 1);
             this.notes.splice(idxToPlace, 0, movedNote);
-            // see if i can do it with the server although im not sure if its necessary because its just a visual
+            
         },
+        // see if i can do it with the server
         // switchPlaces(noteId, dropId) {
         //     console.log(noteId, dropId, 'in APP');
         //     const idxDragged = this.notes.findIndex(note => note.id === noteId);
@@ -136,19 +126,18 @@ export default {
         //             this.notes.splice(idxToPlace, 0, movedNote);
 
         //         })
-        //     // see if i can do it with the server althought im not sure if its necessary because its just a visual
         // }
 
 
     },
     created() {
-        console.log(this.$route.params)
+        // console.log(this.$route.params)
         noteServices.query()
             .then(notes => {
                 this.notes = notes
                 this.sortByPin
             });
-        eventBus.$on('editNote', this.openEditor);   /////////////
+        eventBus.$on('editNote', this.openEditor);
 
     },
     destroyed() {
@@ -162,17 +151,15 @@ export default {
             if (this.filterBy.byType === 'all') filteredByType = this.notes;
             else filteredByType = this.notes.filter(note => note.type === this.filterBy.byType);
             if (!this.filterBy.byName) {
-                console.log(filteredByType);
+                // console.log(filteredByType);
                 return filteredByType;
             }
             var filteredNotes = filteredByType.filter((note) => {
                 if (note.type === 'note-email') return false; // put it here cause email breaks the code get back to it later
                 var values = Object.values(note.info);
-                console.log('values', values);
                 if (note.type === 'note-todos') {
                     if (note.info.label.toLowerCase().includes(this.filterBy.byName.toLowerCase())) return note;
                     var todoValues = Object.values(note.info.todos);
-                    console.log('todoValues', todoValues);
                     if (todoValues.some(val => val.txt.toLowerCase().includes(this.filterBy.byName.toLowerCase()))) return note;
                     else return false;
                 }
@@ -188,7 +175,6 @@ export default {
                 if (a.isPinned && !b.isPinned) return -1
                 else return 1
             })
-            console.log(this.notes);
         }
 
 
@@ -196,7 +182,7 @@ export default {
     watch: {
         '$route.query': {
             handler() {
-                console.log('watching');
+                // console.log('watching');
                 const emailSent = this.$route.query;
                 if (!emailSent.subject) return;
                 noteServices.emailToNoteEntity(emailSent)

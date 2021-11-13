@@ -36,7 +36,7 @@ export default {
         searchFor() {
             bookService.getSearchResults(this.txt)
                 .then(books => {
-                    console.log(books);
+                    // console.log(books);
                     this.books = books;
                 })
                 .catch(err => console.log('Error, ', err));

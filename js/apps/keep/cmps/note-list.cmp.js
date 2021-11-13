@@ -25,7 +25,7 @@ export default {
     },
     methods: {
         copiedNote(ev) {
-            this.$emit('copiedNote', ev);   // gotta think of a better way
+            this.$emit('copiedNote', ev);
         },
         noteChanged(ev) {
             this.$emit('noteChanged');
