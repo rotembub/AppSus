@@ -218,3 +218,36 @@ a.router-link-exact-active.router-link-active{
     color: white;
 } */
 
+@media screen and (max-width: 960px) {
+
+}
+
+@media screen and (max-width: 720px) {
+    .book-preview{
+        height: 150px;
+        width: 150px;
+        font-size: smaller;
+    }
+    .book-filter{
+        flex-direction: column;
+        font-size: smaller;
+    }
+    .search-results{
+        justify-content: center;
+    }
+    .book-home-page{
+        text-align: center;
+        justify-content: flex-start;
+    }
+    .book-home-page >{
+        margin: 0;
+    }
+    .book-details{
+        font-size: smaller;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    
+
+}

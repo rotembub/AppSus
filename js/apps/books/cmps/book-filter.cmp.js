@@ -7,10 +7,15 @@
 export default {
     template: `
         <div class="book-filter">
-            <input v-model="filterBy.byName" type="text" placeholder="Search">
-            <span>Min:</span><input v-model="filterBy.fromPrice" type="range" min="0" max="500"> <span>{{filterBy.fromPrice}}</span>
-            <span>Max:</span> <input v-model="filterBy.toPrice" type="range" min="0" max="500"> <span>{{filterBy.toPrice}}</span>
-            <button @click="filter">Filter</button>
+            <div>
+                <input v-model="filterBy.byName" type="text" placeholder="Search">
+                <button @click="filter">Filter</button>
+            </div>
+            <div>
+                <span>Min:</span><input v-model="filterBy.fromPrice" type="range" min="0" max="500"> <span>{{filterBy.fromPrice}}</span>
+                <span>Max:</span> <input v-model="filterBy.toPrice" type="range" min="0" max="500"> <span>{{filterBy.toPrice}}</span>
+            </div> 
+            
         </div>
     `,
     data() {
