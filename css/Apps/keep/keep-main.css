@@ -46,27 +46,15 @@ button:hover{
 }
 .note-filter :nth-child(2){
     height: 50px;
-    /* width: 40vw; */
 }
 
 
 /* note-list  */
 
-/* .note-list{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-around;
-    gap: 10px;
-} */
-
 .note-list{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));  */
     grid-auto-rows: auto; 
-    /* grid-auto-flow:row; */
     gap: 10px;
     width: 90%;
     margin: auto;
@@ -75,11 +63,12 @@ button:hover{
 .note-txt{
     grid-row: span 1;
 }
-.note-video, .note-img{
-    /* grid-row: 1/ span 2; */
+.note-img{
     grid-row-end: span 2;
-    /* grid-row: span 2; */
 }
+.note-video{
+    grid-row-end: span 1;
+} 
 
 .note-todos{
     grid-row: span 1;
@@ -178,11 +167,12 @@ button:hover{
     font-size: x-large;
 }
 
+
+
 @media screen and (max-width: 960px) {
     .note-list{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        /* grid-auto-rows: minmax(100px,200px);  */
     }
 }
 
@@ -190,10 +180,13 @@ button:hover{
     .note-list{
         display: grid;
         grid-template-columns: 1fr 1fr;
-        /* grid-auto-rows: minmax(100px,200px);  */
     }
     .note-add{
         width: 350px;
     }
 }
 
+@media screen and (max-width: 500px) {
+    
+
+}
