@@ -27,6 +27,7 @@ export default {
       },
       showBy(folder){
           this.$emit('show',folder);
+          this.$emit('hideTask');
       },
       compose(){
         this.$emit('composed');

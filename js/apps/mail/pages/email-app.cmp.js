@@ -20,7 +20,7 @@ export default {
           </div>
           
             <section  class="email-side-bar">
-              <email-folder-list :isShow="isShow" @composed="openCompose" @show="onShowFolder"/>
+              <email-folder-list @hideTask="toggleTask" :isShow="isShow" @composed="openCompose" @show="onShowFolder"/>
               <h3 class="unread-count"> <i class="far fa-envelope unread-count-icon"></i> : {{unReadCount}}</h3>
             </section>
          </div>

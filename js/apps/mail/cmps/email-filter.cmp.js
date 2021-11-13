@@ -3,7 +3,7 @@ export default {
         <div class="email-filter">
             <label>Search</label>
             <input @input="filter" v-model="filterBy.title" type="text" placeholder="Search...">
-            <button class="btn-toggle-task" @click="toggleTaskBar">Toggle</button>
+            <button class="btn-toggle-task" @click="toggleTaskBar"><i class="fas fa-bars"></i></button>
             <div class="filter-sort-container">
             <label> Read/UnRead</label>
             <select @change="filter" v-model="filterBy.read">
