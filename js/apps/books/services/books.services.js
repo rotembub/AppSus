@@ -72,7 +72,7 @@ function addGoogleBook(book) {
             amount: 150,
             currencyCode: "ILS",
             isOnSale: false,
-        }   
+        }
     }
     console.log(newBook);
     return storageService.post(BOOK_KEY, newBook)
@@ -111,7 +111,20 @@ const gBooks = [
             "currencyCode": "EUR",
             "isOnSale": false
         },
-        "reviews":[]  ////////////////////////////////////////////////////////////// WATCHOUT
+        "reviews": [
+            {
+                name: 'Liz Guttenberg',
+                rate: '5',
+                date: new Date(Date.now()).toLocaleDateString(),
+                txt: 'Das ist das beste!'
+            },
+            {
+                name: 'Max Berger',
+                rate: '1',
+                date: new Date(Date.now()).toLocaleDateString(),
+                txt: 'Awful just awful'
+            },
+        ]                                           ////////////////////////////////////////////////////////////// WATCHOUT
     },
     {
         "id": "JYOJa2NpSCq",
@@ -133,7 +146,21 @@ const gBooks = [
             "amount": 44,
             "currencyCode": "EUR",
             "isOnSale": true
-        }
+        },
+        "reviews": [
+            {
+                name: 'Liz Guttenberg',
+                rate: '5',
+                date: new Date(Date.now()).toLocaleDateString(),
+                txt: 'Das ist das beste!'
+            },
+            {
+                name: 'Max Berger',
+                rate: '1',
+                date: new Date(Date.now()).toLocaleDateString(),
+                txt: 'Awful just awful'
+            },
+        ]
     },
     {
         "id": "1y0Oqts35DQ",
@@ -155,7 +182,21 @@ const gBooks = [
             "amount": 108,
             "currencyCode": "ILS",
             "isOnSale": false
-        }
+        },
+        "reviews": [
+            {
+                name: 'Liz Guttenberg',
+                rate: '5',
+                date: new Date(Date.now()).toLocaleDateString(),
+                txt: 'sehr spannende Erzählung'
+            },
+            {
+                name: 'Walter Hoff',
+                rate: '1',
+                date: new Date(Date.now()).toLocaleDateString(),
+                txt: 'Pack it up people nothing to see here'
+            },
+        ]
     },
     {
         "id": "kSnfIJyikTP",
@@ -177,7 +218,21 @@ const gBooks = [
             "amount": 30,
             "currencyCode": "EUR",
             "isOnSale": true
-        }
+        },
+        "reviews": [
+            {
+                name: 'Liz Guttenberg',
+                rate: '5',
+                date: new Date(Date.now()).toLocaleDateString(),
+                txt: 'Das ist das beste!'
+            },
+            {
+                name: 'Max Berger',
+                rate: '1',
+                date: new Date(Date.now()).toLocaleDateString(),
+                txt: 'Awful just awful'
+            },
+        ] 
     },
     {
         "id": "f4iuVmbuKCC",
@@ -199,7 +254,21 @@ const gBooks = [
             "amount": 19,
             "currencyCode": "USD",
             "isOnSale": false
-        }
+        },
+        "reviews": [
+            {
+                name: 'Liz Guttenberg',
+                rate: '5',
+                date: new Date(Date.now()).toLocaleDateString(),
+                txt: 'sehr spannende Erzählung'
+            },
+            {
+                name: 'Walter Hoff',
+                rate: '1',
+                date: new Date(Date.now()).toLocaleDateString(),
+                txt: 'Pack it up people nothing to see here'
+            },
+        ] 
     },
     {
         "id": "U2rfZO6oBZf",
@@ -243,7 +312,21 @@ const gBooks = [
             "amount": 90,
             "currencyCode": "USD",
             "isOnSale": false
-        }
+        },
+        "reviews": [
+            {
+                name: 'Liz Guttenberg',
+                rate: '5',
+                date: new Date(Date.now()).toLocaleDateString(),
+                txt: 'sehr spannende Erzählung'
+            },
+            {
+                name: 'Walter Hoff',
+                rate: '1',
+                date: new Date(Date.now()).toLocaleDateString(),
+                txt: 'Pack it up people nothing to see here'
+            },
+        ]
     },
     {
         "id": "9laHCEdSpFy",
@@ -287,7 +370,21 @@ const gBooks = [
             "amount": 116,
             "currencyCode": "USD",
             "isOnSale": true
-        }
+        },
+        "reviews": [
+            {
+                name: 'Liz Guttenberg',
+                rate: '5',
+                date: new Date(Date.now()).toLocaleDateString(),
+                txt: 'sehr spannende Erzählung'
+            },
+            {
+                name: 'Walter Hoff',
+                rate: '1',
+                date: new Date(Date.now()).toLocaleDateString(),
+                txt: 'Pack it up people nothing to see here'
+            },
+        ]
     },
     {
         "id": "Q8Q9Lsd03BD",
@@ -331,7 +428,21 @@ const gBooks = [
             "amount": 157,
             "currencyCode": "ILS",
             "isOnSale": true
-        }
+        },
+        "reviews": [
+            {
+                name: 'Liz Guttenberg',
+                rate: '5',
+                date: new Date(Date.now()).toLocaleDateString(),
+                txt: 'sehr spannende Erzählung'
+            },
+            {
+                name: 'Walter Hoff',
+                rate: '1',
+                date: new Date(Date.now()).toLocaleDateString(),
+                txt: 'Pack it up people nothing to see here'
+            },
+        ]
     },
     {
         "id": "qKyG0vqeO3e",
@@ -375,7 +486,21 @@ const gBooks = [
             "amount": 167,
             "currencyCode": "ILS",
             "isOnSale": false
-        }
+        },
+        "reviews": [
+            {
+                name: 'Liz Guttenberg',
+                rate: '5',
+                date: new Date(Date.now()).toLocaleDateString(),
+                txt: 'sehr spannende Erzählung'
+            },
+            {
+                name: 'Walter Hoff',
+                rate: '1',
+                date: new Date(Date.now()).toLocaleDateString(),
+                txt: 'Pack it up people nothing to see here'
+            },
+        ]
     },
     {
         "id": "5z2s9pDXAYj",
@@ -419,7 +544,21 @@ const gBooks = [
             "amount": 58,
             "currencyCode": "ILS",
             "isOnSale": true
-        }
+        },
+        "reviews": [
+            {
+                name: 'Liz Guttenberg',
+                rate: '5',
+                date: new Date(Date.now()).toLocaleDateString(),
+                txt: 'sehr spannende Erzählung'
+            },
+            {
+                name: 'Walter Hoff',
+                rate: '1',
+                date: new Date(Date.now()).toLocaleDateString(),
+                txt: 'Pack it up people nothing to see here'
+            },
+        ]
     },
     {
         "id": "aOI7tQuPZ2f",
@@ -463,7 +602,21 @@ const gBooks = [
             "amount": 118,
             "currencyCode": "ILS",
             "isOnSale": false
-        }
+        },
+        "reviews": [
+            {
+                name: 'Liz Guttenberg',
+                rate: '5',
+                date: new Date(Date.now()).toLocaleDateString(),
+                txt: 'sehr spannende Erzählung'
+            },
+            {
+                name: 'Walter Hoff',
+                rate: '1',
+                date: new Date(Date.now()).toLocaleDateString(),
+                txt: 'Pack it up people nothing to see here'
+            },
+        ]
     },
     {
         "id": "xm1z5bbZjlS",
@@ -507,7 +660,21 @@ const gBooks = [
             "amount": 110,
             "currencyCode": "USD",
             "isOnSale": true
-        }
+        },
+        "reviews": [
+            {
+                name: 'Liz Guttenberg',
+                rate: '5',
+                date: new Date(Date.now()).toLocaleDateString(),
+                txt: 'sehr spannende Erzählung'
+            },
+            {
+                name: 'Walter Hoff',
+                rate: '1',
+                date: new Date(Date.now()).toLocaleDateString(),
+                txt: 'Pack it up people nothing to see here'
+            },
+        ]
     },
     {
         "id": "vxYYYdVlEH3",
