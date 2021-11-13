@@ -123,7 +123,6 @@ export default {
       const searchStr = this.filterBy.title.toLowerCase();
       if (this.filterBy.read === 'all' && !searchStr) return this.emails;
       const byRead = this.filterBy.read === 'read' ? true : false;
-      //TODO: need to fix search with all
       const emailsToShow = this.emails.filter((email) => {
         return (
           email.subject.toLowerCase().includes(searchStr) && email.isRead === byRead
@@ -151,7 +150,6 @@ export default {
           this.openCompose();
         setTimeout(()=>{
           eventBus.$emit('makeNote', note);
-          console.log('sent note');
         },200);
         })
       },

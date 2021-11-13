@@ -5,8 +5,7 @@ import {emailsDB} from './emails-db.js';
 const EMAILS_KEY = 'emails';
 const DRAFTS_KEY = 'drafts';
 let demoData = emailsDB.emailsData();
-console.log(demoData);
-const gEmails = _createEmails();
+ _createEmails();
  utilService.loadFromStorage(DRAFTS_KEY) || utilService.saveToStorage(DRAFTS_KEY,[]);
 
 const loggedinUser = {
@@ -77,10 +76,7 @@ function noteToEmailEntity(note) {
       noteEmail.body = note.body;
     }
     noteEmail.subject = note.subject;
-    
-    
     return Promise.resolve(noteEmail);
-     
 }
 
 function remove(emailId) {
@@ -112,7 +108,6 @@ function getEmailsByFolder(folder){
   else if(folder === 'star') return query().then(emails => emails.filter(e => e.isStar && !e.removedAt));
   else if(folder === 'trash') return query().then(emails => emails.filter(e => e.removedAt));
   else if(folder === 'draft') return storageService.query(DRAFTS_KEY);
-  
 }
 
 
@@ -137,10 +132,8 @@ function _createEmails() {
   let emails = utilService.loadFromStorage(EMAILS_KEY);
   if (!emails || !emails.length) {
     emails = demoData;
-    console.log(demoData);
     utilService.saveToStorage(EMAILS_KEY, emails);
   }
-  console.log(emails);
-  return emails;
+  // return emails;
 }
 

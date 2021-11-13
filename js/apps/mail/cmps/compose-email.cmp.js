@@ -32,7 +32,6 @@ export default {
     this.saveInterval = setInterval(()=> {
       if(this.newEmail.to || this.newEmail.subject || this.newEmail.body){
         emailService.saveDraft(this.newEmail).then(d => {
-          console.log(d);
           this.createMsg('Saved As Draft...','success');
         });
        } 
@@ -74,7 +73,6 @@ export default {
            };
            this.closeModal();
          }
-        
        });
     },
     putData(draft){
