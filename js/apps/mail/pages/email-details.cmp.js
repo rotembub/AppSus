@@ -13,7 +13,7 @@ export default {
          <em>To {{ email.to }} on {{ formatDate(email) }}</em>
       </div>
         <div>
-        <img  v-if="email.imageUrl"  src="formatImage" alt="">
+        <img  v-if="email.imageUrl"  :src="formatImage" alt="">
           {{email.body}}
         </div>
     </div>
