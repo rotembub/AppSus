@@ -12,7 +12,7 @@ export default {
             <book-app-header></book-app-header>
             <user-msg></user-msg>
             <router-view></router-view>
-            <!-- <book-app-footer></book-app-footer> -->
+            <book-app-footer></book-app-footer>
         </section>
     `,
     components: {

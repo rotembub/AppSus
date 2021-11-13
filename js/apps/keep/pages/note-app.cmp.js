@@ -68,6 +68,7 @@ export default {
                 .then(notes => {
                     this.notes = notes;
                     this.sortByPin; ////////////// 
+                    this.alertUser('Note Added');
                 })
         },
         updateNote(ev) {
@@ -84,7 +85,10 @@ export default {
                 .then((note) => {
                     console.log('COPY ADDED!', note)
                     noteServices.query()
-                        .then(notes => this.notes = notes)
+                        .then(notes => {
+                            this.notes = notes;
+                            this.alertUser('Note Copied');
+                        })
                 })
                 .catch(err => console.log('Error', err))
         },
@@ -101,6 +105,14 @@ export default {
                     this.notes = notes;
                     this.sortByPin; ////////////// 
                 })
+        },
+        alertUser(txt, link) {
+            const msg = {
+                txt,
+                type: 'success',
+                link,
+            }
+            eventBus.$emit('message', msg)
         },
         switchPlaces(noteId, dropId) {
             console.log(noteId, dropId, 'in APP');
@@ -136,16 +148,11 @@ export default {
                 this.notes = notes
                 this.sortByPin
             });
-
-        // eventBus.$on('noteChanged', this.noteChanges)
-        // eventBus.$on('removeNote', this.removeNote);
         eventBus.$on('editNote', this.openEditor);   /////////////
 
     },
     destroyed() {
         console.log('no longer here');
-        // eventBus.$off('noteChanged', this.noteChanges)
-        // eventBus.$off('removeNote', this.removeNote);
         eventBus.$off('editNote', this.openEditor);
     },
     computed: {
@@ -185,7 +192,7 @@ export default {
         }
 
 
-    },////////////// WORK IN PROGRESS
+    },
     watch: {
         '$route.query': {
             handler() {

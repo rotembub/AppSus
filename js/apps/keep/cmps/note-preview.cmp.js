@@ -16,7 +16,6 @@ export default {
                 <button @click.stop.prevent="openEditor"><i class="far fa-edit"></i></button> <!--watchout for native -->
                 <span :class="{yellow: note.isPinned }" @click.stop="setPinned"><i class="fas fa-thumbtack"></i></span>
                 <button @click.stop.prevent="copyNote"><i class="far fa-copy"></i></button>
-                <!-- <router-link :to="'/email/edit/'+note.id"><i class="far fa-envelope"></i></router-link> -->
                 <router-link :to="'/email/edit/'+getQueryString"><i class="far fa-envelope"></i></router-link>
                 <button @click.stop.prevent="toggleColors"><i class="fas fa-palette"></i></button>
                 <div v-if="colorOpen" class="color-options">
@@ -50,19 +49,19 @@ export default {
             noteServices.removeNote(this.note.id)
                 .then(note => {
                     this.$emit('noteChanged');
+                    this.alertUser('Note Deleted');
                 })
         },
         setColor(color) {
             this.note.style.backgroundColor = color;
             noteServices.editNote(this.note)
                 .then(note => {
-                    // eventBus.$emit('noteChanged');
                     this.$emit('noteChanged');
                 })
         },
         openEditor() {
             console.log('trying to open');
-            eventBus.$emit('editNote', this.note); //////////////////////
+            eventBus.$emit('editNote', this.note);
         },
         toggleColors() {
             this.colorOpen = !this.colorOpen;
@@ -71,12 +70,11 @@ export default {
             this.note.isPinned = !this.note.isPinned
             noteServices.editNote(this.note)
                 .then(note => {
-                    // eventBus.$emit('noteChanged');
                     this.$emit('noteChanged');
                 })
         },
         copyNote() {
-            this.$emit('copiedNote', JSON.parse(JSON.stringify(this.note))); // gotta think of a better way
+            this.$emit('copiedNote', JSON.parse(JSON.stringify(this.note)));
         },
         startDrag(ev, note) {
             console.log('u are draggin!');
@@ -88,14 +86,16 @@ export default {
         onDrop(ev, dropId) {
             const noteId = ev.dataTransfer.getData('noteId');
             console.log(noteId);
-            // console.log(notes);
             this.$emit('switchPlaces', noteId, dropId);
-            // const note = notes.find(note => note.id === noteId)
-            // console.log(note);
         },
-
-
-
+        alertUser(txt, link) {////////////////////////////////////////////////////////
+            const msg = {
+                txt,
+                type: 'success',
+                link,
+            }
+            eventBus.$emit('message', msg)
+        }
     },
     computed: {
         getQueryString() {
