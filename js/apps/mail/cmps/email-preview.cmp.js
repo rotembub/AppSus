@@ -35,13 +35,8 @@ export default {
   },
   methods: {
     formatDate(email) {
-      // var day =new Date(email.sentAt).getDate();
-      // var month=new Date(email.sentAt).getMonth()+1;
-      // var year=new Date(email.sentAt).getFullYear();
-      // var original_date= day +'/'+month+'/'+year;
       let date = new Date(email.sentAt).toLocaleString().replace(/\s/g, "");
-
-      return  date; //original_date;
+      return  date; 
     },
     onRemove(emailId) {
       this.$emit('remove', emailId);
@@ -62,9 +57,7 @@ export default {
       let qString;
       const {subject,to,sentAt,body} = this.email;
       qString = `?subject=${subject}&body=${body}&to=${to}&sentAt=${sentAt}`;
-      // console.log('qs', qString);
       return qString;
-      // `?subject=my note&body= note about the rain`
   }
   }
 };

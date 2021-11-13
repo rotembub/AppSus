@@ -50,13 +50,10 @@ export default {
       });
     },
     selectEmail(email) {
-      console.log('yes');
-      console.log(email);
       if (email.isDraft) {
         this.openCompose();
         setTimeout(() => {
           eventBus.$emit('openDraft', email);
-          console.log('sent data');
         }, 200);
         return;
       }
@@ -99,7 +96,6 @@ export default {
       emailService.getEmailsByFolder(folder).then(emails => this.emails = emails);
     },
     refreshDraft() {
-      console.log('refresh');
       this.onShowFolder(this.folder);
     },
     openCompose() {
@@ -118,7 +114,6 @@ export default {
       const searchStr = this.filterBy.title.toLowerCase();
       if (this.filterBy.read === 'all' && !searchStr) return this.emails;
       const byRead = this.filterBy.read === 'read' ? true : false;
-      // const searchPrice = this.filterBy.price ? this.filterBy.price : Infinity;
       //TODO: need to fix search with all
       const emailsToShow = this.emails.filter((email) => {
         return (

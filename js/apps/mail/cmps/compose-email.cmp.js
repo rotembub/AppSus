@@ -1,24 +1,18 @@
-import { storageService } from '../../../services/async-storage-service.js';
 import { emailService } from '../services/email-services.js'
 import { eventBus } from '../../../services/event-bus-service.js';
 
 export default {
-  // props:['comp'],
   template: `
-        <section class="compose-email ">
-        <div class="overlay" @click="closeModal"></div>
-            <div class="modal-card">
+      <section class="compose-email ">
+          <div class="overlay" @click="closeModal"></div>
+          <div class="modal-card">
             <h3 class="compose-header"><span>New Email</span> </h3>
-            <!-- <div class="overlay" @click="closeModal"></div> -->
-            <input type="text" placeholder="To" v-model="newEmail.to">
-    
+            <input type="text" ref="textInput" placeholder="To" v-model="newEmail.to">
             <input type="text" placeholder="Subject" v-model="newEmail.subject">
-            
-
             <textarea v-model="newEmail.body"  cols="30" rows="30"></textarea>
             <button class="compose-send" @click="addNewEmail">Send</button>
-        </div>
-        </section>
+          </div>
+      </section>
     `,
   data() {
     return {
@@ -47,11 +41,9 @@ export default {
     },5000);
   },
   mounted(){
-    // this.$refs.textInput.focus();
-    // this.newEmail.to = 'yes' 
+    this.$refs.textInput.focus();
   },
   destroyed() {
-    console.log('destroy');
     clearInterval(this.saveInterval);
   },
   methods: {
@@ -61,16 +53,15 @@ export default {
         type,
         link
     };
-    eventBus.$emit('showMsg', msg)
+    eventBus.$emit('message', msg)
     },
     addNewEmail(){      
        emailService.addEmail(this.newEmail).then(email => {
-         console.log(email);
          if(this.newEmail.isDraft){
           emailService.removeDraft(email.id).then(e =>{
             this.$emit('draftRemove');
             this.closeModal();
-
+            this.createMsg('added new Email','success');
         });
          }else{
           this.newEmail = {
@@ -87,12 +78,7 @@ export default {
       this.newEmail = draft;
     },
     createNote(noteEmail){
-      // emailService.addEmail(noteEmail).then(e => {
-        console.log(noteEmail);
         this.newEmail = noteEmail;
-        console.log(this.newEmail);
-      
-      // });
     },
 
     closeModal(){
@@ -100,17 +86,4 @@ export default {
         this.$emit('closed');
     }
   },
-  computed:{
-   
-  },
-  watch: {
-   '$route.params.emailId': {
-      handler() {
-        console.log('change route');
-      },
-      immediate:true
-    }
-      
-   
-  }
 };

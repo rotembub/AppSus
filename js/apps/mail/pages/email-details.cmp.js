@@ -3,7 +3,7 @@ import {emailService} from '../services/email-services.js';
 
 export default {
   template: `
-        <section v-if="email" class="email-details home-page  ">
+        <section v-if="email" class="email-details email-app  ">
       <div class="email-display">
            
           <h2 class="mb-0">
@@ -13,13 +13,12 @@ export default {
          <em>To {{ email.to }} on {{ formatDate(email) }}</em>
       </div>
         <div>
-        <img  v-if="email.imageUrl" src="" alt="formatImage">
-         
+        <img  v-if="email.imageUrl"  src="formatImage" alt="">
           {{email.body}}
         </div>
     </div>
 
-    <router-link to="/email" >Back</router-link>
+    <router-link to="/email" ><i class=" email-back-arrow fas fa-arrow-circle-left"></i></router-link>
         
         </section>
     `,
@@ -33,6 +32,9 @@ export default {
     const {emailId} = this.$route.params;
     emailService.getById(emailId).then((email) => (this.email = email));
   },
+  mounted() {
+    // this.putSrc();
+  },
   methods: {
     formatDate(email) {
       // var day =new Date(email.sentAt).getDate();
@@ -43,27 +45,18 @@ export default {
 
       return  date; //original_date;
     },
-    
-    
+    // putSrc(){
+    //     // this.$refs.img.src
+      
+    // }
   },
   computed: {
     formatImage(){
-      console.log(this.email.imageUrl);
-      return this.email.imageUrl;
+      if(this.email.imageUrl){
+        console.log(this.email.imageUrl);
+          return this.email.imageUrl;
+      }
+    
     }
   },
-  components: {
-
-  },
-  watch:{
-    // '$route.params.bookId': {
-    //   handler() {
-    //     const {bookId} = this.$route.params;
-    //     emailService.getById(bookId).then((book) => (this.book = book));
-    //     emailService.getNextBookId(bookId).then(bookId => this.nextBookId = bookId);
-    //     emailService.getPrevtBookId(bookId).then(bookId => this.prevBookId = bookId);
-    //   },
-    //   immediate: true
-    // }
-  }
 };

@@ -13,12 +13,8 @@ export default {
              
     `,
   methods: {
-    
     select(email) {
       this.$emit('selected', email);
-    },
-    log() {
-      console.log('Logging.....');
     },
     onRemove(email) {
       this.$emit('remove',email);

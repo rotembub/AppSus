@@ -12,7 +12,7 @@ body {
 }
 
 /* email layout container */
-.email-app{
+.email-app {
   height: 80vh;
 }
 
@@ -110,7 +110,8 @@ body {
   width: 455px;
   height: 485px;
   margin: auto;
-  margin-top: 100px;
+  margin-top: 63px;
+
   margin-right: 100px;
   /* padding: 20px; */
   background-color: white;
@@ -128,7 +129,7 @@ body {
 
 .unread-count {
   /* position: absolute; */
-  margin-left: 30px;
+  margin-left: 76px;
   font-size: 20px;
 }
 
@@ -220,6 +221,7 @@ body {
 .mail-folder-nav span {
   width: 100%;
   cursor: pointer;
+  text-align: center;
 }
 
 .folder-filter span:hover {
@@ -231,7 +233,7 @@ body {
 .compose-btn {
   position: absolute;
   right: 10px;
-  top: 93px;
+  top: 95px;
   display: flex;
   align-items: center;
   margin-bottom: 20px;
@@ -269,8 +271,6 @@ body {
   display: none;
 }
 
-
-
 /* email details */
 
 .email-details {
@@ -285,10 +285,22 @@ body {
 .email-display {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  align-items: center;
 }
 
 .email-display div {
   margin: 10px;
+}
+
+.email-back-arrow {
+  font-size: 30px;
+  color: indianred;
+}
+
+.email-details img {
+  width: 200px;
+  height: 200px;
 }
 
 /* tablet */
@@ -346,7 +358,8 @@ body {
   }
 
   .compose-btn {
-    bottom: 40px;
+    bottom: 60px;
+
     left: 10px;
     top: unset;
   }
@@ -362,16 +375,16 @@ body {
     justify-content: flex-start;
     width: inherit;
   } */
-  .email-container{
+  .email-container {
     min-width: 100%;
   }
 
-  .email-filter{
+  .email-filter {
     width: 100%;
     justify-content: space-around;
   }
 
-  .mail-folder-nav{
+  .mail-folder-nav {
     position: fixed;
     height: 80vh;
     top: 10vh;
