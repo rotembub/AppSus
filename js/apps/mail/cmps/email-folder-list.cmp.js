@@ -1,7 +1,8 @@
 export default {
+  props:['isShow'],
     template: `
-          <div class="folder-filter">
-            <div class="mail-folder-nav">
+          <div  class="folder-filter">
+            <div  :class="{showbar: isShow}" class="mail-folder-nav">
             <span @click="showBy('inbox')">Inbox</span>
             <span @click="showBy('sent')">Sent</span>
             <span @click="showBy('star')">Stared</span>

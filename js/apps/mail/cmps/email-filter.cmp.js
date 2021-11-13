@@ -3,6 +3,7 @@ export default {
         <div class="email-filter">
             <label>Search</label>
             <input @input="filter" v-model="filterBy.title" type="text" placeholder="Search...">
+            <button class="btn-toggle-task" @click="toggleTaskBar">Toggle</button>
             <div class="filter-sort-container">
             <label> Read/UnRead</label>
             <select @change="filter" v-model="filterBy.read">
@@ -24,7 +25,8 @@ export default {
         title: '',
         read: 'all',
       },
-      sort: 'date'
+      sort: 'date',
+      
     };
   },
   methods: {
@@ -36,5 +38,8 @@ export default {
     onSort() {
       this.$emit('sorted', this.sort);
     },
+    toggleTaskBar(){
+      this.$emit('toggled');
+    }
   },
 };

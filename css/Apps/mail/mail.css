@@ -262,6 +262,15 @@ body {
   margin-left: 10px;
 }
 
+.btn-toggle-task {
+  display: none;
+}
+
+.showbar {
+  display: flex !important;
+  margin-right: 400px;
+}
+
 /* email details */
 
 .email-details {
@@ -339,5 +348,9 @@ body {
     bottom: 40px;
     left: 10px;
     top: unset;
+  }
+
+  .btn-toggle-task {
+    display: block;
   }
 }

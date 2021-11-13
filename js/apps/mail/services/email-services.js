@@ -55,12 +55,14 @@ function addEmail(email) {
     sentAt: Date.now(),
     to: 'user@appsus.com'
   };
+  if(email.imageUrl){
+    formatEmail.imageUrl = email.imageUrl;
+  }
   return storageService.post(EMAILS_KEY, formatEmail);
 }
 
 function noteToEmailEntity(note) {
   const noteEmail = {
-    id: utilService.makeId(),
     subject: null,
     body: null,
     isRead: false,
@@ -70,6 +72,7 @@ function noteToEmailEntity(note) {
   }
     if(note.body.includes('http')){
        noteEmail.imageUrl = note.body
+       console.log(noteEmail);
     }else{
       noteEmail.body = note.body;
     }

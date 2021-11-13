@@ -12,7 +12,11 @@ export default {
        <div>
          <em>To {{ email.to }} on {{ formatDate(email) }}</em>
       </div>
-        <div>{{email.body}}</div>
+        <div>
+        <img  v-if="email.imageUrl" src="" alt="formatImage">
+         
+          {{email.body}}
+        </div>
     </div>
 
     <router-link to="/email" >Back</router-link>
@@ -40,9 +44,13 @@ export default {
       return  date; //original_date;
     },
     
+    
   },
   computed: {
-   
+    formatImage(){
+      console.log(this.email.imageUrl);
+      return this.email.imageUrl;
+    }
   },
   components: {
 
