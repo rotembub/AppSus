@@ -6,7 +6,9 @@ export default {
     template: `
         <section class="note-video">
             <h2>{{info.title}}</h2>
-            <iframe width="420" height="345" :src="getProperURL">
+            <div class=iframe-container>
+                <iframe width="100%" height="100%" :src="getProperURL"></iframe>
+            </div>
                 
             </iframe>
         </section>
