@@ -266,9 +266,7 @@ body {
   display: none;
 }
 
-.showbar {
-  display: flex !important;
-}
+
 
 /* email details */
 
@@ -354,11 +352,25 @@ body {
     display: block;
   }
 
-  .mail-folder-nav {
+  /* .mail-folder-nav {
     position: absolute;
     right: 0;
     background: #ffffff;
     justify-content: flex-start;
     width: inherit;
+  } */
+  .mail-folder-nav{
+    position: absolute;
+    height: 100vh;
+    top: 0;
+    display: flex;
+    justify-content: space-around;
+    transform: translateX(150px);
+    transition: transform 0.5s;
+    background-color: white;
+    width: 33%;
+  }
+  .showbar {
+    transform: translateX(-150px);
   }
 }
