@@ -9,7 +9,7 @@ export default {
     template: `
         <section class="book-app">
             <book-filter @filter="setFilter"></book-filter>
-            <router-link to="/missbook/book/add">Add a Book</router-link>
+            <router-link class="add-book-anchor" to="/missbook/book/add">Add a Book</router-link>
             <router-view></router-view>
             <book-list v-if="books" :books="booksToShow"></book-list>
             

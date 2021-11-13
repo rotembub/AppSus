@@ -16,6 +16,11 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 80vh;
+    background-image: url(../../../js/apps/books/imgs/bk-1050x656.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 /* header & footer*/
 .book-app-header, .book-app-footer{
@@ -35,10 +40,10 @@ body{
     flex-wrap: wrap;
     gap: 15px;
     justify-content: center;
-    background-image: url(../../../js/apps/books/imgs/bk-1050x656.jpg);
+    /* background-image: url(../../../js/apps/books/imgs/bk-1050x656.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    background-position: center; */
     padding: 15px;
 }
 
@@ -109,6 +114,13 @@ body{
     justify-content: center;
     gap: 10px;
     padding-bottom: 20px;
+    background-color: lightyellow ;
+    width: 100%;
+}
+.add-book-anchor{
+    background-color: lightyellow;
+    width: 100%;
+    text-align: center;
 }
 
 .sale{
@@ -193,6 +205,8 @@ body{
 
 .book-add-page{
     text-align: center;
+    background-color: lightyellow;
+    width: 100%;
 }
 .book-add-page ul{
     list-style: none;
