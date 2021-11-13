@@ -25,6 +25,14 @@ body {
   color: white;
   background-color: lightcoral;
 }
+.app-header a{
+  color: black;
+  text-decoration: none;
+}
+a.router-link-exact-active.router-link-active{
+  color: white;
+  text-decoration: initial;
+}
 
 /* home page  */
 
