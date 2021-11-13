@@ -4,7 +4,7 @@ export default {
             <label>Search</label>
             <input @input="filter" v-model="filterBy.title" type="text" placeholder="Search...">
             <button class="btn-toggle-task" @click="toggleTaskBar"><i class="fas fa-bars"></i></button>
-            <div class="filter-sort-container">
+          <div class="filter-sort-container">
             <label> Read/UnRead</label>
             <select @change="filter" v-model="filterBy.read">
               <option value="read">Read</option>
@@ -12,11 +12,11 @@ export default {
               <option value="all">All</option>
             </select>
           <label>Sort</label>
-          <select @change="onSort" v-model="sort">
+            <select @change="onSort" v-model="sort">
               <option value="date">date</option>
               <option value="subject">subject</option>
             </select>
-            </div>
+          </div>
         </div>
     `,
   data() {
@@ -26,7 +26,6 @@ export default {
         read: 'all',
       },
       sort: 'date',
-      
     };
   },
   methods: {

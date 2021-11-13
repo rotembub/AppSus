@@ -42,21 +42,14 @@ export default {
       // var year=new Date(email.sentAt).getFullYear();
       // var original_date= day +'/'+month+'/'+year;
       let date = new Date(email.sentAt).toLocaleString().replace(/\s/g, "");
-
       return  date; //original_date;
     },
-    // putSrc(){
-    //     // this.$refs.img.src
-      
-    // }
   },
   computed: {
     formatImage(){
       if(this.email.imageUrl){
-        console.log(this.email.imageUrl);
           return this.email.imageUrl;
       }
-    
     }
   },
 };

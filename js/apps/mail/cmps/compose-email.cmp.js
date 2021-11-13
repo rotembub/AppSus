@@ -74,7 +74,6 @@ export default {
            };
            this.closeModal();
          }
-        
        });
     },
     putData(draft){
