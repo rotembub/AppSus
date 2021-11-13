@@ -45,14 +45,10 @@ body {
   color: lightcoral;
 }
 
-/* footer  
+/* @media screen and (max-width: 500px) {
+  .home-page{
+    background-size:contain;
 
-.app-footer {
-  text-align: center;
-  height: 10vh;
-  background-color: lightcoral;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  } 
+
 } */
