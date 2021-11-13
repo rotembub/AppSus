@@ -190,6 +190,9 @@ button:hover{
     .note-add{
         width: 350px;
     }
+    audio{
+        width: 150px;
+    }
 }
 
 @media screen and (max-width: 500px) {
