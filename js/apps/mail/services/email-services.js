@@ -71,7 +71,6 @@ function noteToEmailEntity(note) {
   }
     if(note.body.includes('http')){
        noteEmail.imageUrl = note.body
-       console.log(noteEmail);
     }else{
       noteEmail.body = note.body;
     }
