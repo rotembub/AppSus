@@ -8,11 +8,13 @@ export default {
             <audio controls>
                 <source :src="info.url" type="audio/ogg">
             </audio>
+
+
             </section>
     `,
     data() {
         return {
-
+            // record: false,
         };
     },
     methods: {

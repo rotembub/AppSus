@@ -22,7 +22,7 @@ const gNotes = [
         type: "note-txt",
         isPinned: true,
         info: {
-            txt: "Help Me!"
+            txt: "Soccer at 6pm!"
         },
         style: {
             backgroundColor: "darkkhaki",

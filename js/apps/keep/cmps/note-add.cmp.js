@@ -57,8 +57,14 @@ export default {
                             <input v-model="newNote.info.title" name="title" placeholder="Title..." required>
                             <br>
                             <label for="audio">Audio Url</label>
-                            <!-- <input v-model="newNote.info.url" type="file" name="audio" required>  -->
                             <input v-model="newNote.info.url" type="url" name="audio" placeholder="https://audio.com" required>
+                            <!-- <span @click="isRecord = true">record</span>
+                                <template v-if="isRecord">
+                                    <button @click="startRecording">record</button>
+                                    <button @click="stopRecording">stop</button>
+                                    <div id="audio" class="audio" controls></div>
+                                </template> -->
+
                         </template>
 
                         <button>Save</button>
@@ -72,6 +78,8 @@ export default {
             noteType: 'note-txt', //watchout!!!
             todo: { txt: null, doneAt: null },
             isEdited: false,
+            // isRecord: false,
+            // recorder: null,
         }
     },
     created() {
@@ -116,7 +124,39 @@ export default {
         },
         closeEditor() {
             this.$emit('closeEditor');
-        }
+        },
+
+        // NOT WORKING:
+        // startRecording() {
+        //     var items = [];
+        //     navigator.mediaDevices.getUserMedia({ audio: true })
+        //         .then(function (stream) {
+        //             console.log('stream', stream, 'recorder:', this.recorder);
+        //             this.recorder = new MediaRecorder(stream);
+
+        //             recorder.ondataavailable = (e) => {
+        //                 console.log('recording', e);
+        //                 items.push(e.data);
+        //                 if (this.recorder.state == "inactive") {
+        //                     var blob = new Blob(items, { type: "audio/*" });
+        //                     var audio = document.getElementById("audio");
+        //                     var mainaudio = document.createElement("audio");
+        //                     mainaudio.setAttribute("controls", "controls");
+        //                     audio.appendChild(mainaudio);
+        //                     mainaudio.innerHTML = '<source src="' + URL.createObjectURL(blob) + '" type="audio/*" />';
+        //                 }
+        //             };
+        //             this.recorder.start();
+
+        //         })
+        //         .catch(function (err) {
+        //             console.log('ERROR', err);
+        //         });
+        // },
+        // // NOT WORKING:
+        // stopRecording() {
+        //     this.recorder.stop();
+        // }
 
     },
 
